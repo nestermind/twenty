@@ -13,7 +13,6 @@ services:
     environment:
       # === additional environment variables ===
       IS_MULTIWORKSPACE_ENABLED: true
-      DEBUG_MODE: true
       SIGN_IN_PREFILLED: true
 
   worker:
