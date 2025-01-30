@@ -15,7 +15,6 @@ services:
     extends:
       file: docker-compose.local.yml
       service: worker
-    image: twentycrm/twenty:${TAG:-latest}
 
   db:
     extends:
