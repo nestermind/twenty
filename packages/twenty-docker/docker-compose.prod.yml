@@ -1,0 +1,35 @@
+name: twenty
+
+services:
+  change-vol-ownership:
+    extends:
+      file: docker-compose.yml
+      service: change-vol-ownership
+
+  server:
+    extends:
+      file: docker-compose.yml
+      service: server
+    image: twentycrm/twenty:${TAG:-latest}
+
+  worker:
+    extends:
+      file: docker-compose.yml
+      service: worker
+    image: twentycrm/twenty:${TAG:-latest}
+
+  db:
+    extends:
+      file: docker-compose.yml
+      service: db
+    image: twentycrm/twenty-postgres-spilo:${TAG:-latest}
+
+  redis:
+    extends:
+      file: docker-compose.yml
+      service: redis
+
+volumes:
+  docker-data:
+  db-data:
+  server-local-data:
