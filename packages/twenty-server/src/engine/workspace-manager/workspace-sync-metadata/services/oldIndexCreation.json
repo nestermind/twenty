@@ -1,0 +1,762 @@
+[
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "8c58c082-1068-4b07-a861-aae528b78fd0",
+    "name": "IDX_ca389a7ad7595bb15d733535998",
+    "columns": ["workspaceMemberId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "65b10012-25b9-443c-a98f-21015493898a",
+    "name": "IDX_30f969e0ec549acca94396d3efe",
+    "columns": ["authorId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "65b10012-25b9-443c-a98f-21015493898a",
+    "name": "IDX_2055e4e583e9a2e5b4c239fd992",
+    "columns": ["taskId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "65b10012-25b9-443c-a98f-21015493898a",
+    "name": "IDX_0698fed0e67005b7051b5d353b6",
+    "columns": ["noteId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "65b10012-25b9-443c-a98f-21015493898a",
+    "name": "IDX_3ca1d5243ff67f58c7c65c9a8a2",
+    "columns": ["personId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "65b10012-25b9-443c-a98f-21015493898a",
+    "name": "IDX_91e687ea21123af4e02c9a07a43",
+    "columns": ["companyId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "65b10012-25b9-443c-a98f-21015493898a",
+    "name": "IDX_73615a6bdc972b013956b19c59e",
+    "columns": ["opportunityId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "472854b9-900a-430e-8596-647a1e5b2ef4",
+    "name": "IDX_76a190ab8a6f439791358d63d60",
+    "columns": ["workspaceMemberId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "ede4858f-d00d-4793-93c5-1a85a19280ee",
+    "name": "IDX_3465c79448bacd2f1268e5f6310",
+    "columns": ["connectedAccountId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "0bdabaee-3fdb-4791-8839-4dd1de574ae4",
+    "name": "IDX_a88c3ab301c25202d4b52fb4b1b",
+    "columns": ["calendarChannelId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "0bdabaee-3fdb-4791-8839-4dd1de574ae4",
+    "name": "IDX_92a888b681107c4f78926820db7",
+    "columns": ["calendarEventId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "1caa7284-dd36-4872-8158-b2559c6b979d",
+    "name": "IDX_dd22aee9059fd7002165df6d8cc",
+    "columns": ["calendarEventId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "1caa7284-dd36-4872-8158-b2559c6b979d",
+    "name": "IDX_0da422bbe7adbabb8144c696ebd",
+    "columns": ["personId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "1caa7284-dd36-4872-8158-b2559c6b979d",
+    "name": "IDX_2bf094726f6d91639302c1c143d",
+    "columns": ["workspaceMemberId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "7196e596-59e7-43fa-9215-4fa4e2bc32a5",
+    "name": "IDX_UNIQUE_2a32339058d0b6910b0834ddf81",
+    "columns": ["domainName"],
+    "isUnique": true,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "7196e596-59e7-43fa-9215-4fa4e2bc32a5",
+    "name": "IDX_123501237187c835ede626367b7",
+    "columns": ["accountOwnerId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "7196e596-59e7-43fa-9215-4fa4e2bc32a5",
+    "name": "IDX_fb1f4905546cfc6d70a971c76f7",
+    "columns": ["searchVector"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": "GIN"
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "274c555b-5a34-4a55-90d9-d770c3062b9c",
+    "name": "IDX_7d1b454b2a538273bdb947e848f",
+    "columns": ["accountOwnerId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_c3ee83d51bc99ba99fe1998c508",
+    "columns": ["workspaceMemberId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_1f7e4cb168e77496349c8cefed6",
+    "columns": ["personId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_a900d9f809273abe54dc5e166fa",
+    "columns": ["companyId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_b810a8e37adf5cafd342170ccf8",
+    "columns": ["favoriteFolderId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_85f024f9ec673d530d14cf75fe5",
+    "columns": ["opportunityId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_eecddc968e93b9b8ebbfd85dad3",
+    "columns": ["workflowId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_110d1dc7f0ecd231a18f6784cf3",
+    "columns": ["workflowVersionId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_7c59b29a053016fc596ddad8a0e",
+    "columns": ["workflowRunId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_e14b3424016bea8b7fe220f7761",
+    "columns": ["taskId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_21d905e0adf19e835f6059a9f3d",
+    "columns": ["noteId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "b5e76a52-1ab5-40c6-a062-89f7248d7fe7",
+    "name": "IDX_505a1fccd2804f2472bd92e8720",
+    "columns": ["viewId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "720084f2-399c-4a59-a4cb-4f7043a11764",
+    "name": "IDX_a930d316a6b4f3b81d3f026dd16",
+    "columns": ["workspaceMemberId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "720084f2-399c-4a59-a4cb-4f7043a11764",
+    "name": "IDX_daf6592d1dff4cff3401bf23c67",
+    "columns": ["personId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "720084f2-399c-4a59-a4cb-4f7043a11764",
+    "name": "IDX_84b1e01cb0480e514a6e7ec0095",
+    "columns": ["companyId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "720084f2-399c-4a59-a4cb-4f7043a11764",
+    "name": "IDX_7e0d952730f13369e3bd9c2f1a9",
+    "columns": ["opportunityId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "720084f2-399c-4a59-a4cb-4f7043a11764",
+    "name": "IDX_a98bc2277b52c6dd52303e52c21",
+    "columns": ["noteId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "720084f2-399c-4a59-a4cb-4f7043a11764",
+    "name": "IDX_b292fe34a9e2d55884febd07e93",
+    "columns": ["taskId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "720084f2-399c-4a59-a4cb-4f7043a11764",
+    "name": "IDX_2708a99873421942c99ab94da12",
+    "columns": ["workflowId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "720084f2-399c-4a59-a4cb-4f7043a11764",
+    "name": "IDX_4e40a441ad75df16dd71499529a",
+    "columns": ["workflowVersionId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "720084f2-399c-4a59-a4cb-4f7043a11764",
+    "name": "IDX_6eae0c4202a87f812adf2f2ba6f",
+    "columns": ["workflowRunId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "c4fc5355-c914-429b-9cfe-fe3ce7e9fd94",
+    "name": "IDX_260f80ae1d2ccc67388995d6d05",
+    "columns": ["viewId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "c4fc5355-c914-429b-9cfe-fe3ce7e9fd94",
+    "name": "IDX_UNIQUE_6d269465206d2f3e283ce479b2e",
+    "columns": ["fieldMetadataId", "viewId"],
+    "isUnique": true,
+    "isCustom": false,
+    "indexWhereClause": "\"deletedAt\" IS NULL",
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "421d9c9a-a2c0-4e75-880b-1338606b61a3",
+    "name": "IDX_3819ec73f42c743a0d3700ae8e4",
+    "columns": ["viewId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "c02dfffd-58b1-4b83-b7a7-a21c8ca1f2aa",
+    "name": "IDX_5653b106ee9a9e3d5c1c790419a",
+    "columns": ["viewId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "e81f2d9c-2c6b-4e3d-9565-70827ee882e2",
+    "name": "IDX_64ce6940a9464cd62484d52fb08",
+    "columns": ["viewId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "a7523418-4061-4474-8f3f-51319ac21dcb",
+    "name": "IDX_a01889a3e5b30d56447736329aa",
+    "columns": ["viewId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "a7523418-4061-4474-8f3f-51319ac21dcb",
+    "name": "IDX_UNIQUE_9564690e029f3f186dff29c9c88",
+    "columns": ["fieldMetadataId", "viewId"],
+    "isUnique": true,
+    "isCustom": false,
+    "indexWhereClause": "\"deletedAt\" IS NULL",
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "6f50beea-d9cf-44ef-9518-f55c532ab437",
+    "name": "IDX_9d6a1fb98ccde16ede8c5949d40",
+    "columns": ["workflowId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "02af7cdd-5124-4fbd-8048-76796a2d3e70",
+    "name": "IDX_a362c5eff4a28fcdffdd3bdff16",
+    "columns": ["workflowId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "183fd2fe-658d-44a9-b394-00d121062032",
+    "name": "IDX_faa5772594c4ce15b9305919f2f",
+    "columns": ["workflowVersionId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "183fd2fe-658d-44a9-b394-00d121062032",
+    "name": "IDX_eee970874f46ff99eefc0015001",
+    "columns": ["workflowId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "23ecbdc4-6c35-40c5-8655-46bb42efa90b",
+    "name": "IDX_e47451872f70c8f187a6b460ac7",
+    "columns": ["searchVector"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": "GIN"
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "1b4d80ed-ceb3-4461-8ee8-003d689a0cec",
+    "name": "IDX_78fa73d661d632619e17de211e6",
+    "columns": ["messageThreadId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "88058810-0395-4584-aead-a45e9d894537",
+    "name": "IDX_c3af632ce35236d21f8ae1f4cfd",
+    "columns": ["connectedAccountId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "1e754636-c560-45a1-b9ce-6fb044975a70",
+    "name": "IDX_8d0144e4074d86d0cb7094f40c2",
+    "columns": ["messageId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "1e754636-c560-45a1-b9ce-6fb044975a70",
+    "name": "IDX_6d9700e5ae2ab8c294d614e72f6",
+    "columns": ["personId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "1e754636-c560-45a1-b9ce-6fb044975a70",
+    "name": "IDX_8c4f617db0813d41aef587e49ea",
+    "columns": ["workspaceMemberId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "404b8fed-d7f0-4ec7-9fd4-a5d05e71a2fa",
+    "name": "IDX_63953e5f88351922043480b8801",
+    "columns": ["messageChannelId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "404b8fed-d7f0-4ec7-9fd4-a5d05e71a2fa",
+    "name": "IDX_671dd9e01a80d1e4c89fc166c3b",
+    "columns": ["messageId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "404b8fed-d7f0-4ec7-9fd4-a5d05e71a2fa",
+    "name": "IDX_UNIQUE_da56d8b595a778d404eae01f29b",
+    "columns": ["messageChannelId", "messageId"],
+    "isUnique": true,
+    "isCustom": false,
+    "indexWhereClause": "\"deletedAt\" IS NULL",
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "e4fc8822-698a-4b78-ba6c-141c16d9a3f5",
+    "name": "IDX_f20de8d7fc74a405e4083051275",
+    "columns": ["searchVector"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": "GIN"
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "9e09189b-eb21-4662-9776-6f8e0bb62091",
+    "name": "IDX_241f0cca089399c8c5954086b8d",
+    "columns": ["noteId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "9e09189b-eb21-4662-9776-6f8e0bb62091",
+    "name": "IDX_56454973bce16e65ee1ae3d2e40",
+    "columns": ["personId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "9e09189b-eb21-4662-9776-6f8e0bb62091",
+    "name": "IDX_68bce49f4de05facd5365a3a797",
+    "columns": ["companyId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "9e09189b-eb21-4662-9776-6f8e0bb62091",
+    "name": "IDX_19ea95ddb39f610f7dcad4c4336",
+    "columns": ["opportunityId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "7fe6cd55-73e6-47fa-87db-af9c30e97f22",
+    "name": "IDX_4f469d3a7ee08aefdc099836364",
+    "columns": ["stage", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "7fe6cd55-73e6-47fa-87db-af9c30e97f22",
+    "name": "IDX_82cdf247553f960093baa7c6635",
+    "columns": ["pointOfContactId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "7fe6cd55-73e6-47fa-87db-af9c30e97f22",
+    "name": "IDX_425ac6c73ecb993cf9cbc2c2b00",
+    "columns": ["companyId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "7fe6cd55-73e6-47fa-87db-af9c30e97f22",
+    "name": "IDX_9f96d65260c4676faac27cb6bf3",
+    "columns": ["searchVector"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": "GIN"
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "877ac374-e68d-496f-85a3-4cc17a68110e",
+    "name": "IDX_UNIQUE_87914cd3ce963115f8cb943e2ac",
+    "columns": ["emails"],
+    "isUnique": true,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "877ac374-e68d-496f-85a3-4cc17a68110e",
+    "name": "IDX_6a862a788ac6ce967afa06df812",
+    "columns": ["companyId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "877ac374-e68d-496f-85a3-4cc17a68110e",
+    "name": "IDX_bbd7aec1976fc684a0a5e4816c9",
+    "columns": ["searchVector"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": "GIN"
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "d4d784ac-a334-4dd9-b6b4-a2ab43b254e8",
+    "name": "IDX_ee5298b25512b38b29390e084f7",
+    "columns": ["assigneeId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "d4d784ac-a334-4dd9-b6b4-a2ab43b254e8",
+    "name": "IDX_d01a000cf26e1225d894dc3d364",
+    "columns": ["searchVector"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": "GIN"
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "feb0f3ed-5dcc-4784-a926-0be055b5b3a5",
+    "name": "IDX_627d4437c96f22d5d46cc9a85bb",
+    "columns": ["taskId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "feb0f3ed-5dcc-4784-a926-0be055b5b3a5",
+    "name": "IDX_cf12e6c92058f11b59852ffdfe3",
+    "columns": ["personId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "feb0f3ed-5dcc-4784-a926-0be055b5b3a5",
+    "name": "IDX_4e929e3af362914c41035c4d438",
+    "columns": ["companyId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  },
+  {
+    "workspaceId": "b5cbbb0f-d3dc-4cea-ab0a-dd712deb3d7f",
+    "objectMetadataId": "feb0f3ed-5dcc-4784-a926-0be055b5b3a5",
+    "name": "IDX_b0ba7efcd8c529922bf6e858bc1",
+    "columns": ["opportunityId", "deletedAt"],
+    "isUnique": false,
+    "isCustom": false,
+    "indexWhereClause": null,
+    "indexType": undefined
+  }
+]

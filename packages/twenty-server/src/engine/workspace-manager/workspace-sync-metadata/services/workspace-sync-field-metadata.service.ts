@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 
-import { EntityManager } from 'typeorm';
+import { FieldMetadataType } from 'twenty-shared';
+import { EntityManager, Repository } from 'typeorm';
 
 import { FeatureFlagMap } from 'src/engine/core-modules/feature-flag/interfaces/feature-flag-map.interface';
 import { WorkspaceMigrationBuilderAction } from 'src/engine/workspace-manager/workspace-migration-builder/interfaces/workspace-migration-builder-action.interface';
@@ -10,6 +11,7 @@ import {
 } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/comparator.interface';
 import { WorkspaceSyncContext } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/workspace-sync-context.interface';
 
+import { FieldMetadataEntity } from 'src/engine/metadata-modules/field-metadata/field-metadata.entity';
 import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadata/object-metadata.entity';
 import { WorkspaceMigrationEntity } from 'src/engine/metadata-modules/workspace-migration/workspace-migration.entity';
 import { CustomWorkspaceEntity } from 'src/engine/twenty-orm/custom.workspace-entity';
@@ -38,9 +40,11 @@ export class WorkspaceSyncFieldMetadataService {
     manager: EntityManager,
     storage: WorkspaceSyncStorage,
     workspaceFeatureFlagsMap: FeatureFlagMap,
+    defaultMetadataWorkspaceId?: string | null,
   ): Promise<Partial<WorkspaceMigrationEntity>[]> {
     const objectMetadataRepository =
       manager.getRepository(ObjectMetadataEntity);
+    const fieldMetadataRepository = manager.getRepository(FieldMetadataEntity);
 
     // Retrieve object metadata collection from DB
     const originalObjectMetadataCollection =
@@ -62,6 +66,8 @@ export class WorkspaceSyncFieldMetadataService {
       customObjectMetadataCollection,
       storage,
       workspaceFeatureFlagsMap,
+      fieldMetadataRepository,
+      defaultMetadataWorkspaceId,
     );
 
     await this.synchronizeCustomObjectFields(
@@ -122,11 +128,22 @@ export class WorkspaceSyncFieldMetadataService {
     customObjectMetadataCollection: ObjectMetadataEntity[],
     storage: WorkspaceSyncStorage,
     workspaceFeatureFlagsMap: FeatureFlagMap,
+    fieldMetadataRepository: Repository<
+      FieldMetadataEntity<FieldMetadataType | 'default'>
+    >,
+    defaultMetadataWorkspaceId?: string | null,
   ): Promise<void> {
     // Create standard field metadata map
     const standardObjectStandardFieldMetadataMap =
       this.standardFieldFactory.create(
-        standardObjectMetadataDefinitions,
+        defaultMetadataWorkspaceId
+          ? await fieldMetadataRepository.find({
+              where: {
+                workspaceId: defaultMetadataWorkspaceId,
+              },
+              relations: ['object'],
+            })
+          : standardObjectMetadataDefinitions,
         context,
         workspaceFeatureFlagsMap,
       );

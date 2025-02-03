@@ -32,6 +32,6 @@ postgres-redis-on-docker:
 		-c "CREATE DATABASE \"test\" WITH OWNER postgres;"
 
 init-and-migrate-db:
+	make postgres-redis-on-docker
 	npx nx database:init:prod twenty-server && \
 	npx nx database:migrate:prod twenty-server
-

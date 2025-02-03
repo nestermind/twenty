@@ -22,6 +22,7 @@ export class WorkspaceSyncObjectMetadataIdentifiersService {
     manager: EntityManager,
     _storage: WorkspaceSyncStorage,
     workspaceFeatureFlagsMap: FeatureFlagMap,
+    defaultMetadataWorkspaceId?: string | null,
   ): Promise<void> {
     const objectMetadataRepository =
       manager.getRepository(ObjectMetadataEntity);
@@ -32,10 +33,13 @@ export class WorkspaceSyncObjectMetadataIdentifiersService {
         objectMetadataRepository,
       );
 
-    const standardObjectMetadataMap = this.createStandardObjectMetadataMap(
-      context,
-      workspaceFeatureFlagsMap,
-    );
+    const standardObjectMetadataMap =
+      await this.createStandardObjectMetadataMap(
+        context,
+        workspaceFeatureFlagsMap,
+        objectMetadataRepository,
+        defaultMetadataWorkspaceId,
+      );
 
     await this.processObjectMetadataCollection(
       originalObjectMetadataCollection,
@@ -54,12 +58,19 @@ export class WorkspaceSyncObjectMetadataIdentifiersService {
     });
   }
 
-  private createStandardObjectMetadataMap(
+  private async createStandardObjectMetadataMap(
     context: WorkspaceSyncContext,
     workspaceFeatureFlagsMap: FeatureFlagMap,
-  ): Record<string, any> {
+    objectMetadataRepository: Repository<ObjectMetadataEntity>,
+    defaultMetadataWorkspaceId?: string | null,
+  ): Promise<Record<string, any>> {
     const standardObjectMetadataCollection = this.standardObjectFactory.create(
-      standardObjectMetadataDefinitions,
+      defaultMetadataWorkspaceId
+        ? await objectMetadataRepository.find({
+            where: { workspaceId: defaultMetadataWorkspaceId },
+            relations: ['fields'],
+          })
+        : standardObjectMetadataDefinitions,
       context,
       workspaceFeatureFlagsMap,
     );
