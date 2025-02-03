@@ -1,0 +1,17 @@
+{
+    target: class ApiKeyWorkspaceEntity extends _baseworkspaceentity.BaseWorkspaceEntity {
+    },
+    standardId: "20202020-4c00-401d-8cda-ec6a4c41cd7d",
+    nameSingular: "apiKey",
+    namePlural: "apiKeys",
+    labelSingular: "API Key",
+    labelPlural: "API Keys",
+    description: "An API key",
+    labelIdentifierStandardId: "20202020-72e6-4079-815b-436ce8a62f23",
+    imageIdentifierStandardId: null,
+    icon: "IconRobot",
+    shortcut: undefined,
+    isAuditLogged: false,
+    isSystem: true,
+    gate: undefined,
+  }

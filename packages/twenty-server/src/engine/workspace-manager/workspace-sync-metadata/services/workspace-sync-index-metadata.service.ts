@@ -34,6 +34,7 @@ export class WorkspaceSyncIndexMetadataService {
     manager: EntityManager,
     storage: WorkspaceSyncStorage,
     workspaceFeatureFlagsMap: FeatureFlagMap,
+    defaultMetadataWorkspaceId?: string | null,
   ): Promise<Partial<WorkspaceMigrationEntity>[]> {
     this.logger.log('Syncing index metadata');
 
@@ -85,7 +86,14 @@ export class WorkspaceSyncIndexMetadataService {
 
     // Generate index metadata from models
     const standardIndexMetadataCollection = this.standardIndexFactory.create(
-      standardObjectMetadataDefinitions,
+      defaultMetadataWorkspaceId
+        ? await indexMetadataRepository.find({
+            where: {
+              workspaceId: defaultMetadataWorkspaceId,
+            },
+            relations: ['objectMetadata', 'indexFieldMetadatas.fieldMetadata'],
+          })
+        : standardObjectMetadataDefinitions,
       context,
       originalStandardObjectMetadataMap,
       originalCustomObjectMetadataMap,

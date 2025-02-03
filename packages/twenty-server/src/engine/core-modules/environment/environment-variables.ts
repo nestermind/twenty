@@ -499,6 +499,10 @@ export class EnvironmentVariables {
   @IsString()
   @IsOptional()
   SSL_CERT_PATH: string;
+
+  @IsString()
+  @IsOptional()
+  DEFAULT_METADATA_WORKSPACE_ID: string;
 }
 
 export const validate = (

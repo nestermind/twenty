@@ -33,6 +33,7 @@ services:
       STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
 
       APP_SECRET: ${APP_SECRET}
+      DEFAULT_METADATA_WORKSPACE_ID: ${DEFAULT_METADATA_WORKSPACE_ID}
     depends_on:
       change-vol-ownership:
         condition: service_completed_successfully
