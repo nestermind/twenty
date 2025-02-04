@@ -1,15 +1,16 @@
 import { defineConfig } from '@lingui/cli';
-import { formatter } from '@lingui/format-po';
+import { APP_LOCALES } from 'twenty-shared';
 
 export default defineConfig({
   sourceLocale: 'en',
-  locales: ['en', 'fr'],
+  locales: Object.values(APP_LOCALES),
+  pseudoLocale: 'pseudo-en',
+  fallbackLocales: {
+    'pseudo-en': 'en',
+  },
   extractorParserOptions: {
     tsExperimentalDecorators: true,
   },
-  format: formatter({
-    explicitIdAsDefault: true,
-  }),
   catalogs: [
     {
       path: '<rootDir>/src/engine/core-modules/i18n/locales/{locale}',
@@ -18,6 +19,7 @@ export default defineConfig({
   ],
   catalogsMergePath:
     '<rootDir>/src/engine/core-modules/i18n/locales/generated/{locale}',
+  compileNamespace: 'ts',
   ...(process.env.TRANSLATION_IO_API_KEY_BACKEND
     ? {
         service: {
