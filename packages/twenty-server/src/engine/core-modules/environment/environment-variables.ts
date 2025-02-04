@@ -473,8 +473,6 @@ export class EnvironmentVariables {
   @CastToBoolean()
   CALENDAR_PROVIDER_GOOGLE_ENABLED = false;
 
-  AUTH_GOOGLE_APIS_CALLBACK_URL: string;
-
   CHROME_EXTENSION_ID: string;
 
   @CastToPositiveNumber()
