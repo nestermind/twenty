@@ -6,6 +6,8 @@ import { ObjectTasks } from '@/activities/tasks/components/ObjectTasks';
 import { TimelineActivities } from '@/activities/timeline-activities/components/TimelineActivities';
 import { ActivityTargetableObject } from '@/activities/types/ActivityTargetableEntity';
 import { FieldsCard } from '@/object-record/record-show/components/FieldsCard';
+import { ObjectOverview } from '@/object-record/record-show/components/nm/ObjectOverview';
+
 import { CardType } from '@/object-record/record-show/types/CardType';
 import { ShowPageActivityContainer } from '@/ui/layout/show-page/components/ShowPageActivityContainer';
 import { WorkflowRunOutputVisualizer } from '@/workflow/components/WorkflowRunOutputVisualizer';
@@ -99,5 +101,9 @@ export const CardComponents: Record<CardType, CardComponentType> = {
 
   [CardType.WorkflowRunOutputCard]: ({ targetableObject }) => (
     <WorkflowRunOutputVisualizer workflowRunId={targetableObject.id} />
+  ),
+
+  [CardType.OverviewCard]: ({ targetableObject }) => (
+    <ObjectOverview targetableObject={targetableObject} />
   ),
 };
