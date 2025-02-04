@@ -942,7 +942,8 @@ export class EnvironmentVariables {
 
   @EnvironmentVariablesMetadata({
     group: EnvironmentVariablesGroup.Workspace,
-    description: 'Default metadata workspace ID',
+    description:
+      'If set, new Workspace creation copies metadata from defined workspace',
   })
   @IsString()
   @IsOptional()
