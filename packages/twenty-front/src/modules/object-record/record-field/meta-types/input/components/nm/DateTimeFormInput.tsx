@@ -1,6 +1,6 @@
-import { isDefined, Nullable } from 'twenty-ui';
-
 import { DateInput } from '@/ui/field/input/components/DateInput';
+import { isDefined } from 'twenty-shared';
+import { Nullable } from 'twenty-ui';
 
 import { useRecordEdit } from '@/record-edit/contexts/RecordEditContext';
 import { useDateTimeField } from '../../../hooks/useDateTimeField';

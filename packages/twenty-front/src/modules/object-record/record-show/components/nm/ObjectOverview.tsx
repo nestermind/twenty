@@ -14,9 +14,9 @@ import styled from '@emotion/styled';
 import { Trans } from '@lingui/react/macro';
 import groupBy from 'lodash.groupby';
 import { Link } from 'react-router-dom';
+import { isDefined } from 'twenty-shared';
 import { Button, IconPencil } from 'twenty-ui';
 import { FieldMetadataType } from '~/generated/graphql';
-import { isDefined } from '~/utils/isDefined';
 
 const StyledFormBorder = styled.div`
   border: 1px solid ${({ theme }) => theme.border.color.light};

@@ -11,7 +11,7 @@ import { useRecordEdit } from '@/record-edit/contexts/RecordEditContext';
 import { SectionFieldType } from '@/record-edit/types/EditSectionTypes';
 import styled from '@emotion/styled';
 import { isNull } from '@sniptt/guards';
-import { isDefined } from 'twenty-ui';
+import { isDefined } from 'twenty-shared';
 
 const StyledFieldContainer = styled.div<{ isHorizontal?: boolean }>`
   display: flex;

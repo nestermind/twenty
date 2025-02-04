@@ -2,10 +2,10 @@ import { Nullable } from 'twenty-ui';
 
 import { useDateField } from '@/object-record/record-field/meta-types/hooks/useDateField';
 import { DateInput } from '@/ui/field/input/components/DateInput';
-import { isDefined } from '~/utils/isDefined';
 
 import { FieldInputClickOutsideEvent } from '@/object-record/record-field/meta-types/input/components/DateTimeFieldInput';
 import { useRecordEdit } from '@/record-edit/contexts/RecordEditContext';
+import { isDefined } from 'twenty-shared';
 
 type FieldInputEvent = (persist: () => void) => void;
 
@@ -37,9 +37,8 @@ export const DateFormInput = ({
         value: null,
       });
     } else {
-      const newDateWithoutTime = `${newDate?.getFullYear()}-${(
-        newDate?.getMonth() + 1
-      )
+      const month = newDate?.getMonth();
+      const newDateWithoutTime = `${newDate?.getFullYear()}-${(month + 1)
         .toString()
         .padStart(2, '0')}-${newDate?.getDate().toString().padStart(2, '0')}`;
 
