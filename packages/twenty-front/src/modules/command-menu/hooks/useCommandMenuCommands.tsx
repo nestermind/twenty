@@ -1,3 +1,4 @@
+import { RecordAgnosticActionsKey } from '@/action-menu/actions/record-agnostic-actions/types/RecordAgnosticActionsKey';
 import { actionMenuEntriesComponentSelector } from '@/action-menu/states/actionMenuEntriesComponentSelector';
 import {
   ActionMenuEntryScope,
@@ -14,6 +15,7 @@ import {
 } from '@/command-menu/types/Command';
 import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValueV2';
 import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
+import { i18n } from '@lingui/core';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { IconSparkles } from 'twenty-ui';
 import { useDebounce } from 'use-debounce';
@@ -55,7 +57,7 @@ export const useCommandMenuCommands = () => {
     )
     ?.map((actionMenuEntry) => ({
       id: actionMenuEntry.key,
-      label: actionMenuEntry.label,
+      label: i18n._(actionMenuEntry.label),
       Icon: actionMenuEntry.Icon,
       onCommandClick: actionMenuEntry.onClick,
       type: CommandType.StandardAction,
@@ -71,7 +73,7 @@ export const useCommandMenuCommands = () => {
     )
     ?.map((actionMenuEntry) => ({
       id: actionMenuEntry.key,
-      label: actionMenuEntry.label,
+      label: i18n._(actionMenuEntry.label),
       Icon: actionMenuEntry.Icon,
       onCommandClick: actionMenuEntry.onClick,
       type: CommandType.StandardAction,
@@ -87,7 +89,7 @@ export const useCommandMenuCommands = () => {
     )
     ?.map((actionMenuEntry) => ({
       id: actionMenuEntry.key,
-      label: actionMenuEntry.label,
+      label: i18n._(actionMenuEntry.label),
       Icon: actionMenuEntry.Icon,
       onCommandClick: actionMenuEntry.onClick,
       type: CommandType.StandardAction,
@@ -103,7 +105,7 @@ export const useCommandMenuCommands = () => {
     )
     ?.map((actionMenuEntry) => ({
       id: actionMenuEntry.key,
-      label: actionMenuEntry.label,
+      label: i18n._(actionMenuEntry.label),
       Icon: actionMenuEntry.Icon,
       onCommandClick: actionMenuEntry.onClick,
       type: CommandType.WorkflowRun,
@@ -119,13 +121,32 @@ export const useCommandMenuCommands = () => {
     )
     ?.map((actionMenuEntry) => ({
       id: actionMenuEntry.key,
-      label: actionMenuEntry.label,
+      label: i18n._(actionMenuEntry.label),
       Icon: actionMenuEntry.Icon,
       onCommandClick: actionMenuEntry.onClick,
       type: CommandType.WorkflowRun,
       scope: CommandScope.Global,
       hotKeys: actionMenuEntry.hotKeys,
     }));
+
+  const searchRecordsAction = actionMenuEntries.find(
+    (actionMenuEntry) =>
+      actionMenuEntry.key === RecordAgnosticActionsKey.SEARCH_RECORDS,
+  );
+
+  const fallbackCommands: Command[] = searchRecordsAction
+    ? [
+        {
+          id: searchRecordsAction.key,
+          label: i18n._(searchRecordsAction.label),
+          Icon: searchRecordsAction.Icon,
+          onCommandClick: searchRecordsAction.onClick,
+          type: CommandType.StandardAction,
+          scope: CommandScope.Global,
+          hotKeys: searchRecordsAction.hotKeys,
+        },
+      ]
+    : [];
 
   return {
     copilotCommands,
@@ -135,5 +156,6 @@ export const useCommandMenuCommands = () => {
     actionObjectCommands,
     workflowRunRecordSelectionCommands,
     workflowRunGlobalCommands,
+    fallbackCommands,
   };
 };
