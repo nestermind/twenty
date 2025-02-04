@@ -1,7 +1,7 @@
 import { useSelectFieldDisplay } from '@/object-record/record-field/meta-types/hooks/useSelectFieldDisplay';
 import { useRecordEdit } from '@/record-edit/contexts/RecordEditContext';
 import { SelectDisplay } from '@/ui/field/display/components/SelectDisplay';
-import { isDefined } from '~/utils/isDefined';
+import { isDefined } from 'twenty-shared';
 
 export const SelectFormDisplay = () => {
   const { fieldValue, fieldDefinition } = useSelectFieldDisplay();

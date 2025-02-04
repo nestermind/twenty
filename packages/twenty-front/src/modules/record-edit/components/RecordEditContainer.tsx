@@ -17,7 +17,8 @@ import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
 import { Trans } from '@lingui/react/macro';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { Button, isDefined } from 'twenty-ui';
+import { isDefined } from 'twenty-shared';
+import { Button } from 'twenty-ui';
 
 const StyledEditContainer = styled.div`
   display: flex;
