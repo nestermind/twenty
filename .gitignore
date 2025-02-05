@@ -41,3 +41,6 @@ dump.rdb
 /devenv.nix
 /flake.lock
 /flake.nix
+
+**/**/.env.*
+!**/**/.env.*.example
