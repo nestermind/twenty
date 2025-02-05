@@ -13,6 +13,7 @@ services:
       && chown -R 1000:1000 /tmp/docker-data"
 
   server:
+    platform: linux/amd64
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty/Dockerfile
@@ -37,6 +38,10 @@ services:
       DEFAULT_METADATA_WORKSPACE_ID: ${DEFAULT_METADATA_WORKSPACE_ID}
       SIGN_IN_PREFILLED: ${SIGN_IN_PREFILLED}
       IS_MULTIWORKSPACE_ENABLED: ${IS_MULTIWORKSPACE_ENABLED}
+      
+      REACT_APP_SERVER_BASE_URL: ${REACT_APP_SERVER_BASE_URL}
+      TRANSLATION_IO_API_KEY: ${TRANSLATION_IO_API_KEY}
+
     depends_on:
       change-vol-ownership:
         condition: service_completed_successfully
@@ -50,6 +55,7 @@ services:
     restart: always
 
   worker:
+    platform: linux/amd64
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty/Dockerfile

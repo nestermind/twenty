@@ -38,11 +38,14 @@ init-and-migrate-db:
 dcup:
 	docker compose -f packages/twenty-docker/docker-compose.dev.yml up --build
 
-build-images:
 	docker compose -f packages/twenty-docker/docker-compose.yml build
+build:
 
-build-dev-images:
 	docker compose -f packages/twenty-docker/docker-compose.dev.yml build
+push-server:
 
 push-dev-images:
 	docker compose -f packages/twenty-docker/docker-compose.dev.yml push server
+deploy-dev:
+	docker --context nm-dev compose -f packages/twenty-docker/docker-compose.dev.yml \
+		--env-file packages/twenty-docker/.env.dev up -d
