@@ -18,11 +18,6 @@ services:
       db:
         condition: service_healthy
 
-    environment:
-      # === additional environment variables ===
-      IS_MULTIWORKSPACE_ENABLED: true
-      SIGN_IN_PREFILLED: true
-
   worker:
     extends:
       file: docker-compose.yml
