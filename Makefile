@@ -46,4 +46,4 @@ push-images:
 
 deploy-dev:
 	docker --context nm-dev compose -f packages/twenty-docker/docker-compose.dev.yml \
-		--env-file packages/twenty-docker/.env up
+		--env-file packages/twenty-docker/.env up -d
