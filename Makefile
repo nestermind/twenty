@@ -21,7 +21,7 @@ redis-on-docker:
 
 postgres-redis-on-docker:
 	cd packages/twenty-docker && \
-		docker compose -f packages/twenty-docker/docker-compose.local.yml up -d db redis
+		docker compose -f packages/twenty-docker/docker-compose.dev.yml up -d db redis
 	@echo "Waiting for PostgreSQL to be ready..."
 	@until docker exec twenty-db-1 psql -U postgres -d postgres \
 		-c 'SELECT pg_is_in_recovery();' 2>/dev/null | grep -q 'f'; do \
@@ -36,4 +36,13 @@ init-and-migrate-db:
 	npx nx database:migrate:prod twenty-server
 
 dcup:
-	docker compose -f packages/twenty-docker/docker-compose.local.yml up --build
+	docker compose -f packages/twenty-docker/docker-compose.dev.yml up --build
+
+build-images:
+	docker compose -f packages/twenty-docker/docker-compose.yml build
+
+build-dev-images:
+	docker compose -f packages/twenty-docker/docker-compose.dev.yml build
+
+push-dev-images:
+	docker compose -f packages/twenty-docker/docker-compose.dev.yml push server
