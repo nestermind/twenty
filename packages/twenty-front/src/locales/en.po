@@ -13,6 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. placeholder {0}: section.title
+#: src/modules/record-edit/components/RecordEditContainer.tsx:207
+msgid "{0}"
+msgstr "{0}"
+
 #: src/modules/object-record/record-board/record-board-column/utils/computeAggregateValueAndLabel.ts:131
 msgid "{aggregateLabel} of {fieldLabel}"
 msgstr "{aggregateLabel} of {fieldLabel}"
@@ -335,11 +340,11 @@ msgstr "Configure your emails and calendar settings."
 msgid "Connect a new account to your workspace"
 msgstr "Connect a new account to your workspace"
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:42
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:61
 msgid "Connect with Google"
 msgstr "Connect with Google"
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:49
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:70
 msgid "Connect with Microsoft"
 msgstr "Connect with Microsoft"
 
@@ -600,6 +605,10 @@ msgstr "Earliest"
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationLabel.ts:31
 msgid "Earliest date"
 msgstr "Earliest date"
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:138
+msgid "Edit"
+msgstr "Edit"
 
 #: src/pages/settings/SettingsBilling.tsx:158
 msgid "Edit billing interval"
@@ -1084,7 +1093,7 @@ msgstr "New Role"
 msgid "New Webhook"
 msgstr "New Webhook"
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:38
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:56
 msgid "No connected account"
 msgstr "No connected account"
 
@@ -1103,6 +1112,10 @@ msgstr "Not empty"
 #: src/modules/command-menu/components/CommandMenu.tsx:75
 msgid "Object"
 msgstr "Object"
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:130
+msgid "Object Overview"
+msgstr "Object Overview"
 
 #: src/pages/settings/data-model/SettingsObjects.tsx:155
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx:179
@@ -1221,6 +1234,10 @@ msgstr "Profile"
 msgid "Pseudo-English"
 msgstr "Pseudo-English"
 
+#: src/modules/ui/layout/show-page/components/nm/ShowPagePropertySubContainer.tsx:124
+msgid "Publish"
+msgstr "Publish"
+
 #: src/modules/settings/developers/components/SettingsReadDocumentationButton.tsx:9
 msgid "Read documentation"
 msgstr "Read documentation"
@@ -1289,6 +1306,10 @@ msgstr "Roles"
 #: src/modules/object-record/record-table/empty-state/utils/getEmptyStateSubTitle.ts:13
 msgid "Run a workflow and return here to view its executions"
 msgstr "Run a workflow and return here to view its executions"
+
+#: src/modules/record-edit/components/RecordEditContainer.tsx:298
+msgid "Save"
+msgstr "Save"
 
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx:44
 #: src/modules/navigation/components/MainNavigationDrawerItems.tsx:51
@@ -1638,7 +1659,7 @@ msgstr "Webhooks"
 #~ msgid "Welcome to"
 #~ msgstr "Welcome to"
 
-#: src/pages/auth/SignInUp.tsx:76
+#: src/pages/auth/SignInUp.tsx:77
 msgid "Welcome to {workspaceName}"
 msgstr "Welcome to {workspaceName}"
 
@@ -1702,9 +1723,9 @@ msgstr "Your credit balance will be used to pay the monthly bills."
 msgid "Your name as it will be displayed"
 msgstr "Your name as it will be displayed"
 
-#: src/pages/auth/SignInUp.tsx:47
-#~ msgid "Your Workspace"
-#~ msgstr "Your Workspace"
+#: src/pages/auth/SignInUp.tsx:74
+msgid "Your Workspace"
+msgstr "Your Workspace"
 
 #: src/pages/settings/SettingsBilling.tsx:172
 msgid "Your workspace will be disabled"

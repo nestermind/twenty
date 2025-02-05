@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-02-01 10:10+0100\n"
+"POT-Creation-Date: 2025-02-05 10:57+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -872,6 +872,8 @@ msgstr "按此字段值分組"
 #: src/modules/messaging/common/standard-objects/message-channel.workspace-entity.ts:127
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts:45
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts:46
+#: src/modules/calendar/common/standard-objects/calendar-channel.workspace-entity.ts:86
+#: src/modules/calendar/common/standard-objects/calendar-channel.workspace-entity.ts:87
 #: src/modules/blocklist/standard-objects/blocklist.workspace-entity.ts:34
 #: src/modules/blocklist/standard-objects/blocklist.workspace-entity.ts:35
 msgid "Handle"
@@ -1912,7 +1914,7 @@ msgstr "視圖字段可見性"
 
 #: src/modules/view/standard-objects/view.workspace-entity.ts:117
 #: src/modules/view/standard-objects/view.workspace-entity.ts:118
-#: src/modules/view-field.workspace-entity.ts:31
+#: src/modules/view/standard-objects/view-field.workspace-entity.ts:31
 msgid "View Fields"
 msgstr "視圖字段"
 

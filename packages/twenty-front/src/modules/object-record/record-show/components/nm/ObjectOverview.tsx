@@ -11,7 +11,7 @@ import { ShowPagePropertySummaryCard } from '@/ui/layout/show-page/components/nm
 import { ShowPageSummaryCardSkeletonLoader } from '@/ui/layout/show-page/components/ShowPageSummaryCardSkeletonLoader';
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import styled from '@emotion/styled';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 import groupBy from 'lodash.groupby';
 import { Link } from 'react-router-dom';
 import { isDefined } from 'twenty-shared';
@@ -79,6 +79,8 @@ export const ObjectOverview = ({
     objectRecordId: targetableObject.id,
   });
 
+  const { t } = useLingui();
+
   const availableFieldMetadataItems = objectMetadataItem.fields
     .filter(
       (fieldMetadataItem) =>
@@ -133,7 +135,7 @@ export const ObjectOverview = ({
                   recordFromStore,
                 )}/edit`}
               >
-                <Button title="Edit" Icon={IconPencil} />
+                <Button title={t`Edit`} Icon={IconPencil} />
               </StyledEditButtonLink>
             </StyledHeader>
             <StyledContent>

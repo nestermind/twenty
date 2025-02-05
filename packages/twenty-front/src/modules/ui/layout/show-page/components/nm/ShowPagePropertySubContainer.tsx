@@ -12,7 +12,9 @@ import { SingleTabProps, TabList } from '@/ui/layout/tab/components/TabList';
 import { useTabList } from '@/ui/layout/tab/hooks/useTabList';
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import styled from '@emotion/styled';
+import { useLingui } from '@lingui/react/macro';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { Button } from 'twenty-ui';
 
 const StyledShowPageRightContainer = styled.div<{ isMobile: boolean }>`
   display: flex;
@@ -32,6 +34,11 @@ const StyledTabListContainer = styled.div<{ shouldDisplay: boolean }>`
   display: ${({ shouldDisplay }) => (shouldDisplay ? 'flex' : 'none')};
   gap: ${({ theme }) => theme.spacing(2)};
   height: 40px;
+  justify-content: space-between;
+`;
+
+const StyledButtonContainer = styled.div`
+  padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(4)};
 `;
 
 const StyledContentContainer = styled.div<{ isInRightDrawer: boolean }>`
@@ -93,6 +100,8 @@ export const ShowPagePropertySubContainer = ({
     recordStoreFamilyState(targetableObject.id),
   );
 
+  const { t } = useLingui();
+
   const visibleTabs = tabs.filter((tab) => !tab.hide);
   const images = recordFromStore?.attachments?.filter(
     (attachment: Attachment) => attachment.name?.includes('propertyimage'),
@@ -110,6 +119,15 @@ export const ShowPagePropertySubContainer = ({
             tabs={tabs}
             isInRightDrawer={isInRightDrawer}
           />
+          <StyledButtonContainer>
+            <Button
+              title={t`Publish`}
+              variant="primary"
+              accent="blue"
+              size="small"
+              onClick={() => {}}
+            />
+          </StyledButtonContainer>
         </StyledTabListContainer>
         <StyledContentContainer isInRightDrawer={isInRightDrawer}>
           {renderActiveTabContent()}

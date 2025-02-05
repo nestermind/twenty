@@ -43,14 +43,27 @@ export const RecordEditProvider = ({
   const [fieldUpdates, setFieldUpdates] = useState<Record<string, unknown>>({});
   const [isDirty, setIsDirty] = useState(false);
 
-  const updateField = useCallback((update: FieldUpdate) => {
-    const { fieldName, value } = update;
-    setFieldUpdates((prev) => ({
-      ...prev,
-      [fieldName]: value,
-    }));
-    setIsDirty(true);
-  }, []);
+  const updateField = useCallback(
+    (update: FieldUpdate, fieldValue?: unknown) => {
+      const { fieldName, value } = update;
+
+      if (fieldValue === update.value) {
+        setFieldUpdates((prev) => {
+          const { [fieldName]: _, ...rest } = prev;
+          const hasRemainingUpdates = Object.keys(rest).length > 0;
+          setIsDirty(hasRemainingUpdates);
+          return rest;
+        });
+        return;
+      }
+      setFieldUpdates((prev) => ({
+        ...prev,
+        [fieldName]: value,
+      }));
+      setIsDirty(true);
+    },
+    [],
+  );
 
   const getUpdatedFields = useCallback(() => fieldUpdates, [fieldUpdates]);
 
@@ -59,8 +72,11 @@ export const RecordEditProvider = ({
     setIsDirty(false);
   }, []);
 
+  // This is used to block the user from leaving the page if there are unsaved changes
   useBlocker(({ currentLocation, nextLocation }) => {
-    if (!isDirty) return false;
+    // If there are no unsaved changes or the user is navigating to the same page, don't block
+    if (!isDirty || nextLocation.pathname.includes(currentLocation.pathname))
+      return false;
 
     const confirmLeave = window.confirm(
       'You have unsaved changes. Are you sure you want to leave?',

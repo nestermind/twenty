@@ -1,8 +1,6 @@
-import { useTheme } from '@emotion/react';
 import { useContext } from 'react';
 
 import { FieldContext } from '@/object-record/record-field/contexts/FieldContext';
-import { getRecordFieldInputId } from '@/object-record/utils/getRecordFieldInputId';
 
 import { assertFieldMetadata } from '@/object-record/record-field/types/guards/assertFieldMetadata';
 import { isFieldText } from '@/object-record/record-field/types/guards/isFieldText';
@@ -31,26 +29,13 @@ const StyledGridEntryContainer = styled.div`
 `;
 
 export const RecordInlineEntryContainer = () => {
-  const {
-    readonly,
-    IconLabel,
-    label,
-    labelWidth,
-    showLabel,
-    isDisplayModeFixHeight,
-  } = useRecordInlineCellContext();
+  const { label } = useRecordInlineCellContext();
 
-  const { recordId, fieldDefinition } = useContext(FieldContext);
+  const { fieldDefinition } = useContext(FieldContext);
 
   if (isFieldText(fieldDefinition)) {
     assertFieldMetadata(FieldMetadataType.TEXT, isFieldText, fieldDefinition);
   }
-
-  const theme = useTheme();
-  const labelId = `label-${getRecordFieldInputId(
-    recordId,
-    fieldDefinition?.metadata?.fieldName,
-  )}`;
 
   return (
     <StyledValueContainer>

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-02-03 20:59+0100\n"
+"POT-Creation-Date: 2025-02-05 10:48+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -312,11 +312,11 @@ msgstr "E-Mail- und Kalendereinstellungen konfigurieren."
 msgid "Connect a new account to your workspace"
 msgstr "Neues Konto mit Ihrem Arbeitsbereich verbinden"
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:42
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:61
 msgid "Connect with Google"
 msgstr "Mit Google verbinden"
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:49
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:70
 msgid "Connect with Microsoft"
 msgstr "Mit Microsoft verbinden"
 
@@ -578,6 +578,10 @@ msgstr "Früheste"
 msgid "Earliest date"
 msgstr "Frühestes Datum"
 
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:138
+msgid "Edit"
+msgstr "Bearbeiten"
+
 #: src/pages/settings/SettingsBilling.tsx:158
 msgid "Edit billing interval"
 msgstr "Abrechnungsintervall bearbeiten"
@@ -589,6 +593,7 @@ msgstr "Zahlungsmethode bearbeiten, Rechnungen einsehen und mehr"
 #: src/pages/settings/SettingsWorkspace.tsx:52
 msgid "Edit your subdomain name or set a custom domain."
 msgstr "Bearbeiten Sie den Namen Ihrer Subdomain oder legen Sie eine benutzerdefinierte Domäne fest."
+
 #: src/pages/settings/SettingsWorkspaceMembers.tsx:180
 #: src/pages/settings/SettingsWorkspaceMembers.tsx:256
 #: src/pages/settings/SettingsProfile.tsx:42
@@ -1048,7 +1053,7 @@ msgstr "Neuer Schlüssel"
 msgid "New record"
 msgstr "Neuer Datensatz"
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:38
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:56
 msgid "No connected account"
 msgstr "Kein verbundenes Konto"
 
@@ -1067,6 +1072,10 @@ msgstr "Nicht leer"
 #: src/modules/command-menu/components/CommandMenu.tsx:75
 msgid "Object"
 msgstr "Objekt"
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:130
+msgid "Object Overview"
+msgstr "Objekt-Übersicht"
 
 #: src/pages/settings/data-model/SettingsObjects.tsx:155
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx:179
@@ -1169,6 +1178,10 @@ msgstr "Profil"
 msgid "Pseudo-English"
 msgstr "Pseudo-Englisch"
 
+#: src/modules/ui/layout/show-page/components/nm/ShowPagePropertySubContainer.tsx:124
+msgid "Publish"
+msgstr "Veröffentlichen"
+
 #: src/modules/settings/developers/components/SettingsReadDocumentationButton.tsx:9
 msgid "Read documentation"
 msgstr "Dokumentation lesen"
@@ -1241,6 +1254,10 @@ msgstr "Führen Sie einen Workflow aus und kehren Sie zurück, um die Ausführun
 #: src/pages/settings/security/SettingsSecurity.tsx:47
 msgid "SSO"
 msgstr "SSO"
+
+#: src/modules/record-edit/components/RecordEditContainer.tsx:298
+msgid "Save"
+msgstr "Speichern"
 
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx:44
 #: src/modules/navigation/components/MainNavigationDrawerItems.tsx:51
@@ -1574,7 +1591,7 @@ msgstr "Webhook"
 msgid "Webhooks"
 msgstr "Webhooks"
 
-#: src/pages/auth/SignInUp.tsx:76
+#: src/pages/auth/SignInUp.tsx:77
 msgid "Welcome to {workspaceName}"
 msgstr "Willkommen bei {workspaceName}"
 
@@ -1625,6 +1642,10 @@ msgstr "Beschreibung schreiben"
 msgid "You will be charged immediately for the full year."
 msgstr "Sie werden sofort für das gesamte Jahr belastet."
 
+#: src/pages/auth/SignInUp.tsx:74
+msgid "Your Workspace"
+msgstr "Ihr Arbeitsbereich"
+
 #: src/pages/settings/SettingsBilling.tsx:55
 msgid "Your credit balance will be used to pay the monthly bills."
 msgstr "Ihr Guthaben wird zur Begleichung der monatlichen Rechnungen verwendet."
@@ -1669,6 +1690,11 @@ msgstr "zu jährlich"
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx:156
 msgid "yes"
 msgstr "ja"
+
+#. placeholder {0}: section.title
+#: src/modules/record-edit/components/RecordEditContainer.tsx:207
+msgid "{0}"
+msgstr ""
 
 #: src/modules/object-record/record-board/record-board-column/utils/computeAggregateValueAndLabel.ts:131
 msgid "{aggregateLabel} of {fieldLabel}"

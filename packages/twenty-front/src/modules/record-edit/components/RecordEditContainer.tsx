@@ -14,7 +14,7 @@ import { ShowPageImageBanner } from '@/ui/layout/show-page/components/nm/ShowPag
 import { SingleTabProps, TabList } from '@/ui/layout/tab/components/TabList';
 import { useTabList } from '@/ui/layout/tab/hooks/useTabList';
 import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isDefined } from 'twenty-shared';
@@ -117,6 +117,8 @@ export const RecordEditContainer = ({
 
   const tabListComponentId = `${TAB_LIST_COMPONENT_ID}-${isInRightDrawer}-${recordId}`;
 
+  const { t } = useLingui();
+
   const { activeTabId } = useTabList(tabListComponentId);
 
   const { record } = useRecordShowPage(objectNameSingular, recordId);
@@ -138,14 +140,14 @@ export const RecordEditContainer = ({
   const fieldsByName = availableFields.reduce<
     Record<string, (typeof availableFields)[0]>
   >((acc, field) => {
-    if (isDefined(field.name)) {
-      acc[field.name] = field;
+    if (isDefined(field?.name)) {
+      acc[field?.name] = field;
     }
     return acc;
   }, {});
 
   const images = record?.attachments?.filter((attachment: Attachment) =>
-    attachment.name?.includes('propertyimage'),
+    attachment?.name?.includes('propertyimage'),
   );
 
   // This saves the whole record with the updated fields from the form
@@ -155,6 +157,7 @@ export const RecordEditContainer = ({
       if (isDirty) {
         const updatedFields = getUpdatedFields();
 
+        console.log(updatedFields);
         await updateOneRecord({
           idToUpdate: recordId,
           updateOneRecordInput: updatedFields,
@@ -207,7 +210,7 @@ export const RecordEditContainer = ({
             {section.groups.map((group, groupIndex) => {
               const groupFields = group.fields
                 .map((field) => ({
-                  field: fieldsByName[field.name],
+                  field: fieldsByName[field?.name],
                   type: field.type,
                   hideLabel: field.hideLabel,
                   maxWidth: field.fieldWidth,
@@ -242,8 +245,8 @@ export const RecordEditContainer = ({
                       const shouldRender =
                         conditionFields?.every((conditionField) => {
                           const conditionFieldValue = String(
-                            getUpdatedFields()[conditionField.name] ??
-                              record?.[conditionField.name] ??
+                            getUpdatedFields()[conditionField?.name] ??
+                              record?.[conditionField?.name] ??
                               '',
                           ).toLowerCase();
 
@@ -292,9 +295,10 @@ export const RecordEditContainer = ({
         />
         <StyledButtonContainer>
           <Button
-            title="Save"
+            title={t`Save`}
             variant="primary"
             accent="blue"
+            size="small"
             onClick={handleSave}
           />
         </StyledButtonContainer>

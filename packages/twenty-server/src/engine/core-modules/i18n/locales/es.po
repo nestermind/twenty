@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-02-01 10:10+0100\n"
+"POT-Creation-Date: 2025-02-05 10:57+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1468,6 +1468,7 @@ msgstr "ID del registro"
 #: src/modules/calendar/common/standard-objects/calendar-channel-event-association.workspace-entity.ts:46
 msgid "Recurring Event ID"
 msgstr "ID del evento recurrente"
+
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts:67
 msgid "Refresh Token"
 msgstr "Token de actualización"
@@ -2033,6 +2034,7 @@ msgstr "Objeto objetivo de vista"
 #: src/modules/view/standard-objects/view.workspace-entity.ts:60
 msgid "View type"
 msgstr "Tipo de vista"
+
 #: src/modules/view/standard-objects/view.workspace-entity.ts:32
 msgid "Views"
 msgstr "Vistas"

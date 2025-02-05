@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 
 import { BooleanFieldInput } from '@/object-record/record-field/meta-types/input/components/BooleanFieldInput';
-import { CurrencyFieldInput } from '@/object-record/record-field/meta-types/input/components/CurrencyFieldInput';
 import { EmailsFieldInput } from '@/object-record/record-field/meta-types/input/components/EmailsFieldInput';
 import { FullNameFieldInput } from '@/object-record/record-field/meta-types/input/components/FullNameFieldInput';
 import { LinksFieldInput } from '@/object-record/record-field/meta-types/input/components/LinksFieldInput';
@@ -14,6 +13,7 @@ import { TextFormInput } from '@/object-record/record-field/meta-types/input/com
 
 import { FieldContext } from '@/object-record/record-field/contexts/FieldContext';
 import { AddressFormInput } from '@/object-record/record-field/meta-types/input/components/nm/AddressFormInput';
+import { CurrencyFormInput } from '@/object-record/record-field/meta-types/input/components/nm/CurrencyFormInput';
 import { DateFormInput } from '@/object-record/record-field/meta-types/input/components/nm/DateFormInput';
 import { DateTimeFormInput } from '@/object-record/record-field/meta-types/input/components/nm/DateTimeFormInput';
 import { MultiSelectFormInput } from '@/object-record/record-field/meta-types/input/components/nm/MultiSelectFormInput';
@@ -132,7 +132,7 @@ export const FormInput = ({
           onClickOutside={(event) => onClickOutside?.(() => {}, event)}
         />
       ) : isFieldCurrency(fieldDefinition) ? (
-        <CurrencyFieldInput
+        <CurrencyFormInput
           onEnter={onEnter}
           onEscape={onEscape}
           onClickOutside={onClickOutside}
