@@ -22,7 +22,6 @@ export const FinancialOverviewGroup: FieldGroup[] = [
         conditionValues: ['rent'],
         fieldWidth: 100,
       },
-      { name: 'currency', type: 'input', fieldWidth: 90 },
     ],
   },
 ];

@@ -22,15 +22,9 @@ export const OVERVIEW_SECTION_CONTENT: SectionContent[] = [
       {
         isHorizontal: true,
         fields: [
-          { name: 'status', type: 'field' },
-          { name: 'yearBuilt', type: 'input' },
-        ],
-      },
-      {
-        isHorizontal: true,
-        fields: [
           { name: 'squareMeters', type: 'input', fieldWidth: 120 },
           { name: 'rooms', type: 'input', fieldWidth: 80 },
+          { name: 'yearBuilt', type: 'input', fieldWidth: 80 },
         ],
       },
       {

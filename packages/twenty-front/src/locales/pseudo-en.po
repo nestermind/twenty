@@ -13,9 +13,20 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+<<<<<<< HEAD
 #: src/pages/settings/data-model/SettingsObjectIndexTable.tsx:126
 #~ msgid "{0}"
 #~ msgstr ""
+=======
+#. placeholder {0}: section.title
+#: src/modules/record-edit/components/RecordEditContainer.tsx:207
+msgid "{0}"
+msgstr ""
+
+#: src/modules/object-record/record-board/record-board-column/utils/computeAggregateValueAndLabel.ts:131
+msgid "{aggregateLabel} of {fieldLabel}"
+msgstr ""
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx:163
 msgid "{apiKeyName} API Key"
@@ -276,11 +287,19 @@ msgstr ""
 msgid "Connect a new account to your workspace"
 msgstr ""
 
+<<<<<<< HEAD
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:51
 msgid "Connect with Google"
 msgstr ""
 
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:59
+=======
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:61
+msgid "Connect with Google"
+msgstr ""
+
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:70
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Connect with Microsoft"
 msgstr ""
 
@@ -435,7 +454,23 @@ msgstr ""
 msgid "E.g. backoffice integration"
 msgstr ""
 
+<<<<<<< HEAD
 #: src/pages/settings/SettingsBilling.tsx:157
+=======
+#: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts:29
+msgid "Earliest"
+msgstr ""
+
+#: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationLabel.ts:31
+msgid "Earliest date"
+msgstr ""
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:138
+msgid "Edit"
+msgstr ""
+
+#: src/pages/settings/SettingsBilling.tsx:158
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Edit billing interval"
 msgstr ""
 
@@ -764,7 +799,11 @@ msgstr ""
 msgid "New Webhook"
 msgstr ""
 
+<<<<<<< HEAD
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:46
+=======
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:56
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "No connected account"
 msgstr ""
 
@@ -780,7 +819,19 @@ msgstr ""
 #~ msgid "Object created successfully"
 #~ msgstr ""
 
+<<<<<<< HEAD
 #: src/pages/settings/data-model/SettingsObjects.tsx:160
+=======
+#: src/modules/command-menu/components/CommandMenu.tsx:75
+msgid "Object"
+msgstr ""
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:130
+msgid "Object Overview"
+msgstr ""
+
+#: src/pages/settings/data-model/SettingsObjects.tsx:155
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx:179
 #: src/pages/settings/data-model/SettingsNewObject.tsx:76
 #: src/pages/settings/data-model/SettingsObjectNewField/SettingsObjectNewFieldConfigure.tsx:205
@@ -859,6 +910,10 @@ msgstr ""
 msgid "Pseudo-English"
 msgstr ""
 
+#: src/modules/ui/layout/show-page/components/nm/ShowPagePropertySubContainer.tsx:124
+msgid "Publish"
+msgstr ""
+
 #: src/modules/settings/developers/components/SettingsReadDocumentationButton.tsx:9
 msgid "Read documentation"
 msgstr ""
@@ -898,6 +953,31 @@ msgstr ""
 msgid "Reset Password"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+#: src/modules/command-menu/components/ResetContextToSelectionCommandButton.tsx:47
+msgid "Reset to"
+msgstr ""
+
+#: src/modules/command-menu/hooks/useSearchRecords.tsx:227
+msgid "Results"
+msgstr ""
+
+#: src/pages/settings/roles/SettingsRoles.tsx:48
+#: src/pages/settings/roles/SettingsRoles.tsx:62
+#: src/modules/settings/components/SettingsNavigationDrawerItems.tsx:161
+msgid "Roles"
+msgstr ""
+
+#: src/modules/object-record/record-table/empty-state/utils/getEmptyStateSubTitle.ts:13
+msgid "Run a workflow and return here to view its executions"
+msgstr ""
+
+#: src/modules/record-edit/components/RecordEditContainer.tsx:298
+msgid "Save"
+msgstr ""
+
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx:44
 #: src/modules/navigation/components/MainNavigationDrawerItems.tsx:50
 msgid "Search"
@@ -1163,7 +1243,19 @@ msgstr ""
 msgid "Webhooks"
 msgstr ""
 
+<<<<<<< HEAD
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx:116
+=======
+#: src/pages/auth/SignInUp.tsx:43
+#~ msgid "Welcome to"
+#~ msgstr ""
+
+#: src/pages/auth/SignInUp.tsx:77
+msgid "Welcome to {workspaceName}"
+msgstr ""
+
+#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx:127
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "When the API key will expire."
 msgstr ""
 
@@ -1225,6 +1317,14 @@ msgstr ""
 msgid "Your name as it will be displayed"
 msgstr ""
 
+<<<<<<< HEAD
 #: src/pages/settings/SettingsBilling.tsx:171
+=======
+#: src/pages/auth/SignInUp.tsx:74
+msgid "Your Workspace"
+msgstr ""
+
+#: src/pages/settings/SettingsBilling.tsx:172
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Your workspace will be disabled"
 msgstr ""

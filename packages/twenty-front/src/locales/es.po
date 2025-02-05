@@ -1,6 +1,10 @@
 msgid ""
 msgstr ""
+<<<<<<< HEAD
 "POT-Creation-Date: 2025-01-20 14:33+0100\n"
+=======
+"POT-Creation-Date: 2025-02-05 10:48+0100\n"
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -242,11 +246,19 @@ msgstr "Conectar una cuenta de Google"
 msgid "Connect a new account to your workspace"
 msgstr "Conectar una nueva cuenta a su espacio de trabajo"
 
+<<<<<<< HEAD
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:51
 msgid "Connect with Google"
 msgstr "Conectar con Google"
 
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:59
+=======
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:61
+msgid "Connect with Google"
+msgstr "Conectar con Google"
+
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:70
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Connect with Microsoft"
 msgstr "Conectar con Microsoft"
 
@@ -401,7 +413,23 @@ msgstr "Dominio"
 msgid "E.g. backoffice integration"
 msgstr "Por ejemplo, integración de backoffice"
 
+<<<<<<< HEAD
 #: src/pages/settings/SettingsBilling.tsx:157
+=======
+#: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts:29
+msgid "Earliest"
+msgstr "Más antiguo"
+
+#: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationLabel.ts:31
+msgid "Earliest date"
+msgstr "Fecha más temprana"
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:138
+msgid "Edit"
+msgstr ""
+
+#: src/pages/settings/SettingsBilling.tsx:158
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Edit billing interval"
 msgstr "Editar el intervalo de facturación"
 
@@ -697,7 +725,18 @@ msgstr "Nueva cuenta"
 msgid "New key"
 msgstr "Nueva llave"
 
+<<<<<<< HEAD
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:46
+=======
+#: src/modules/ui/layout/page/components/PageAddButton.tsx:27
+#: src/modules/ui/layout/page/components/PageAddButton.tsx:29
+#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.ts:56
+#: src/modules/action-menu/actions/record-actions/constants/DefaultActionsConfigV2.ts:45
+msgid "New record"
+msgstr "Nuevo registro"
+
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:56
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "No connected account"
 msgstr "Ninguna cuenta conectada"
 
@@ -705,7 +744,27 @@ msgstr "Ninguna cuenta conectada"
 msgid "Notes"
 msgstr "Notas"
 
+<<<<<<< HEAD
 #: src/pages/settings/data-model/SettingsObjects.tsx:160
+=======
+#: src/modules/object-record/record-table/empty-state/utils/getEmptyStateTitle.ts:9
+msgid "No workflow versions yet"
+msgstr "Aún no hay versiones de flujo de trabajo"
+
+#: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts:25
+msgid "Not empty"
+msgstr "No vacío"
+
+#: src/modules/command-menu/components/CommandMenu.tsx:75
+msgid "Object"
+msgstr "Objeto"
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:130
+msgid "Object Overview"
+msgstr ""
+
+#: src/pages/settings/data-model/SettingsObjects.tsx:155
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx:179
 #: src/pages/settings/data-model/SettingsNewObject.tsx:76
 #: src/pages/settings/data-model/SettingsObjectNewField/SettingsObjectNewFieldConfigure.tsx:205
@@ -776,6 +835,10 @@ msgstr "Perfil"
 msgid "Pseudo-English"
 msgstr "Pseudoinglés"
 
+#: src/modules/ui/layout/show-page/components/nm/ShowPagePropertySubContainer.tsx:124
+msgid "Publish"
+msgstr ""
+
 #: src/modules/settings/developers/components/SettingsReadDocumentationButton.tsx:9
 msgid "Read documentation"
 msgstr "Leer la documentación"
@@ -810,6 +873,21 @@ msgstr "Comunicados"
 #: src/modules/ui/input/components/ImageInput.tsx:173
 msgid "Remove"
 msgstr "Eliminar"
+<<<<<<< HEAD
+=======
+
+#: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.ts:120
+#: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.ts:121
+#: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.ts:50
+#: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.ts:51
+#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.ts:207
+#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.ts:208
+#: src/modules/action-menu/actions/record-actions/constants/DefaultActionsConfigV2.ts:83
+#: src/modules/action-menu/actions/record-actions/constants/DefaultActionsConfigV2.ts:84
+#: src/modules/action-menu/actions/record-actions/constants/DefaultActionsConfigV1.ts:47
+msgid "Remove from favorites"
+msgstr "Quitar de favoritos"
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 
 #: src/pages/auth/PasswordReset.tsx:177
 msgid "Reset Password"
@@ -818,6 +896,10 @@ msgstr "Restablecer contraseña"
 #: src/pages/settings/security/SettingsSecurity.tsx:47
 msgid "SSO"
 msgstr "SSO"
+
+#: src/modules/record-edit/components/RecordEditContainer.tsx:298
+msgid "Save"
+msgstr ""
 
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx:44
 #: src/modules/navigation/components/MainNavigationDrawerItems.tsx:50
@@ -1048,7 +1130,15 @@ msgstr "Gancho web"
 msgid "Webhooks"
 msgstr "Webhooks"
 
+<<<<<<< HEAD
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx:116
+=======
+#: src/pages/auth/SignInUp.tsx:77
+msgid "Welcome to {workspaceName}"
+msgstr "Bienvenido a {workspaceName}"
+
+#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx:127
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "When the API key will expire."
 msgstr "Cuándo caducará la clave API."
 
@@ -1097,7 +1187,15 @@ msgstr "Escriba una descripción"
 msgid "You will be charged immediately for the full year."
 msgstr "Se le cobrará inmediatamente el año completo."
 
+<<<<<<< HEAD
 #: src/pages/settings/SettingsBilling.tsx:53
+=======
+#: src/pages/auth/SignInUp.tsx:74
+msgid "Your Workspace"
+msgstr ""
+
+#: src/pages/settings/SettingsBilling.tsx:55
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Your credit balance will be used to pay the monthly bills."
 msgstr "Su saldo de crédito se utilizará para pagar las facturas mensuales."
 
@@ -1142,6 +1240,19 @@ msgstr "al año"
 msgid "yes"
 msgstr "sí"
 
+<<<<<<< HEAD
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx:163
+=======
+#. placeholder {0}: section.title
+#: src/modules/record-edit/components/RecordEditContainer.tsx:207
+msgid "{0}"
+msgstr ""
+
+#: src/modules/object-record/record-board/record-board-column/utils/computeAggregateValueAndLabel.ts:131
+msgid "{aggregateLabel} of {fieldLabel}"
+msgstr "{aggregateLabel} de {fieldLabel}"
+
+#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx:172
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "{apiKeyName} API Key"
 msgstr "{apiKeyName} Clave API"

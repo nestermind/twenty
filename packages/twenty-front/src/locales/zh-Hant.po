@@ -1,6 +1,10 @@
 msgid ""
 msgstr ""
+<<<<<<< HEAD
 "POT-Creation-Date: 2025-01-20 14:33+0100\n"
+=======
+"POT-Creation-Date: 2025-02-05 10:48+0100\n"
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -242,11 +246,19 @@ msgstr "连接 Google 账户"
 msgid "Connect a new account to your workspace"
 msgstr "将新账户连接到工作区"
 
+<<<<<<< HEAD
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:51
+=======
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:61
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Connect with Google"
 msgstr "与谷歌连接"
 
+<<<<<<< HEAD
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:59
+=======
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:70
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Connect with Microsoft"
 msgstr "与微软联系"
 
@@ -401,7 +413,23 @@ msgstr "域名"
 msgid "E.g. backoffice integration"
 msgstr "例如后台整合"
 
+<<<<<<< HEAD
 #: src/pages/settings/SettingsBilling.tsx:157
+=======
+#: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts:29
+msgid "Earliest"
+msgstr "最早"
+
+#: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationLabel.ts:31
+msgid "Earliest date"
+msgstr "最早日期"
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:138
+msgid "Edit"
+msgstr ""
+
+#: src/pages/settings/SettingsBilling.tsx:158
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Edit billing interval"
 msgstr "编辑计费间隔"
 
@@ -697,7 +725,18 @@ msgstr "新账户"
 msgid "New key"
 msgstr "新钥匙"
 
+<<<<<<< HEAD
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:46
+=======
+#: src/modules/ui/layout/page/components/PageAddButton.tsx:27
+#: src/modules/ui/layout/page/components/PageAddButton.tsx:29
+#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.ts:56
+#: src/modules/action-menu/actions/record-actions/constants/DefaultActionsConfigV2.ts:45
+msgid "New record"
+msgstr "新記錄"
+
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:56
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "No connected account"
 msgstr "无连接账户"
 
@@ -705,7 +744,27 @@ msgstr "无连接账户"
 msgid "Notes"
 msgstr "说明"
 
+<<<<<<< HEAD
 #: src/pages/settings/data-model/SettingsObjects.tsx:160
+=======
+#: src/modules/object-record/record-table/empty-state/utils/getEmptyStateTitle.ts:9
+msgid "No workflow versions yet"
+msgstr "尚無工作流程版本"
+
+#: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts:25
+msgid "Not empty"
+msgstr "非空"
+
+#: src/modules/command-menu/components/CommandMenu.tsx:75
+msgid "Object"
+msgstr "對象"
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:130
+msgid "Object Overview"
+msgstr ""
+
+#: src/pages/settings/data-model/SettingsObjects.tsx:155
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx:179
 #: src/pages/settings/data-model/SettingsNewObject.tsx:76
 #: src/pages/settings/data-model/SettingsObjectNewField/SettingsObjectNewFieldConfigure.tsx:205
@@ -776,6 +835,10 @@ msgstr "简介"
 msgid "Pseudo-English"
 msgstr "伪英语"
 
+#: src/modules/ui/layout/show-page/components/nm/ShowPagePropertySubContainer.tsx:124
+msgid "Publish"
+msgstr ""
+
 #: src/modules/settings/developers/components/SettingsReadDocumentationButton.tsx:9
 msgid "Read documentation"
 msgstr "阅读文件"
@@ -818,6 +881,10 @@ msgstr "重置密码"
 #: src/pages/settings/security/SettingsSecurity.tsx:47
 msgid "SSO"
 msgstr "SSO"
+
+#: src/modules/record-edit/components/RecordEditContainer.tsx:298
+msgid "Save"
+msgstr ""
 
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx:44
 #: src/modules/navigation/components/MainNavigationDrawerItems.tsx:50
@@ -1048,7 +1115,15 @@ msgstr "网络钩子"
 msgid "Webhooks"
 msgstr "网络钩子"
 
+<<<<<<< HEAD
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx:116
+=======
+#: src/pages/auth/SignInUp.tsx:77
+msgid "Welcome to {workspaceName}"
+msgstr "歡迎來到 {workspaceName}"
+
+#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx:127
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "When the API key will expire."
 msgstr "API 密钥的过期时间。"
 
@@ -1097,7 +1172,15 @@ msgstr "编写说明"
 msgid "You will be charged immediately for the full year."
 msgstr "您将立即被收取全年的费用。"
 
+<<<<<<< HEAD
 #: src/pages/settings/SettingsBilling.tsx:53
+=======
+#: src/pages/auth/SignInUp.tsx:74
+msgid "Your Workspace"
+msgstr ""
+
+#: src/pages/settings/SettingsBilling.tsx:55
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "Your credit balance will be used to pay the monthly bills."
 msgstr "您的信用余额将用于支付每月账单。"
 
@@ -1142,6 +1225,19 @@ msgstr "每年"
 msgid "yes"
 msgstr "是"
 
+<<<<<<< HEAD
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx:163
+=======
+#. placeholder {0}: section.title
+#: src/modules/record-edit/components/RecordEditContainer.tsx:207
+msgid "{0}"
+msgstr ""
+
+#: src/modules/object-record/record-board/record-board-column/utils/computeAggregateValueAndLabel.ts:131
+msgid "{aggregateLabel} of {fieldLabel}"
+msgstr "{aggregateLabel} 的 {fieldLabel}"
+
+#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx:172
+>>>>>>> a6f3286ac (Add currency field to form & translations)
 msgid "{apiKeyName} API Key"
 msgstr "{apiKeyName} 应用程序接口密钥"
