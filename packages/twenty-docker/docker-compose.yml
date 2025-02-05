@@ -16,6 +16,7 @@ services:
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty/Dockerfile
+    image: twentycrm/twenty:${TAG:-latest}
     volumes:
       - server-local-data:/app/packages/twenty-server/${STORAGE_LOCAL_PATH:-.local-storage}
       - docker-data:/app/docker-data
@@ -53,6 +54,7 @@ services:
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty/Dockerfile
+    image: twentycrm/twenty:${TAG:-latest}
     command: ["yarn", "worker:prod"]
     environment:
       PG_DATABASE_URL: postgres://${PGUSER_SUPERUSER:-postgres}:${PGPASSWORD_SUPERUSER:-postgres}@${PG_DATABASE_HOST:-db:5432}/default
@@ -77,6 +79,7 @@ services:
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty-postgres-spilo/Dockerfile
+    image: twentycrm/twenty-postgres-spilo:${TAG:-latest}
     volumes:
       - db-data:/home/postgres/pgdata
     environment:
