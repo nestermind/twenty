@@ -10,6 +10,14 @@ services:
     extends:
       file: docker-compose.yml
       service: server
+    # volumes_from and depends_on are never shared between services using extends
+    # https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/#exceptions-and-limitations
+    depends_on:
+      change-vol-ownership:
+        condition: service_completed_successfully
+      db:
+        condition: service_healthy
+
     environment:
       # === additional environment variables ===
       IS_MULTIWORKSPACE_ENABLED: true
@@ -19,6 +27,12 @@ services:
     extends:
       file: docker-compose.yml
       service: worker
+    # depends_on is not shared between services using extends
+    depends_on:
+      db:
+        condition: service_healthy
+      server:
+        condition: service_healthy
 
   db:
     extends:

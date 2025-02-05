@@ -42,4 +42,5 @@ dump.rdb
 /flake.lock
 /flake.nix
 
-docker-compose.yml
+**/**/.env.*
+!**/**/.env.*.example

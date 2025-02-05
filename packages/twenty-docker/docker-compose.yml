@@ -34,6 +34,9 @@ services:
 
       APP_SECRET: ${APP_SECRET}
       DEFAULT_METADATA_WORKSPACE_ID: ${DEFAULT_METADATA_WORKSPACE_ID}
+
+      SIGN_IN_PREFILLED: ${SIGN_IN_PREFILLED}
+      IS_MULTIWORKSPACE_ENABLED: ${IS_MULTIWORKSPACE_ENABLED}
     depends_on:
       change-vol-ownership:
         condition: service_completed_successfully
