@@ -20,8 +20,7 @@ redis-on-docker:
 	docker run -d --name twenty_redis -p 6379:6379 redis/redis-stack-server:latest
 
 postgres-redis-on-docker:
-	cd packages/twenty-docker && \
-		docker compose -f packages/twenty-docker/docker-compose.dev.yml up -d db redis
+	docker compose -f packages/twenty-docker/docker-compose.dev.yml up -d db redis
 	@echo "Waiting for PostgreSQL to be ready..."
 	@until docker exec twenty-db-1 psql -U postgres -d postgres \
 		-c 'SELECT pg_is_in_recovery();' 2>/dev/null | grep -q 'f'; do \
