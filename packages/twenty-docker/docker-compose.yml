@@ -13,6 +13,7 @@ services:
       && chown -R 1000:1000 /tmp/docker-data"
 
   server:
+    platform: linux/amd64
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty/Dockerfile
@@ -34,9 +35,14 @@ services:
       STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
 
       APP_SECRET: ${APP_SECRET}
+
       DEFAULT_METADATA_WORKSPACE_ID: ${DEFAULT_METADATA_WORKSPACE_ID}
       SIGN_IN_PREFILLED: ${SIGN_IN_PREFILLED}
       IS_MULTIWORKSPACE_ENABLED: ${IS_MULTIWORKSPACE_ENABLED}
+
+      SSL_KEY_PATH: ${SSL_KEY_PATH}
+      SSL_CERT_PATH: ${SSL_CERT_PATH}
+
     depends_on:
       change-vol-ownership:
         condition: service_completed_successfully
@@ -50,6 +56,7 @@ services:
     restart: always
 
   worker:
+    platform: linux/amd64
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty/Dockerfile
