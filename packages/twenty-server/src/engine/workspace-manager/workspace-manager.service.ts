@@ -47,7 +47,7 @@ export class WorkspaceManagerService {
         schemaName,
       );
 
-    const defaultMetadataWorkspaceId = this.environmentService.get(
+    let defaultMetadataWorkspaceId = this.environmentService.get(
       'DEFAULT_METADATA_WORKSPACE_ID',
     );
 
@@ -57,9 +57,7 @@ export class WorkspaceManagerService {
         defaultMetadataWorkspaceId,
       ))
     ) {
-      throw new Error(
-        `No Schema found for default metadata workspace ${defaultMetadataWorkspaceId}`,
-      );
+      defaultMetadataWorkspaceId = '';
     }
 
     await this.workspaceSyncMetadataService.synchronize({
