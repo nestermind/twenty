@@ -39,6 +39,10 @@ export const OVERVIEW_SECTION_CONTENT: SectionContent[] = [
         isHorizontal: true,
         fields: [{ name: 'traits', type: 'field' }],
       },
+      {
+        isHorizontal: true,
+        fields: [{ name: 'floors', type: 'input', fieldWidth: 120 }],
+      },
     ],
   },
   {
