@@ -38,12 +38,22 @@ init-and-migrate-db:
 dcup:
 	docker compose -f packages/twenty-docker/docker-compose.dev.yml up --build
 
+dcdown:
+	docker compose -f packages/twenty-docker/docker-compose.dev.yml down
+
+wipe-storage:
+	make dcdown
+	docker volume rm twenty_db-data twenty_docker-data twenty_server-local-data
+
 build:
 	docker compose -f packages/twenty-docker/docker-compose.yml build
 
 push-images:
 	docker compose -f packages/twenty-docker/docker-compose.yml push
 
+push-server-image:
+	docker compose -f packages/twenty-docker/docker-compose.yml push server
+
 deploy-dev:
 	docker --context nm-dev compose -f packages/twenty-docker/docker-compose.dev.yml \
-		--env-file packages/twenty-docker/.env up -d
+		--env-file packages/twenty-docker/.env.dev up -d
