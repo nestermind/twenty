@@ -17,7 +17,7 @@ services:
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty/Dockerfile
-    image: twentycrm/twenty:${TAG:-latest}
+    image: nestermindacr.azurecr.io/nestermind-crm:${TAG:-latest}
     volumes:
       - server-local-data:/app/packages/twenty-server/${STORAGE_LOCAL_PATH:-.local-storage}
       - docker-data:/app/docker-data
@@ -61,7 +61,7 @@ services:
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty/Dockerfile
-    image: twentycrm/twenty:${TAG:-latest}
+    image: nestermindacr.azurecr.io/nestermind-crm:${TAG:-latest}
     command: ["yarn", "worker:prod"]
     environment:
       PG_DATABASE_URL: postgres://${PGUSER_SUPERUSER:-postgres}:${PGPASSWORD_SUPERUSER:-postgres}@${PG_DATABASE_HOST:-db:5432}/default
