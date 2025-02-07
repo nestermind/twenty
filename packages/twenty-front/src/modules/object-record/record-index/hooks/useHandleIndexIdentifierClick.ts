@@ -1,4 +1,5 @@
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
+import { isPropertyOrPublication } from '@/object-metadata/utils/isPropertyOrPublication';
 import { AppPath } from '@/types/AppPath';
 import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValueV2';
 import { currentViewIdComponentState } from '@/views/states/currentViewIdComponentState';
@@ -17,6 +18,18 @@ export const useHandleIndexIdentifierClick = ({
   );
 
   const indexIdentifierUrl = (recordId: string) => {
+    if (isPropertyOrPublication(objectMetadataItem.nameSingular)) {
+      return getAppPath(
+        AppPath.RecordShowPropertyPage,
+        {
+          objectNameSingular: objectMetadataItem.nameSingular,
+          objectRecordId: recordId,
+        },
+        {
+          viewId: currentViewId,
+        },
+      );
+    }
     return getAppPath(
       AppPath.RecordShowPage,
       {

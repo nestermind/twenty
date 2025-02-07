@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-02-03 20:59+0100\n"
+"POT-Creation-Date: 2025-02-05 10:48+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -312,11 +312,11 @@ msgstr "Configura tus correos electrónicos y calendario."
 msgid "Connect a new account to your workspace"
 msgstr "Conectar una nueva cuenta a su espacio de trabajo"
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:42
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:61
 msgid "Connect with Google"
 msgstr "Conectar con Google"
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:49
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:70
 msgid "Connect with Microsoft"
 msgstr "Conectar con Microsoft"
 
@@ -578,6 +578,10 @@ msgstr "Más antiguo"
 msgid "Earliest date"
 msgstr "Fecha más temprana"
 
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:138
+msgid "Edit"
+msgstr ""
+
 #: src/pages/settings/SettingsBilling.tsx:158
 msgid "Edit billing interval"
 msgstr "Editar el intervalo de facturación"
@@ -628,6 +632,7 @@ msgstr "URL del endpoint"
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx:69
 msgid "English"
 msgstr "Inglés"
+
 #: src/pages/onboarding/ChooseYourPlan.tsx:157
 msgid "Enjoy a {withCreditCardTrialPeriodDuration}-days free trial"
 msgstr "Disfrute de {withCreditCardTrialPeriodDuration} días de prueba gratis"
@@ -1048,7 +1053,7 @@ msgstr "Nueva clave"
 msgid "New record"
 msgstr "Nuevo registro"
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:38
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:56
 msgid "No connected account"
 msgstr "No hay cuenta conectada"
 
@@ -1067,6 +1072,10 @@ msgstr "No vacío"
 #: src/modules/command-menu/components/CommandMenu.tsx:75
 msgid "Object"
 msgstr "Objeto"
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:130
+msgid "Object Overview"
+msgstr ""
 
 #: src/pages/settings/data-model/SettingsObjects.tsx:155
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx:179
@@ -1169,6 +1178,10 @@ msgstr "Perfil"
 msgid "Pseudo-English"
 msgstr "Pseudoinglés"
 
+#: src/modules/ui/layout/show-page/components/nm/ShowPagePropertySubContainer.tsx:124
+msgid "Publish"
+msgstr ""
+
 #: src/modules/settings/developers/components/SettingsReadDocumentationButton.tsx:9
 msgid "Read documentation"
 msgstr "Leer documentación"
@@ -1203,6 +1216,7 @@ msgstr "Lanzamientos"
 #: src/modules/ui/input/components/ImageInput.tsx:172
 msgid "Remove"
 msgstr "Eliminar"
+
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.ts:120
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.ts:121
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.ts:50
@@ -1240,6 +1254,10 @@ msgstr "Ejecuta un workflow y vuelve aquí para ver sus ejecuciones"
 #: src/pages/settings/security/SettingsSecurity.tsx:47
 msgid "SSO"
 msgstr "SSO"
+
+#: src/modules/record-edit/components/RecordEditContainer.tsx:298
+msgid "Save"
+msgstr ""
 
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx:44
 #: src/modules/navigation/components/MainNavigationDrawerItems.tsx:51
@@ -1573,7 +1591,7 @@ msgstr "Webhook"
 msgid "Webhooks"
 msgstr "Webhooks"
 
-#: src/pages/auth/SignInUp.tsx:76
+#: src/pages/auth/SignInUp.tsx:77
 msgid "Welcome to {workspaceName}"
 msgstr "Bienvenido a {workspaceName}"
 
@@ -1624,6 +1642,10 @@ msgstr "Escribe una descripción"
 msgid "You will be charged immediately for the full year."
 msgstr "Se te cobrará inmediatamente el año completo."
 
+#: src/pages/auth/SignInUp.tsx:74
+msgid "Your Workspace"
+msgstr ""
+
 #: src/pages/settings/SettingsBilling.tsx:55
 msgid "Your credit balance will be used to pay the monthly bills."
 msgstr "Tu saldo de crédito se utilizará para pagar las facturas mensuales."
@@ -1668,6 +1690,11 @@ msgstr "a anual"
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx:156
 msgid "yes"
 msgstr "sí"
+
+#. placeholder {0}: section.title
+#: src/modules/record-edit/components/RecordEditContainer.tsx:207
+msgid "{0}"
+msgstr ""
 
 #: src/modules/object-record/record-board/record-board-column/utils/computeAggregateValueAndLabel.ts:131
 msgid "{aggregateLabel} of {fieldLabel}"

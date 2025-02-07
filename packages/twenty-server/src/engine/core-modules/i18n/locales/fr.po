@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-02-01 10:10+0100\n"
+"POT-Creation-Date: 2025-02-05 10:57+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1143,21 +1143,21 @@ msgstr "Fils de messages"
 msgid "Message id from the message header"
 msgstr "ID du message figurant dans l'en-tête"
 
-#: src/modules/messaging.common/standard-objects/message-channel-message-association.workspace-entity.ts:46
+#: src/modules/messaging/common/standard-objects/message-channel-message-association.workspace-entity.ts:46
 msgid "Message id from the messaging provider"
 msgstr "ID du message du fournisseur de messagerie"
 
-#: src/modules/messaging.common/standard-objects/message.workspace-entity.ts:29
-#: src/modules/messaging.common/standard-objects/message-thread.workspace-entity.ts:34
+#: src/modules/messaging/common/standard-objects/message.workspace-entity.ts:29
+#: src/modules/messaging/common/standard-objects/message-thread.workspace-entity.ts:34
 msgid "Messages"
 msgstr "Messages"
 
-#: src/modules/messaging.common/standard-objects/message.workspace-entity.ts:106
-#: src/modules/messaging.common/standard-objects/message-channel.workspace-entity.ts:375
+#: src/modules/messaging/common/standard-objects/message.workspace-entity.ts:106
+#: src/modules/messaging/common/standard-objects/message-channel.workspace-entity.ts:375
 msgid "Messages from the channel."
 msgstr "Messages du canal."
 
-#: src/modules/messaging.common/standard-objects/message-thread.workspace-entity.ts:35
+#: src/modules/messaging/common/standard-objects/message-thread.workspace-entity.ts:35
 msgid "Messages from the thread."
 msgstr "Messages du fil."
 
@@ -1177,7 +1177,7 @@ msgstr "Jeton de rafraîchissement du fournisseur de messagerie"
 #: src/modules/view/standard-objects/view.workspace-entity.ts:43
 #: src/modules/person/standard-objects/person.workspace-entity.ts:69
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts:60
-#: src/modules/messaging.common/standard-objects/message-folder.workspace-entity.ts:32
+#: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts:32
 #: src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity.ts:43
 #: src/modules/company/standard-objects/company.workspace-entity.ts:64
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts:42

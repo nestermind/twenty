@@ -21,6 +21,8 @@ export enum AppPath {
 
   RecordIndexPage = '/objects/:objectNamePlural',
   RecordShowPage = '/object/:objectNameSingular/:objectRecordId',
+  RecordShowPropertyPage = '/details/:objectNameSingular/:objectRecordId',
+  RecordEditPage = '/details/:objectNameSingular/:objectRecordId/edit',
 
   Settings = `settings`,
   SettingsCatchAll = `/${Settings}/*`,

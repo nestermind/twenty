@@ -13,6 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. placeholder {0}: section.title
+#: src/modules/record-edit/components/RecordEditContainer.tsx:207
+msgid "{0}"
+msgstr ""
+
 #: src/modules/object-record/record-board/record-board-column/utils/computeAggregateValueAndLabel.ts:131
 msgid "{aggregateLabel} of {fieldLabel}"
 msgstr ""
@@ -335,11 +340,11 @@ msgstr ""
 msgid "Connect a new account to your workspace"
 msgstr ""
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:42
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:61
 msgid "Connect with Google"
 msgstr ""
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:49
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:70
 msgid "Connect with Microsoft"
 msgstr ""
 
@@ -599,6 +604,10 @@ msgstr ""
 
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationLabel.ts:31
 msgid "Earliest date"
+msgstr ""
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:138
+msgid "Edit"
 msgstr ""
 
 #: src/pages/settings/SettingsBilling.tsx:158
@@ -1084,7 +1093,7 @@ msgstr ""
 msgid "New Webhook"
 msgstr ""
 
-#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:38
+#: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx:56
 msgid "No connected account"
 msgstr ""
 
@@ -1102,6 +1111,10 @@ msgstr ""
 
 #: src/modules/command-menu/components/CommandMenu.tsx:75
 msgid "Object"
+msgstr ""
+
+#: src/modules/object-record/record-show/components/nm/ObjectOverview.tsx:130
+msgid "Object Overview"
 msgstr ""
 
 #: src/pages/settings/data-model/SettingsObjects.tsx:155
@@ -1221,6 +1234,10 @@ msgstr ""
 msgid "Pseudo-English"
 msgstr ""
 
+#: src/modules/ui/layout/show-page/components/nm/ShowPagePropertySubContainer.tsx:124
+msgid "Publish"
+msgstr ""
+
 #: src/modules/settings/developers/components/SettingsReadDocumentationButton.tsx:9
 msgid "Read documentation"
 msgstr ""
@@ -1288,6 +1305,10 @@ msgstr ""
 
 #: src/modules/object-record/record-table/empty-state/utils/getEmptyStateSubTitle.ts:13
 msgid "Run a workflow and return here to view its executions"
+msgstr ""
+
+#: src/modules/record-edit/components/RecordEditContainer.tsx:298
+msgid "Save"
 msgstr ""
 
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx:44
@@ -1638,7 +1659,7 @@ msgstr ""
 #~ msgid "Welcome to"
 #~ msgstr ""
 
-#: src/pages/auth/SignInUp.tsx:76
+#: src/pages/auth/SignInUp.tsx:77
 msgid "Welcome to {workspaceName}"
 msgstr ""
 
@@ -1702,9 +1723,9 @@ msgstr ""
 msgid "Your name as it will be displayed"
 msgstr ""
 
-#: src/pages/auth/SignInUp.tsx:47
-#~ msgid "Your Workspace"
-#~ msgstr ""
+#: src/pages/auth/SignInUp.tsx:74
+msgid "Your Workspace"
+msgstr ""
 
 #: src/pages/settings/SettingsBilling.tsx:172
 msgid "Your workspace will be disabled"

@@ -11,6 +11,7 @@ import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { useRecoilValue } from 'recoil';
 import {
   IconCalendarEvent,
+  IconList,
   IconMail,
   IconNotes,
   IconPrinter,
@@ -34,6 +35,42 @@ export const useRecordShowContainerTabs = (
   const OBJECT_SPECIFIC_LAYOUTS: Partial<
     Record<CoreObjectNameSingular, RecordLayout>
   > = {
+    [CoreObjectNameSingular.Property]: {
+      tabs: {
+        overview: {
+          title: 'Overview',
+          hide: {
+            ifMobile: false,
+            ifDesktop: false,
+            ifInRightDrawer: false,
+            ifFeaturesDisabled: [],
+            ifRequiredObjectsInactive: [],
+            ifRelationsMissing: ['noteTargets', 'taskTargets'],
+          },
+          Icon: IconList,
+          position: 0,
+          cards: [{ type: CardType.OverviewCard }],
+        },
+      },
+    },
+    [CoreObjectNameSingular.Publication]: {
+      tabs: {
+        overview: {
+          title: 'Overview',
+          hide: {
+            ifMobile: false,
+            ifDesktop: false,
+            ifInRightDrawer: false,
+            ifFeaturesDisabled: [],
+            ifRequiredObjectsInactive: [],
+            ifRelationsMissing: ['noteTargets', 'taskTargets'],
+          },
+          Icon: IconList,
+          position: 0,
+          cards: [{ type: CardType.OverviewCard }],
+        },
+      },
+    },
     [CoreObjectNameSingular.Note]: {
       tabs: {
         richText: {
