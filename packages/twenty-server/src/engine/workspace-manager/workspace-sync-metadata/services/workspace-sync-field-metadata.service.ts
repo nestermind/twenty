@@ -40,7 +40,6 @@ export class WorkspaceSyncFieldMetadataService {
     manager: EntityManager,
     storage: WorkspaceSyncStorage,
     workspaceFeatureFlagsMap: FeatureFlagMap,
-    defaultMetadataWorkspaceId?: string | null,
   ): Promise<Partial<WorkspaceMigrationEntity>[]> {
     const objectMetadataRepository =
       manager.getRepository(ObjectMetadataEntity);
@@ -67,7 +66,6 @@ export class WorkspaceSyncFieldMetadataService {
       storage,
       workspaceFeatureFlagsMap,
       fieldMetadataRepository,
-      defaultMetadataWorkspaceId,
     );
 
     await this.synchronizeCustomObjectFields(
@@ -131,8 +129,8 @@ export class WorkspaceSyncFieldMetadataService {
     fieldMetadataRepository: Repository<
       FieldMetadataEntity<FieldMetadataType | 'default'>
     >,
-    defaultMetadataWorkspaceId?: string | null,
   ): Promise<void> {
+    const defaultMetadataWorkspaceId = context.defaultMetadataWorkspaceId;
     // Create standard field metadata map
     const standardObjectStandardFieldMetadataMap =
       this.standardFieldFactory.create(

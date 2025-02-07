@@ -33,7 +33,6 @@ export class WorkspaceSyncRelationMetadataService {
     manager: EntityManager,
     storage: WorkspaceSyncStorage,
     workspaceFeatureFlagsMap: FeatureFlagMap,
-    defaultMetadataWorkspaceId?: string | null,
   ): Promise<Partial<WorkspaceMigrationEntity>[]> {
     const objectMetadataRepository =
       manager.getRepository(ObjectMetadataEntity);
@@ -74,10 +73,10 @@ export class WorkspaceSyncRelationMetadataService {
     // Create standard relation metadata collection
     const standardRelationMetadataCollection =
       this.standardRelationFactory.create(
-        defaultMetadataWorkspaceId
+        context.defaultMetadataWorkspaceId
           ? await relationMetadataRepository.find({
               where: {
-                workspaceId: defaultMetadataWorkspaceId,
+                workspaceId: context.defaultMetadataWorkspaceId,
               },
               relations: [
                 'fromObjectMetadata',
