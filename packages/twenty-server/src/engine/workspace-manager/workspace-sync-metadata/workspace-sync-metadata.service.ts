@@ -5,7 +5,6 @@ import { DataSource, QueryFailedError, Repository } from 'typeorm';
 
 import { WorkspaceSyncContext } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/workspace-sync-context.interface';
 
-import { EnvironmentService } from 'src/engine/core-modules/environment/environment.service';
 import { FeatureFlag } from 'src/engine/core-modules/feature-flag/feature-flag.entity';
 import { FeatureFlagService } from 'src/engine/core-modules/feature-flag/services/feature-flag.service';
 import { WorkspaceMetadataVersionService } from 'src/engine/metadata-modules/workspace-metadata-version/services/workspace-metadata-version.service';
@@ -39,7 +38,6 @@ export class WorkspaceSyncMetadataService {
     private readonly workspaceMetadataVersionService: WorkspaceMetadataVersionService,
     @InjectRepository(FeatureFlag, 'core')
     private readonly featureFlagRepository: Repository<FeatureFlag>,
-    private readonly environmentService: EnvironmentService,
   ) {}
 
   /**
@@ -81,10 +79,6 @@ export class WorkspaceSyncMetadataService {
 
       this.logger.log('Syncing standard objects and fields metadata');
 
-      const defaultMetadataWorkspaceId = this.environmentService.get(
-        'DEFAULT_METADATA_WORKSPACE_ID',
-      );
-
       // 1 - Sync standard objects
       const workspaceObjectMigrations =
         await this.workspaceSyncObjectMetadataService.synchronize(
@@ -92,7 +86,6 @@ export class WorkspaceSyncMetadataService {
           manager,
           storage,
           workspaceFeatureFlagsMap,
-          defaultMetadataWorkspaceId,
         );
 
       // 2 - Sync standard fields on standard and custom objects
@@ -102,7 +95,6 @@ export class WorkspaceSyncMetadataService {
           manager,
           storage,
           workspaceFeatureFlagsMap,
-          defaultMetadataWorkspaceId,
         );
 
       // 3 - Sync standard relations on standard and custom objects
@@ -112,7 +104,6 @@ export class WorkspaceSyncMetadataService {
           manager,
           storage,
           workspaceFeatureFlagsMap,
-          defaultMetadataWorkspaceId,
         );
 
       // 4 - Sync standard indexes on standard objects
@@ -122,7 +113,6 @@ export class WorkspaceSyncMetadataService {
           manager,
           storage,
           workspaceFeatureFlagsMap,
-          defaultMetadataWorkspaceId,
         );
 
       // 5 - Sync standard object metadata identifiers, does not need to return nor apply migrations
@@ -131,7 +121,6 @@ export class WorkspaceSyncMetadataService {
         manager,
         storage,
         workspaceFeatureFlagsMap,
-        defaultMetadataWorkspaceId,
       );
 
       // Save workspace migrations into the database

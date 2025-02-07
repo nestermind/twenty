@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import isEmpty from 'lodash.isempty';
 import { Repository } from 'typeorm';
 
+import { EnvironmentService } from 'src/engine/core-modules/environment/environment.service';
 import { UserWorkspace } from 'src/engine/core-modules/user-workspace/user-workspace.entity';
 import { DataSourceEntity } from 'src/engine/metadata-modules/data-source/data-source.entity';
 import { DataSourceService } from 'src/engine/metadata-modules/data-source/data-source.service';
@@ -46,6 +47,7 @@ export class WorkspaceManagerService {
     private readonly userWorkspaceRepository: Repository<UserWorkspace>,
     private readonly roleService: RoleService,
     private readonly userRoleService: UserRoleService,
+    private readonly environmentService: EnvironmentService,
   ) {}
 
   /**
@@ -65,9 +67,25 @@ export class WorkspaceManagerService {
         schemaName,
       );
 
+    const defaultMetadataWorkspaceId = this.environmentService.get(
+      'DEFAULT_METADATA_WORKSPACE_ID',
+    );
+
+    if (
+      defaultMetadataWorkspaceId &&
+      !(await this.workspaceDataSourceService.checkSchemaExists(
+        defaultMetadataWorkspaceId,
+      ))
+    ) {
+      throw new Error(
+        `No Schema found for default metadata workspace ${defaultMetadataWorkspaceId}`,
+      );
+    }
+
     await this.workspaceSyncMetadataService.synchronize({
       workspaceId,
       dataSourceId: dataSourceMetadata.id,
+      defaultMetadataWorkspaceId,
     });
 
     const permissionsEnabled =
