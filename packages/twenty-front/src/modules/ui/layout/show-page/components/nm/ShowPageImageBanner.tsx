@@ -10,8 +10,8 @@ type ShowPageImageBannerProps = {
 
 const SECONDARY_IMAGES_WIDTH_PERCENT = 40;
 const IMAGE_HEIGHT_LARGE_DESKTOP = 400;
-const IMAGE_HEIGHT = 300;
-const IMAGE_HEIGHT_MOBILE = 200;
+const IMAGE_HEIGHT = 230;
+const IMAGE_HEIGHT_MOBILE = 190;
 
 const StyledFirstImage = styled.img`
   height: 100%;
@@ -69,6 +69,7 @@ const StyledImageContainer = styled.div`
   @media only screen and (max-width: ${MOBILE_VIEWPORT}px) {
     height: ${IMAGE_HEIGHT_MOBILE}px;
   }
+
   @media only screen and (min-width: ${LARGE_DESKTOP_VIEWPORT}px) {
     height: ${IMAGE_HEIGHT_LARGE_DESKTOP}px;
   }
