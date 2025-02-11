@@ -32,7 +32,7 @@ services:
       FRONT_PROTOCOL: ${FRONT_PROTOCOL}
       FRONT_DOMAIN: ${FRONT_DOMAIN}
       FRONT_PORT: ${FRONT_PORT}
-      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      REDIS_URL: ${REDIS_URL:-redis://:${REDIS_PASSWORD:-nestermind-redis-password}@redis:6379}
 
       LOG_LEVELS: ${LOG_LEVELS}
 
@@ -107,7 +107,7 @@ services:
       FRONT_PROTOCOL: ${FRONT_PROTOCOL}
       FRONT_DOMAIN: ${FRONT_DOMAIN}
       FRONT_PORT: ${FRONT_PORT}
-      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      REDIS_URL: ${REDIS_URL:-redis://:${REDIS_PASSWORD:-nestermind-redis-password}@redis:6379}
       DISABLE_DB_MIGRATIONS: "true" # it already runs on the server
 
       LOG_LEVELS: ${LOG_LEVELS}
@@ -171,6 +171,7 @@ services:
 
   redis:
     image: redis
+    command: redis-server --requirepass ${REDIS_PASSWORD:-nestermind-redis-password}
     restart: always
 
 volumes:
