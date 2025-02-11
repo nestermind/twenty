@@ -23,6 +23,8 @@ services:
       - docker-data:/app/docker-data
     ports:
       - "3000:3000"
+      - "443:3000"
+      - "80:3000"
     environment:
       PORT: 3000
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
@@ -31,6 +33,8 @@ services:
       FRONT_DOMAIN: ${FRONT_DOMAIN}
       FRONT_PORT: ${FRONT_PORT}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+
+      LOG_LEVELS: ${LOG_LEVELS}
 
       SSL_KEY_PATH: ${SSL_KEY_PATH}
       SSL_CERT_PATH: ${SSL_CERT_PATH}
@@ -95,6 +99,8 @@ services:
       REDIS_URL: ${REDIS_URL:-redis://redis:6379}
       DISABLE_DB_MIGRATIONS: "true" # it already runs on the server
 
+      LOG_LEVELS: ${LOG_LEVELS}
+
       STORAGE_TYPE: ${STORAGE_TYPE}
       STORAGE_S3_REGION: ${STORAGE_S3_REGION}
       STORAGE_S3_NAME: ${STORAGE_S3_NAME}
@@ -137,7 +143,7 @@ services:
     build:
       context: ../..
       dockerfile: packages/twenty-docker/twenty-postgres-spilo/Dockerfile
-    image: twentycrm/twenty-postgres-spilo:${TAG:-latest}
+    image: twentycrm/twenty-postgres-spilo:${DB_TAG:-latest}
     volumes:
       - db-data:/home/postgres/pgdata
     environment:
