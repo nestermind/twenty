@@ -36,6 +36,9 @@ init-and-migrate-db:
 	npx nx database:migrate:prod twenty-server
 
 dcup:
+	docker compose -f packages/twenty-docker/docker-compose.dev.yml up
+
+dcupb:
 	docker compose -f packages/twenty-docker/docker-compose.dev.yml up --build
 
 dcdown:
@@ -47,6 +50,9 @@ wipe-storage:
 
 build:
 	docker compose -f packages/twenty-docker/docker-compose.yml build
+
+build-server:
+	docker compose -f packages/twenty-docker/docker-compose.dev.yml build server
 
 push-images:
 	docker compose -f packages/twenty-docker/docker-compose.yml push
