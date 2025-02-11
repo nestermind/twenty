@@ -55,6 +55,7 @@ build-server:
 	docker compose -f packages/twenty-docker/docker-compose.dev.yml build server
 
 push-images:
+	az acr login --name nestermindacr
 	docker compose -f packages/twenty-docker/docker-compose.yml push
 
 push-server-image:
