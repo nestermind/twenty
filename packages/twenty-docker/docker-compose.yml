@@ -89,7 +89,18 @@ services:
       context: ../..
       dockerfile: packages/twenty-docker/twenty/Dockerfile
     image: nestermindacr.azurecr.io/nestermind-crm:${TAG:-latest}
-    command: ["yarn", "worker:prod"]
+    command: >
+      /bin/sh -c "
+      yarn worker:prod &
+      sleep 30 &&
+      yarn command:prod crons:start \\
+        cron:messaging:messages-import \\
+        cron:messaging:message-list-fetch \\
+        cron:calendar:calendar-event-list-fetch \\
+        cron:calendar:calendar-events-import \\
+        cron:messaging:ongoing-stale \\
+        cron:calendar:ongoing-stale
+      wait"
     environment:
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
       SERVER_URL: ${SERVER_URL}
