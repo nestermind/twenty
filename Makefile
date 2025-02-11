@@ -66,6 +66,10 @@ deploy-dev:
 	docker --context nm-dev compose -f packages/twenty-docker/docker-compose.dev.yml \
 		--env-file packages/twenty-docker/.env.dev up -d
 
+dev-down:
+	docker --context nm-dev compose -f packages/twenty-docker/docker-compose.dev.yml \
+		--env-file packages/twenty-docker/.env.dev down
+
 attach-dev:
 	docker --context nm-dev compose -f packages/twenty-docker/docker-compose.dev.yml logs -f -n 20
 
