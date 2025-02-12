@@ -157,7 +157,6 @@ export const RecordEditContainer = ({
       if (isDirty) {
         const updatedFields = getUpdatedFields();
 
-        console.log(updatedFields);
         await updateOneRecord({
           idToUpdate: recordId,
           updateOneRecordInput: updatedFields,
@@ -283,7 +282,14 @@ export const RecordEditContainer = ({
 
   return (
     <StyledEditContainer>
-      {images && <ShowPageImageBanner images={images} />}
+      {record && (
+        <ShowPageImageBanner
+          targetableObject={{
+            id: record.id,
+            targetObjectNameSingular: objectNameSingular,
+          }}
+        />
+      )}
 
       <StyledTabListContainer shouldDisplay={true}>
         <TabList

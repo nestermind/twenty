@@ -1,11 +1,20 @@
-import { Attachment } from '@/activities/files/types/Attachment';
+import { useAttachments } from '@/activities/files/hooks/useAttachments';
+import { useUploadAttachmentFile } from '@/activities/files/hooks/useUploadAttachmentFile';
+import { ActivityTargetableObject } from '@/activities/types/ActivityTargetableEntity';
 import { useTheme } from '@emotion/react';
+import { useCallback, useMemo, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 
 import styled from '@emotion/styled';
-import { IconPhoto, LARGE_DESKTOP_VIEWPORT, MOBILE_VIEWPORT } from 'twenty-ui';
+import {
+  IconPhoto,
+  IconUpload,
+  LARGE_DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+} from 'twenty-ui';
 
 type ShowPageImageBannerProps = {
-  images: Attachment[];
+  targetableObject: ActivityTargetableObject;
 };
 
 const SECONDARY_IMAGES_WIDTH_PERCENT = 40;
@@ -69,24 +78,120 @@ const StyledImageContainer = styled.div`
   @media only screen and (max-width: ${MOBILE_VIEWPORT}px) {
     height: ${IMAGE_HEIGHT_MOBILE}px;
   }
-
   @media only screen and (min-width: ${LARGE_DESKTOP_VIEWPORT}px) {
     height: ${IMAGE_HEIGHT_LARGE_DESKTOP}px;
   }
 `;
 
-export const ShowPageImageBanner = ({ images }: ShowPageImageBannerProps) => {
+const StyledDropZoneContent = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(2)};
+  justify-content: center;
+  pointer-events: none;
+`;
+
+const StyledUploadTitle = styled.div`
+  color: ${({ theme }) => theme.font.color.primary};
+  font-size: ${({ theme }) => theme.font.size.lg};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+`;
+
+const StyledUploadSubTitle = styled.div`
+  color: ${({ theme }) => theme.font.color.tertiary};
+  font-size: ${({ theme }) => theme.font.size.md};
+`;
+
+export const ShowPageImageBanner = ({
+  targetableObject,
+}: ShowPageImageBannerProps) => {
   const theme = useTheme();
+  const { uploadAttachmentFile } = useUploadAttachmentFile();
+  const { attachments = [] } = useAttachments(targetableObject);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const images = useMemo(
+    () => attachments.filter((attachment) => attachment.type === 'Image'),
+    [attachments],
+  );
+
+  const onDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      setIsUploading(true);
+      try {
+        await Promise.all(
+          acceptedFiles.map((file) =>
+            uploadAttachmentFile(file, targetableObject),
+          ),
+        );
+      } catch (error) {
+        console.error('Error uploading images:', error);
+      } finally {
+        setIsUploading(false);
+      }
+    },
+    [uploadAttachmentFile, targetableObject],
+  );
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      'image/*': ['.png', '.jpg', '.jpeg', '.gif', '.webp'],
+    },
+    multiple: true,
+  });
+
   return (
     <div style={{ position: 'relative' }}>
-      <StyledImageContainer>
+      <StyledImageContainer
+        onClick={getRootProps().onClick}
+        onKeyDown={getRootProps().onKeyDown}
+        onFocus={getRootProps().onFocus}
+        onBlur={getRootProps().onBlur}
+        onDragEnter={getRootProps().onDragEnter}
+        onDragOver={getRootProps().onDragOver}
+        onDragLeave={getRootProps().onDragLeave}
+        onDrop={getRootProps().onDrop}
+        role="presentation"
+        style={{ cursor: 'pointer' }}
+      >
+        <input
+          type="file"
+          onChange={getInputProps().onChange}
+          onFocus={getInputProps().onFocus}
+          onBlur={getInputProps().onBlur}
+          accept={getInputProps().accept}
+          multiple={getInputProps().multiple}
+          style={{ display: 'none' }}
+        />
         {images[0] ? (
           <StyledInnerFirstImageContainer isSingleImage={images.length === 1}>
             <StyledFirstImage src={images[0].fullPath} alt="Property" />
           </StyledInnerFirstImageContainer>
         ) : (
           <StyledPhotoIconContainer>
-            <IconPhoto size={40} color={theme.color.gray50} />
+            {isDragActive || isUploading ? (
+              <StyledDropZoneContent>
+                <IconUpload size={40} color={theme.color.gray50} />
+                <StyledUploadTitle>
+                  {isUploading ? 'Uploading...' : 'Drop images here'}
+                </StyledUploadTitle>
+                <StyledUploadSubTitle>
+                  {isUploading
+                    ? 'Please wait while we process your images'
+                    : 'PNG, JPG, GIF up to 10MB'}
+                </StyledUploadSubTitle>
+              </StyledDropZoneContent>
+            ) : (
+              <StyledDropZoneContent>
+                <IconPhoto size={40} color={theme.color.gray50} />
+                <StyledUploadTitle>Add images</StyledUploadTitle>
+                <StyledUploadSubTitle>
+                  Drop images here or click to browse
+                </StyledUploadSubTitle>
+              </StyledDropZoneContent>
+            )}
           </StyledPhotoIconContainer>
         )}
         {images.length > 1 && (

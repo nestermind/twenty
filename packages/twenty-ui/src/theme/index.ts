@@ -30,7 +30,6 @@ export * from './constants/MobileViewport';
 export * from './constants/Modal';
 export * from './constants/Rgba';
 export * from './constants/SecondaryColors';
-export * from './constants/SmallDesktopViewport';
 export * from './constants/SnackBarCommon';
 export * from './constants/SnackBarDark';
 export * from './constants/SnackBarLight';

@@ -1,11 +1,11 @@
 import { RecordShowRightDrawerActionMenu } from '@/action-menu/components/RecordShowRightDrawerActionMenu';
-import { Attachment } from '@/activities/files/types/Attachment';
 import { ActivityTargetableObject } from '@/activities/types/ActivityTargetableEntity';
 import { isNewViewableRecordLoadingState } from '@/object-record/record-right-drawer/states/isNewViewableRecordLoading';
 import { CardComponents } from '@/object-record/record-show/components/CardComponents';
 import { RecordLayout } from '@/object-record/record-show/types/RecordLayout';
 import { recordStoreFamilyState } from '@/object-record/record-store/states/recordStoreFamilyState';
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
+import { ModalRefType } from '@/ui/layout/modal/components/Modal';
 import { RightDrawerFooter } from '@/ui/layout/right-drawer/components/RightDrawerFooter';
 import { ShowPageImageBanner } from '@/ui/layout/show-page/components/nm/ShowPageImageBanner';
 import { SingleTabProps, TabList } from '@/ui/layout/tab/components/TabList';
@@ -13,8 +13,10 @@ import { useTabList } from '@/ui/layout/tab/hooks/useTabList';
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import styled from '@emotion/styled';
 import { useLingui } from '@lingui/react/macro';
+import { useRef } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Button } from 'twenty-ui';
+import { Button, IconUpload } from 'twenty-ui';
+import { PublishModal } from './PublishModal';
 
 const StyledShowPageRightContainer = styled.div<{ isMobile: boolean }>`
   display: flex;
@@ -64,18 +66,13 @@ type ShowPagePropertySubContainerProps = {
 
 export const ShowPagePropertySubContainer = ({
   tabs,
-  layout,
   targetableObject,
   loading,
   isInRightDrawer = false,
-  isNewRightDrawerItemLoading = false,
 }: ShowPagePropertySubContainerProps) => {
   const tabListComponentId = `${TAB_LIST_COMPONENT_ID}-${isInRightDrawer}-${targetableObject.id}`;
-
   const { activeTabId } = useTabList(tabListComponentId);
-
   const isMobile = useIsMobile();
-
   const isNewViewableRecordLoading = useRecoilValue(
     isNewViewableRecordLoadingState,
   );
@@ -103,14 +100,24 @@ export const ShowPagePropertySubContainer = ({
   const { t } = useLingui();
 
   const visibleTabs = tabs.filter((tab) => !tab.hide);
-  const images = recordFromStore?.attachments?.filter(
-    (attachment: Attachment) => attachment.name?.includes('propertyimage'),
-  );
+
+  // eslint-disable-next-line @nx/workspace-no-state-useref
+  const modalRef = useRef<ModalRefType>(null);
+
+  const openModal = () => {
+    modalRef.current?.open();
+  };
+
+  const handleModalClose = () => {
+    modalRef.current?.close();
+  };
 
   return (
     <>
       <StyledShowPageRightContainer isMobile={isMobile}>
-        {images && <ShowPageImageBanner images={images} />}
+        {recordFromStore && (
+          <ShowPageImageBanner targetableObject={targetableObject} />
+        )}
         <StyledTabListContainer shouldDisplay={visibleTabs.length > 1}>
           <TabList
             behaveAsLinks={!isInRightDrawer}
@@ -125,7 +132,8 @@ export const ShowPagePropertySubContainer = ({
               variant="primary"
               accent="blue"
               size="small"
-              onClick={() => {}}
+              Icon={IconUpload}
+              onClick={openModal}
             />
           </StyledButtonContainer>
         </StyledTabListContainer>
@@ -136,6 +144,12 @@ export const ShowPagePropertySubContainer = ({
           <RightDrawerFooter actions={[<RecordShowRightDrawerActionMenu />]} />
         )}
       </StyledShowPageRightContainer>
+
+      <PublishModal
+        ref={modalRef}
+        onClose={handleModalClose}
+        targetableObject={targetableObject}
+      />
     </>
   );
 };

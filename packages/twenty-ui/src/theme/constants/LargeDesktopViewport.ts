@@ -1,1 +1,1 @@
-export const LARGE_DESKTOP_VIEWPORT = 1920;
+export const LARGE_DESKTOP_VIEWPORT = 1440;

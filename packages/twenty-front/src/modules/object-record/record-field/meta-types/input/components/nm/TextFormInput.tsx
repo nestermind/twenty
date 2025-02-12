@@ -40,7 +40,7 @@ export const TextFormInput = ({
 
   const { fieldValue } = useTextFieldDisplay();
 
-  const { updateField, getUpdatedFields } = useRecordEdit();
+  const { updateField } = useRecordEdit();
 
   const initialized = useFieldValueAsDraft(
     turnIntoUndefinedIfWhitespacesOnly(fieldValue) ?? '',

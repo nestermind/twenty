@@ -6,6 +6,7 @@ import { ObjectTasks } from '@/activities/tasks/components/ObjectTasks';
 import { TimelineActivities } from '@/activities/timeline-activities/components/TimelineActivities';
 import { ActivityTargetableObject } from '@/activities/types/ActivityTargetableEntity';
 import { FieldsCard } from '@/object-record/record-show/components/FieldsCard';
+import { AISuite } from '@/object-record/record-show/components/nm/AISuite';
 import { ObjectOverview } from '@/object-record/record-show/components/nm/ObjectOverview';
 
 import { CardType } from '@/object-record/record-show/types/CardType';
@@ -105,5 +106,9 @@ export const CardComponents: Record<CardType, CardComponentType> = {
 
   [CardType.OverviewCard]: ({ targetableObject }) => (
     <ObjectOverview targetableObject={targetableObject} />
+  ),
+
+  [CardType.AISuiteCard]: ({ targetableObject }) => (
+    <AISuite targetableObject={targetableObject} />
   ),
 };

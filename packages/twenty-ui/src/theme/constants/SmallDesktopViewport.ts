@@ -1,1 +1,0 @@
-export const SMALL_DESKTOP_VIEWPORT = 1440;

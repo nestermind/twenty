@@ -22,6 +22,11 @@ export const FinancialOverviewGroup: FieldGroup[] = [
         conditionValues: ['rent'],
         fieldWidth: 100,
       },
+    ],
+  },
+  {
+    isHorizontal: true,
+    fields: [
       {
         name: 'financing',
         type: 'input',
@@ -35,6 +40,15 @@ export const FinancialOverviewGroup: FieldGroup[] = [
         conditionValues: ['sale'],
         fieldWidth: 100,
       },
+      {
+        name: 'lastSalePrice',
+        type: 'input',
+        conditionFields: ['offerType'],
+        // TODO: Use Enum Types once available
+        conditionValues: ['sale'],
+        fieldWidth: 100,
+      },
+      { name: 'valuation', type: 'input', fieldWidth: 100 },
     ],
   },
 ];

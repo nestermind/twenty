@@ -6,14 +6,15 @@ import { CurrencyInput } from '@/ui/field/input/components/CurrencyInput';
 
 import { useCurrencyField } from '../../../hooks/useCurrencyField';
 
+import { useFieldValueAsDraft } from '@/object-record/record-field/meta-types/input/hooks/useFieldValueAsDraft';
 import { isFieldCurrencyValue } from '@/object-record/record-field/types/guards/isFieldCurrencyValue';
 import { useRecordEdit } from '@/record-edit/contexts/RecordEditContext';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { convertCurrencyAmountToCurrencyMicros } from '~/utils/convertCurrencyToCurrencyMicros';
 import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 import {
-    FieldInputClickOutsideEvent,
-    FieldInputEvent,
+  FieldInputClickOutsideEvent,
+  FieldInputEvent,
 } from '../DateTimeFieldInput';
 
 type CurrencyFormInputProps = {
@@ -32,6 +33,7 @@ export const CurrencyFormInput = ({
   onShiftTab,
 }: CurrencyFormInputProps) => {
   const {
+    fieldValue,
     hotkeyScope,
     draftValue,
     setDraftValue,
@@ -40,6 +42,15 @@ export const CurrencyFormInput = ({
   } = useCurrencyField();
 
   const { updateField } = useRecordEdit();
+
+  const initialDraftValue = useMemo(() => {
+    return {
+      amount: ((fieldValue?.amountMicros ?? 0) / 1000000).toString(),
+      currencyCode: fieldValue?.currencyCode ?? CurrencyCode.USD,
+    };
+  }, [fieldValue]);
+
+  const initialized = useFieldValueAsDraft(initialDraftValue, setDraftValue);
 
   const defaultCurrencyCodeWithoutSQLQuotes = (
     defaultValue as FieldCurrencyValue
@@ -138,18 +149,20 @@ export const CurrencyFormInput = ({
   };
 
   return (
-    <CurrencyInput
-      value={draftValue?.amount?.toString() ?? ''}
-      currencyCode={currencyCode}
-      placeholder="Currency"
-      onClickOutside={handleClickOutside}
-      onEnter={handleEnter}
-      onEscape={handleEscape}
-      onShiftTab={handleShiftTab}
-      onTab={handleTab}
-      onChange={handleChange}
-      onSelect={handleSelect}
-      hotkeyScope={hotkeyScope}
-    />
+    initialized && (
+      <CurrencyInput
+        value={draftValue?.amount?.toString() ?? ''}
+        currencyCode={currencyCode}
+        placeholder="Currency"
+        onClickOutside={handleClickOutside}
+        onEnter={handleEnter}
+        onEscape={handleEscape}
+        onShiftTab={handleShiftTab}
+        onTab={handleTab}
+        onChange={handleChange}
+        onSelect={handleSelect}
+        hotkeyScope={hotkeyScope}
+      />
+    )
   );
 };

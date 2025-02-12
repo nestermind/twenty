@@ -1,8 +1,14 @@
-import { FINANCE_SECTION_CONTENT } from '@/record-edit/constants/EditSectionFinanceContent';
 import { OVERVIEW_SECTION_CONTENT } from '@/record-edit/constants/EditSectionPropertyOverviewContent';
 import { Section } from '@/record-edit/types/EditSectionTypes';
 // eslint-disable-next-line no-restricted-imports
-import { IconHome2, IconReportMoney } from '@tabler/icons-react';
+import {
+  IconBuildingCommunity,
+  IconFile,
+  IconHistory,
+  IconHome2,
+  IconMapPin,
+  IconTool,
+} from '@tabler/icons-react';
 
 export const EDIT_SECTIONS_TABS: Section[] = [
   {
@@ -12,9 +18,33 @@ export const EDIT_SECTIONS_TABS: Section[] = [
     content: OVERVIEW_SECTION_CONTENT,
   },
   {
-    id: 'property-financials',
-    title: 'Financials',
-    Icon: IconReportMoney,
-    content: FINANCE_SECTION_CONTENT,
+    id: 'property-amenities',
+    title: 'Amenities',
+    Icon: IconBuildingCommunity,
+    content: [],
+  },
+  {
+    id: 'property-location',
+    title: 'Location',
+    Icon: IconMapPin,
+    content: [],
+  },
+  {
+    id: 'property-documents',
+    title: 'Documents',
+    Icon: IconFile,
+    content: [],
+  },
+  {
+    id: 'property-history',
+    title: 'History',
+    Icon: IconHistory,
+    content: [],
+  },
+  {
+    id: 'property-maintenance',
+    title: 'Maintenance',
+    Icon: IconTool,
+    content: [],
   },
 ];

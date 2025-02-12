@@ -10,13 +10,13 @@ export const useFieldValueAsDraft = <T>(
   useEffect(() => {
     if (!initialized && Boolean(fieldValue)) {
       setDraftValue(fieldValue);
-      setInitialized(true);
     }
     // Artificially makes sure that shown value is not empty
+
     setTimeout(() => {
       setInitialized(true);
     }, 150);
-  }, [fieldValue, setDraftValue, initialized]);
+  }, [fieldValue, initialized, setDraftValue]);
 
   return initialized;
 };

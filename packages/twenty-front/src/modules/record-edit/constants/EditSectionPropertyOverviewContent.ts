@@ -25,7 +25,16 @@ export const OVERVIEW_SECTION_CONTENT: SectionContent[] = [
           { name: 'squareMeters', type: 'input', fieldWidth: 120 },
           { name: 'rooms', type: 'input', fieldWidth: 80 },
           { name: 'yearBuilt', type: 'input', fieldWidth: 80 },
+          {
+            name: 'useableSurface',
+            type: 'input',
+            fieldWidth: 140,
+          },
         ],
+      },
+      {
+        isHorizontal: true,
+        fields: [{ name: 'floors', type: 'input', fieldWidth: 120 }],
       },
       {
         isHorizontal: true,
@@ -38,10 +47,6 @@ export const OVERVIEW_SECTION_CONTENT: SectionContent[] = [
       {
         isHorizontal: true,
         fields: [{ name: 'traits', type: 'field' }],
-      },
-      {
-        isHorizontal: true,
-        fields: [{ name: 'floors', type: 'input', fieldWidth: 120 }],
       },
     ],
   },

@@ -16,6 +16,7 @@ import {
   IconNotes,
   IconPrinter,
   IconSettings,
+  IconSparkles,
 } from 'twenty-ui';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 import { FeatureFlagKey } from '~/generated/graphql';
@@ -50,6 +51,20 @@ export const useRecordShowContainerTabs = (
           Icon: IconList,
           position: 0,
           cards: [{ type: CardType.OverviewCard }],
+        },
+        aiSuite: {
+          title: 'AI Suite',
+          position: 1,
+          Icon: IconSparkles,
+          cards: [{ type: CardType.AISuiteCard }],
+          hide: {
+            ifMobile: false,
+            ifDesktop: false,
+            ifInRightDrawer: false,
+            ifFeaturesDisabled: [],
+            ifRequiredObjectsInactive: [],
+            ifRelationsMissing: [],
+          },
         },
       },
     },

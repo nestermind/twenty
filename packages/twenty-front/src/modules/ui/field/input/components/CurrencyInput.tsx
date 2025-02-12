@@ -125,11 +125,7 @@ export const CurrencyInput = ({
         onChange={handleCurrencyChange}
         currencies={currencies}
       />
-      <StyledIcon>
-        {Icon && (
-          <Icon size={theme.icon.size.md} stroke={theme.icon.stroke.sm} />
-        )}
-      </StyledIcon>
+
       <StyledIMaskInput
         mask={Number}
         thousandsSeparator={','}
