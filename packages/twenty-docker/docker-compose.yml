@@ -99,7 +99,7 @@ services:
         cron:calendar:calendar-event-list-fetch \\
         cron:calendar:calendar-events-import \\
         cron:messaging:ongoing-stale \\
-        cron:calendar:ongoing-stale
+        cron:calendar:ongoing-stale &&
       wait"
     environment:
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
