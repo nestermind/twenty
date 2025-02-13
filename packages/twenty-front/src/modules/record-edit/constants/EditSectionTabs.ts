@@ -1,50 +1,46 @@
-import { OVERVIEW_SECTION_CONTENT } from '@/record-edit/constants/EditSectionPropertyOverviewContent';
 import { Section } from '@/record-edit/types/EditSectionTypes';
-// eslint-disable-next-line no-restricted-imports
 import {
-  IconBuildingCommunity,
+  IconBuildingSkyscraper,
   IconFile,
-  IconHistory,
-  IconHome2,
-  IconMapPin,
-  IconTool,
-} from '@tabler/icons-react';
+  IconHome,
+  IconMap,
+  IconMoneybag,
+} from 'twenty-ui';
+import { AMENITIES_SECTION_CONTENT } from './EditSectionAmenitiesContent';
+import { DOCUMENTS_SECTION_CONTENT } from './EditSectionDocumentsContent';
+import { FINANCIAL_SECTION_CONTENT } from './EditSectionFinanceContent';
+import { LOCATION_SECTION_CONTENT } from './EditSectionLocationContent';
+import { OVERVIEW_SECTION_CONTENT } from './EditSectionPropertyOverviewContent';
 
 export const EDIT_SECTIONS_TABS: Section[] = [
   {
     id: 'property-overview',
-    title: 'Property Overview',
-    Icon: IconHome2,
+    title: 'Overview',
+    Icon: IconHome,
     content: OVERVIEW_SECTION_CONTENT,
   },
   {
+    id: 'property-financial',
+    title: 'Financial',
+    Icon: IconMoneybag,
+    content: FINANCIAL_SECTION_CONTENT,
+  },
+  {
     id: 'property-amenities',
-    title: 'Amenities',
-    Icon: IconBuildingCommunity,
-    content: [],
+    title: 'Features & Details',
+    Icon: IconBuildingSkyscraper,
+    content: AMENITIES_SECTION_CONTENT,
   },
   {
     id: 'property-location',
     title: 'Location',
-    Icon: IconMapPin,
-    content: [],
+    Icon: IconMap,
+    content: LOCATION_SECTION_CONTENT,
   },
   {
     id: 'property-documents',
-    title: 'Documents',
+    title: 'Media & Documents',
     Icon: IconFile,
-    content: [],
-  },
-  {
-    id: 'property-history',
-    title: 'History',
-    Icon: IconHistory,
-    content: [],
-  },
-  {
-    id: 'property-maintenance',
-    title: 'Maintenance',
-    Icon: IconTool,
-    content: [],
+    content: DOCUMENTS_SECTION_CONTENT,
   },
 ];

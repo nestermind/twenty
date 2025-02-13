@@ -9,7 +9,9 @@ import { useCurrencyField } from '../../../hooks/useCurrencyField';
 import { useFieldValueAsDraft } from '@/object-record/record-field/meta-types/input/hooks/useFieldValueAsDraft';
 import { isFieldCurrencyValue } from '@/object-record/record-field/types/guards/isFieldCurrencyValue';
 import { useRecordEdit } from '@/record-edit/contexts/RecordEditContext';
+import { useTheme } from '@emotion/react';
 import { useCallback, useMemo } from 'react';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { convertCurrencyAmountToCurrencyMicros } from '~/utils/convertCurrencyToCurrencyMicros';
 import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 import {
@@ -17,12 +19,15 @@ import {
   FieldInputEvent,
 } from '../DateTimeFieldInput';
 
+const SKELETON_LOADER_HEIGHT_SIZE = 24;
+
 type CurrencyFormInputProps = {
   onClickOutside?: FieldInputClickOutsideEvent;
   onEnter?: FieldInputEvent;
   onEscape?: FieldInputEvent;
   onTab?: FieldInputEvent;
   onShiftTab?: FieldInputEvent;
+  maxWidth?: number;
 };
 
 export const CurrencyFormInput = ({
@@ -31,6 +36,7 @@ export const CurrencyFormInput = ({
   onClickOutside,
   onTab,
   onShiftTab,
+  maxWidth,
 }: CurrencyFormInputProps) => {
   const {
     fieldValue,
@@ -49,6 +55,8 @@ export const CurrencyFormInput = ({
       currencyCode: fieldValue?.currencyCode ?? CurrencyCode.USD,
     };
   }, [fieldValue]);
+
+  const theme = useTheme();
 
   const initialized = useFieldValueAsDraft(initialDraftValue, setDraftValue);
 
@@ -148,21 +156,27 @@ export const CurrencyFormInput = ({
     handleUpdateField(newValue);
   };
 
-  return (
-    initialized && (
-      <CurrencyInput
-        value={draftValue?.amount?.toString() ?? ''}
-        currencyCode={currencyCode}
-        placeholder="Currency"
-        onClickOutside={handleClickOutside}
-        onEnter={handleEnter}
-        onEscape={handleEscape}
-        onShiftTab={handleShiftTab}
-        onTab={handleTab}
-        onChange={handleChange}
-        onSelect={handleSelect}
-        hotkeyScope={hotkeyScope}
-      />
-    )
+  return initialized ? (
+    <CurrencyInput
+      value={draftValue?.amount?.toString() ?? ''}
+      currencyCode={currencyCode}
+      placeholder="Currency"
+      onClickOutside={handleClickOutside}
+      onEnter={handleEnter}
+      onEscape={handleEscape}
+      onShiftTab={handleShiftTab}
+      onTab={handleTab}
+      onChange={handleChange}
+      onSelect={handleSelect}
+      hotkeyScope={hotkeyScope}
+    />
+  ) : (
+    <SkeletonTheme
+      baseColor={theme.background.tertiary}
+      highlightColor={theme.background.transparent.lighter}
+      borderRadius={4}
+    >
+      <Skeleton width={maxWidth ?? 200} height={SKELETON_LOADER_HEIGHT_SIZE} />
+    </SkeletonTheme>
   );
 };

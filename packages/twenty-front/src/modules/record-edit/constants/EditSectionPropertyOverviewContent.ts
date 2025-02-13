@@ -5,48 +5,52 @@ import { FinancialOverviewGroup } from './snippets/FinancialOverviewGroup';
 // Field will use inline fields and input will use form inputs
 export const OVERVIEW_SECTION_CONTENT: SectionContent[] = [
   {
-    title: 'Title and Description',
+    title: 'Basic Information',
     groups: [
       {
-        // fieldWidth = 0 means 100% width
-        fields: [{ name: 'name', type: 'input', fieldWidth: 0 }],
-      },
-      {
-        fields: [{ name: 'description', type: 'multiLine', fieldWidth: 0 }],
+        fields: [
+          { name: 'name', type: 'input', fieldWidth: 0 },
+          { name: 'description', type: 'multiLine', fieldWidth: 0 },
+        ],
       },
     ],
   },
   {
-    title: 'Property Details',
+    title: 'Key Details',
     groups: [
       {
         isHorizontal: true,
         fields: [
-          { name: 'squareMeters', type: 'input', fieldWidth: 120 },
-          { name: 'rooms', type: 'input', fieldWidth: 80 },
-          { name: 'yearBuilt', type: 'input', fieldWidth: 80 },
-          {
-            name: 'useableSurface',
-            type: 'input',
-            fieldWidth: 140,
-          },
-        ],
-      },
-      {
-        isHorizontal: true,
-        fields: [{ name: 'floors', type: 'input', fieldWidth: 120 }],
-      },
-      {
-        isHorizontal: true,
-        fields: [
           { name: 'category', type: 'field' },
-          { name: 'subType', type: 'field' },
+          { name: 'stage', type: 'field' },
           { name: 'availableFrom', type: 'field' },
         ],
       },
+    ],
+  },
+  {
+    title: 'Price Overview',
+    groups: [
       {
         isHorizontal: true,
-        fields: [{ name: 'traits', type: 'field' }],
+        fields: [
+          { name: 'sellingPrice', type: 'input' },
+          { name: 'rentNet', type: 'input' },
+          { name: 'rentExtra', type: 'input' },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Property Dimensions',
+    groups: [
+      {
+        isHorizontal: true,
+        fields: [
+          { name: 'rooms', type: 'input', fieldWidth: 80 },
+          { name: 'surface', type: 'input', fieldWidth: 120 },
+          { name: 'volume', type: 'input', fieldWidth: 120 },
+        ],
       },
     ],
   },

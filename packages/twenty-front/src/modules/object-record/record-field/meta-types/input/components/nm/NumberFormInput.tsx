@@ -58,13 +58,21 @@ export const NumberFormInput = ({ icon }: { icon?: IconComponent }) => {
 
   return (
     <FieldInputContainer minWidth={maxWidth}>
-      {initialized && (
+      {initialized ? (
         <TextInputV2
           placeholder={fieldDefinition.metadata.placeHolder}
           value={(editDraftValue || draftValue)?.toString() ?? ''}
           LeftIcon={icon}
           onChange={handleChange}
           width={maxWidth}
+        />
+      ) : (
+        <TextInputV2
+          placeholder={fieldDefinition.metadata.placeHolder}
+          value={''}
+          onChange={handleChange}
+          width={maxWidth}
+          LeftIcon={icon}
         />
       )}
     </FieldInputContainer>

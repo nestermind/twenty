@@ -67,7 +67,7 @@ export const FormInput = ({
   onClickOutside,
   isReadOnly,
 }: FormInputProps) => {
-  const { fieldDefinition } = useContext(FieldContext);
+  const { fieldDefinition, maxWidth } = useContext(FieldContext);
   const { getIcon } = useIcons();
   const Icon = fieldDefinition.iconName
     ? getIcon(fieldDefinition.iconName)
@@ -133,6 +133,7 @@ export const FormInput = ({
         />
       ) : isFieldCurrency(fieldDefinition) ? (
         <CurrencyFormInput
+          maxWidth={maxWidth}
           onEnter={onEnter}
           onEscape={onEscape}
           onClickOutside={onClickOutside}

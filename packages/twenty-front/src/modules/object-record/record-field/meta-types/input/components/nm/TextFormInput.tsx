@@ -92,8 +92,8 @@ export const TextFormInput = ({
 
   return (
     <FieldInputContainer minWidth={maxWidth}>
-      {initialized &&
-        (formType === 'multiLine' ? (
+      {initialized ? (
+        formType === 'multiLine' ? (
           <TextAreaFormInput
             placeholder={fieldDefinition.metadata.placeHolder}
             value={draftValue?.toString() ?? ''}
@@ -117,7 +117,32 @@ export const TextFormInput = ({
             LeftIcon={Icon}
             fullWidth={!maxWidth}
           />
-        ))}
+        )
+      ) : formType === 'multiLine' ? (
+        <TextAreaFormInput
+          placeholder={fieldDefinition.metadata.placeHolder}
+          value={''}
+          onClickOutside={handleClickOutside}
+          onEnter={handleEnter}
+          onEscape={handleEscape}
+          onShiftTab={handleShiftTab}
+          onTab={handleTab}
+          hotkeyScope={hotkeyScope}
+          onChange={handleChange}
+          copyButton={false}
+          maxWidth={maxWidth}
+          fullWidth={!maxWidth}
+        />
+      ) : (
+        <TextInputV2
+          placeholder={fieldDefinition.metadata.placeHolder}
+          value={''}
+          onChange={handleChange}
+          width={maxWidth}
+          LeftIcon={Icon}
+          fullWidth={!maxWidth}
+        />
+      )}
     </FieldInputContainer>
   );
 };

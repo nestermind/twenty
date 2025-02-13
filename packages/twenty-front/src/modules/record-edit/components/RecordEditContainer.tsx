@@ -145,6 +145,7 @@ export const RecordEditContainer = ({
     }
     return acc;
   }, {});
+  console.log(fieldsByName);
 
   const images = record?.attachments?.filter((attachment: Attachment) =>
     attachment?.name?.includes('propertyimage'),
@@ -197,6 +198,15 @@ export const RecordEditContainer = ({
 
       const hasSectionFields = sectionFieldCount > 0;
 
+      console.log(
+        section.groups.map((group) => {
+          return group.fields.map((field) => {
+            return {
+              field,
+            };
+          });
+        }),
+      );
       if (!hasSectionFields) {
         return null;
       }
@@ -236,10 +246,6 @@ export const RecordEditContainer = ({
                           fieldsByName[conditionFieldName],
                       );
 
-                      const concreteConditionValues = conditionValues?.map(
-                        (conditionValue) => conditionValue,
-                      );
-
                       // Handles if field should show or not
                       const shouldRender =
                         conditionFields?.every((conditionField) => {
@@ -249,7 +255,7 @@ export const RecordEditContainer = ({
                               '',
                           ).toLowerCase();
 
-                          return concreteConditionValues?.some(
+                          return conditionValues?.some(
                             (value) =>
                               String(value ?? '').toLowerCase() ===
                               conditionFieldValue,
