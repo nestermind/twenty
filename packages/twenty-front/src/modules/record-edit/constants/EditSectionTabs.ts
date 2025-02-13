@@ -20,17 +20,18 @@ export const EDIT_SECTIONS_TABS: Section[] = [
     content: OVERVIEW_SECTION_CONTENT,
   },
   {
-    id: 'property-financial',
-    title: 'Financial',
-    Icon: IconMoneybag,
-    content: FINANCIAL_SECTION_CONTENT,
-  },
-  {
     id: 'property-amenities',
     title: 'Features & Details',
     Icon: IconBuildingSkyscraper,
     content: AMENITIES_SECTION_CONTENT,
   },
+  {
+    id: 'property-financial',
+    title: 'Financial',
+    Icon: IconMoneybag,
+    content: FINANCIAL_SECTION_CONTENT,
+  },
+
   {
     id: 'property-location',
     title: 'Location',

@@ -59,7 +59,7 @@ export const AMENITIES_SECTION_CONTENT: SectionContent[] = [
         fields: [
           { name: 'constructionYear', type: 'input', fieldWidth: 120 },
           { name: 'renovationYear', type: 'input', fieldWidth: 120 },
-          { name: 'numberOfFloors', type: 'input', fieldWidth: 120 },
+          { name: 'numberOfFloors', type: 'input', fieldWidth: 140 },
         ],
       },
       {

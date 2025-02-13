@@ -69,7 +69,7 @@ export const RecordShowPropertyContainer = ({
           layout={layout}
           targetableObject={{
             id: objectRecordId,
-            targetObjectNameSingular: objectMetadataItem?.nameSingular,
+            targetObjectNameSingular: objectMetadataItem?.nameSingular ?? '',
           }}
           isInRightDrawer={isInRightDrawer}
           loading={isPrefetchLoading || loading || recordLoading}

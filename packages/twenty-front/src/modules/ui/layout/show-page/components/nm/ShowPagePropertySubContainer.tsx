@@ -25,7 +25,7 @@ const StyledShowPageRightContainer = styled.div<{ isMobile: boolean }>`
   justify-content: start;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
 `;
 
 const StyledTabListContainer = styled.div<{ shouldDisplay: boolean }>`
@@ -45,7 +45,6 @@ const StyledButtonContainer = styled.div`
 
 const StyledContentContainer = styled.div<{ isInRightDrawer: boolean }>`
   flex: 1;
-  overflow-y: auto;
   padding-bottom: ${({ theme, isInRightDrawer }) =>
     isInRightDrawer ? theme.spacing(16) : 0};
 `;

@@ -119,20 +119,7 @@ export const TextFormInput = ({
           />
         )
       ) : formType === 'multiLine' ? (
-        <TextAreaFormInput
-          placeholder={fieldDefinition.metadata.placeHolder}
-          value={''}
-          onClickOutside={handleClickOutside}
-          onEnter={handleEnter}
-          onEscape={handleEscape}
-          onShiftTab={handleShiftTab}
-          onTab={handleTab}
-          hotkeyScope={hotkeyScope}
-          onChange={handleChange}
-          copyButton={false}
-          maxWidth={maxWidth}
-          fullWidth={!maxWidth}
-        />
+       null
       ) : (
         <TextInputV2
           placeholder={fieldDefinition.metadata.placeHolder}

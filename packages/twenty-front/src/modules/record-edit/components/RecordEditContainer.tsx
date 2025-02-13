@@ -8,23 +8,24 @@ import { isNewViewableRecordLoadingState } from '@/object-record/record-right-dr
 import { useRecordShowPage } from '@/object-record/record-show/hooks/useRecordShowPage';
 import { RecordEditField } from '@/record-edit/components/RecordEditField';
 import { useRecordEdit } from '@/record-edit/contexts/RecordEditContext';
+import { EditSectionContentWidth } from '@/record-edit/types/EditSectionTypes';
 import { SnackBarVariant } from '@/ui/feedback/snack-bar-manager/components/SnackBar';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { ShowPageImageBanner } from '@/ui/layout/show-page/components/nm/ShowPageImageBanner';
 import { SingleTabProps, TabList } from '@/ui/layout/tab/components/TabList';
 import { useTabList } from '@/ui/layout/tab/hooks/useTabList';
-import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
 import { Trans, useLingui } from '@lingui/react/macro';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isDefined } from 'twenty-shared';
 import { Button } from 'twenty-ui';
 
+export const EDIT_CONTAINER_WIDTH = 1440;
+
 const StyledEditContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin: 0 auto;
 `;
 
 const StyledTabListContainer = styled.div<{ shouldDisplay: boolean }>`
@@ -36,6 +37,10 @@ const StyledTabListContainer = styled.div<{ shouldDisplay: boolean }>`
   gap: ${({ theme }) => theme.spacing(2)};
   height: 40px;
   flex: 1;
+  position: sticky;
+  top: 0;
+  background: ${({ theme }) => theme.background.primary};
+  z-index: 10;
 `;
 
 const StyledButtonContainer = styled.div`
@@ -46,24 +51,36 @@ const StyledScrollableContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow-y: auto;
+  max-width: ${EDIT_CONTAINER_WIDTH}px;
 `;
 
 const StyledContentOuterContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing(4)};
-  margin: 0 auto;
+
   padding: ${({ theme }) => theme.spacing(4)};
+  max-width: ${EDIT_CONTAINER_WIDTH}px;
 `;
 
-const StyledSection = styled.div`
+const StyledSection = styled.div<{
+  width: EditSectionContentWidth;
+  height: number;
+}>`
   border: 1px solid ${({ theme }) => theme.border.color.light};
   border-radius: ${({ theme }) => theme.border.radius.sm};
-  max-width: 385px;
-  width: 100%;
+  max-width: ${(p) =>
+    p.width === 'full'
+      ? `100%`
+      : p.width === 'half'
+        ? `calc(calc(100% - ${p.theme.spacing(4)})/2 - 2px)`
+        : p.width === 'third'
+          ? `calc(calc(100% - ${p.theme.spacing(8)})/3 - 2px)`
+          : p.width === 'quarter'
+            ? `calc(calc(100% - ${p.theme.spacing(12)})/4 - 2px)`
+            : `${p.width}px`};
   overflow: hidden;
-  height: fit-content;
+  width: 100%;
 `;
 
 const StyledSectionTitle = styled.div`
@@ -145,7 +162,6 @@ export const RecordEditContainer = ({
     }
     return acc;
   }, {});
-  console.log(fieldsByName);
 
   const images = record?.attachments?.filter((attachment: Attachment) =>
     attachment?.name?.includes('propertyimage'),
@@ -198,20 +214,15 @@ export const RecordEditContainer = ({
 
       const hasSectionFields = sectionFieldCount > 0;
 
-      console.log(
-        section.groups.map((group) => {
-          return group.fields.map((field) => {
-            return {
-              field,
-            };
-          });
-        }),
-      );
       if (!hasSectionFields) {
         return null;
       }
       return (
-        <StyledSection key={section.title}>
+        <StyledSection
+          key={section.title}
+          width={section.width ?? 385}
+          height={500}
+        >
           <StyledSectionTitle>
             <Trans>{section.title}</Trans>
           </StyledSectionTitle>
@@ -317,14 +328,9 @@ export const RecordEditContainer = ({
       </StyledTabListContainer>
 
       <StyledScrollableContainer>
-        <ScrollWrapper
-          componentInstanceId="record-edit-scroll"
-          contextProviderName="showPageContainer"
-        >
-          <StyledContentOuterContainer>
-            {renderActiveTabContent()}
-          </StyledContentOuterContainer>
-        </ScrollWrapper>
+        <StyledContentOuterContainer>
+          {renderActiveTabContent()}
+        </StyledContentOuterContainer>
       </StyledScrollableContainer>
     </StyledEditContainer>
   );

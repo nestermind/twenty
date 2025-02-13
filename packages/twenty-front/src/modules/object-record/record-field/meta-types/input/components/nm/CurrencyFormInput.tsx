@@ -19,7 +19,7 @@ import {
   FieldInputEvent,
 } from '../DateTimeFieldInput';
 
-const SKELETON_LOADER_HEIGHT_SIZE = 24;
+const SKELETON_LOADER_HEIGHT_SIZE = 32;
 
 type CurrencyFormInputProps = {
   onClickOutside?: FieldInputClickOutsideEvent;
@@ -169,6 +169,8 @@ export const CurrencyFormInput = ({
       onChange={handleChange}
       onSelect={handleSelect}
       hotkeyScope={hotkeyScope}
+      maxWidth={maxWidth}
+      dropdownId={`${fieldName}-currency-input-dropdown-id`}
     />
   ) : (
     <SkeletonTheme

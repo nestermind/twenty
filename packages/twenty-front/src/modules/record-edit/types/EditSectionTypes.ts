@@ -17,9 +17,17 @@ export type FieldGroup = {
   isHorizontal?: boolean;
 };
 
+export type EditSectionContentWidth =
+  | number
+  | 'full'
+  | 'half'
+  | 'third'
+  | 'quarter';
+
 export type SectionContent = {
   title: string;
   groups: FieldGroup[];
+  width?: EditSectionContentWidth;
 };
 
 export type Section = {
