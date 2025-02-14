@@ -92,7 +92,7 @@ export const TextFormInput = ({
 
   return (
     <FieldInputContainer minWidth={maxWidth}>
-      {initialized ? (
+      {initialized || fieldValue === draftValue ? (
         formType === 'multiLine' ? (
           <TextAreaFormInput
             placeholder={fieldDefinition.metadata.placeHolder}
@@ -118,9 +118,7 @@ export const TextFormInput = ({
             fullWidth={!maxWidth}
           />
         )
-      ) : formType === 'multiLine' ? (
-       null
-      ) : (
+      ) : formType === 'multiLine' ? null : (
         <TextInputV2
           placeholder={fieldDefinition.metadata.placeHolder}
           value={''}

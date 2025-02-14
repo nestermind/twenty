@@ -12,6 +12,7 @@ export const NumberFormInput = ({ icon }: { icon?: IconComponent }) => {
 
   const { fieldValue } = useNumberFieldDisplay();
 
+  // Makes sure no empty field is created, since the value is only initialized once in the child component
   const initialized = useFieldValueAsDraft(
     fieldValue?.toString() ?? '',
     setDraftValue,
@@ -58,7 +59,8 @@ export const NumberFormInput = ({ icon }: { icon?: IconComponent }) => {
 
   return (
     <FieldInputContainer minWidth={maxWidth}>
-      {initialized ? (
+      {initialized ||
+      (editDraftValue || draftValue) === fieldValue?.toString() ? (
         <TextInputV2
           placeholder={fieldDefinition.metadata.placeHolder}
           value={(editDraftValue || draftValue)?.toString() ?? ''}

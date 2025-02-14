@@ -62,6 +62,7 @@ export const RecordEditField = ({
     (Array.isArray(updatedFields) && updatedFields.length === 0) ||
     updatedFields === '';
 
+  // Manually override the isFieldEmpty value to false if the field is not empty
   const overrideIsFieldEmpty =
     updatedFields && !isEmpty
       ? false

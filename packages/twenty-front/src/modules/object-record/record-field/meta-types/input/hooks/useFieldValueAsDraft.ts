@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-// This hook is used to initialize form input values as draft values from the field value
+// This hook is used to initialize form input values as draft values from the field value, because form inputs handle their own state.
 export const useFieldValueAsDraft = <T>(
   fieldValue: T,
   setDraftValue: (value?: T) => void,

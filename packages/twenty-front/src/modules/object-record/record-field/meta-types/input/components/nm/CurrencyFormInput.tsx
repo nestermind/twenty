@@ -156,7 +156,12 @@ export const CurrencyFormInput = ({
     handleUpdateField(newValue);
   };
 
-  return initialized ? (
+  const initializedOrDraftEqualsFieldValue =
+    initialized ||
+    ((fieldValue?.amountMicros ?? 0) / 1000000).toString() ===
+      draftValue?.amount?.toString();
+
+  return initializedOrDraftEqualsFieldValue ? (
     <CurrencyInput
       value={draftValue?.amount?.toString() ?? ''}
       currencyCode={currencyCode}
