@@ -305,14 +305,18 @@ export const ObjectOverview = ({
 
     // construct correct overview fields to show
     const base = [
+      'stage',
       'category',
       subType,
+      'priceUnit',
       ...finances,
+      'valuation',
       'rooms',
       'surface',
+      'volume',
+      'floor',
       'constructionYear',
       'renovationYear',
-      'priceUnit',
       'features',
     ];
 
@@ -515,9 +519,7 @@ export const ObjectOverview = ({
                       loading={recordLoading}
                     />
                   </FieldContext.Provider>
-                  {index < inlineFieldMetadataItems.length - 1 && (
-                    <StyledBottomBorder />
-                  )}
+                  {index < mainDetails.length - 1 && <StyledBottomBorder />}
                 </>
               ))}
             </StyledContent>

@@ -99,8 +99,6 @@ export const ShowPagePropertySubContainer = ({
     recordStoreFamilyState(targetableObject.id),
   );
 
-  console.log(recordFromStore);
-
   const { t } = useLingui();
 
   const visibleTabs = tabs.filter((tab) => !tab.hide);

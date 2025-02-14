@@ -331,7 +331,7 @@ export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
                   }
                 />
                 <Button
-                  title={t`Publish`}
+                  title={t`Create Publication`}
                   accent="blue"
                   onClick={handlePublish}
                   disabled={isGenerating}
@@ -344,7 +344,7 @@ export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
                   onClick={() => setCurrentStep('platform-select')}
                 />
                 <Button
-                  title={t`Publish`}
+                  title={t`Create Publication`}
                   accent="blue"
                   onClick={handlePublish}
                 />
