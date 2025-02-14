@@ -16,9 +16,10 @@ import { Trans, useLingui } from '@lingui/react/macro';
 // eslint-disable-next-line no-restricted-imports
 import { Modal, ModalRefType } from '@/ui/layout/modal/components/Modal';
 // eslint-disable-next-line no-restricted-imports
+import { FieldMetadataItem } from '@/object-metadata/types/FieldMetadataItem';
 import { ModalHotkeyScope } from '@/ui/layout/modal/components/types/ModalHotkeyScope';
 import groupBy from 'lodash.groupby';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Link, useNavigate } from 'react-router-dom';
 import { isDefined } from 'twenty-shared';
@@ -264,6 +265,74 @@ export const ObjectOverview = ({
         : 'inlineFieldMetadataItems',
   );
 
+  const rowsToShow = useMemo(() => {
+    let subType = '';
+    // Check Category Subtype to show
+    switch (recordFromStore?.category?.subtype) {
+      case 'house':
+        subType = 'houseSubtype';
+        break;
+      case 'apartment':
+        subType = 'apartmentSubtype';
+        break;
+      case 'plot':
+        subType = 'plotSubtype';
+        break;
+      case 'property':
+        subType = 'propertySubtype';
+        break;
+      case 'gastronomy':
+        subType = 'gastronomySubtype';
+        break;
+      case 'industrial':
+        subType = 'industrialSubtype';
+        break;
+      default:
+        break;
+    }
+
+    const finances = [];
+
+    // Check Price Unit to show either price or rent
+    if (
+      recordFromStore?.priceUnit?.toLowerCase() === 'sell' ||
+      recordFromStore?.priceUnit?.toLowerCase() === 'sell_square_meter'
+    ) {
+      finances.push('sellingPrice');
+    } else {
+      finances.push('rentNet', 'rentExtra');
+    }
+
+    // construct correct overview fields to show
+    const base = [
+      'category',
+      subType,
+      ...finances,
+      'rooms',
+      'surface',
+      'constructionYear',
+      'renovationYear',
+      'priceUnit',
+      'features',
+    ];
+
+    return base;
+
+    return base;
+  }, [recordFromStore]);
+
+  const mainDetails: FieldMetadataItem[] = [];
+
+  // make sure all are defined pls
+  rowsToShow.forEach((row) => {
+    const fieldMetadata = inlineFieldMetadataItems.find(
+      (fieldMetadataItem) => fieldMetadataItem.name === row,
+    );
+    if (fieldMetadata !== undefined) {
+      mainDetails.push(fieldMetadata);
+    }
+  });
+
   // Use this for object cover images
   const { useUpdateOneObjectRecordMutation } = useRecordShowContainerActions({
     objectNameSingular: targetableObject.targetObjectNameSingular,
@@ -392,7 +461,7 @@ export const ObjectOverview = ({
                       maxWidth: 200,
                       recoilScopeId: targetableObject.id + FieldMetadataitem.id,
                       isLabelIdentifier: false,
-                      overridenIsFieldEmpty: true,
+
                       fieldDefinition:
                         formatFieldMetadataItemAsColumnDefinition({
                           field: FieldMetadataitem,
@@ -420,7 +489,7 @@ export const ObjectOverview = ({
                 </>
               ))}
 
-              {inlineFieldMetadataItems?.map((fieldMetadataItem, index) => (
+              {mainDetails?.map((fieldMetadataItem, index) => (
                 <>
                   <FieldContext.Provider
                     key={fieldMetadataItem.id + 'inline' + index}

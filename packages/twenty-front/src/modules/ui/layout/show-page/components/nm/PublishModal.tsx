@@ -11,6 +11,7 @@ import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button, IconUpload, IconX } from 'twenty-ui';
 
+import { useRecordShowContainerData } from '@/object-record/record-show/hooks/useRecordShowContainerData';
 import { ContentCustomize } from './modal-pages/ContentCustomize';
 import { PlatformSelect } from './modal-pages/PlatformSelect';
 import { Publishing } from './modal-pages/Publishing';
@@ -72,6 +73,7 @@ type PublishModalProps = {
 export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
   ({ onClose, targetableObject }, ref) => {
     const { t } = useLingui();
+
     const [currentStep, setCurrentStep] = useState<Step>('platform-select');
     const [isGenerating, setIsGenerating] = useState(false);
     const [generationProgress, setGenerationProgress] = useState(0);
@@ -86,6 +88,18 @@ export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
       autoResponder: true,
       marketAnalysis: false,
     });
+
+    const {
+      recordFromStore,
+      objectMetadataItem,
+      isPrefetchLoading,
+      recordLoading,
+    } = useRecordShowContainerData({
+      objectNameSingular: targetableObject.targetObjectNameSingular,
+      objectRecordId: targetableObject.id,
+    });
+
+    const agency = recordFromStore?.agency;
 
     const [selectedPlatform, setSelectedPlatform] = useState<Platform>(
       PLATFORMS[0],
@@ -190,6 +204,7 @@ export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
                 setAiFeatures={setAiFeatures}
                 selectedPlatform={selectedPlatform}
                 setSelectedPlatform={setSelectedPlatform}
+                agency={agency}
               />
             </StyledModalContent>
           );

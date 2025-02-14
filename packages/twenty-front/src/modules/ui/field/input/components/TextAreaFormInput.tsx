@@ -25,11 +25,13 @@ export type TextAreaFormInputProps = {
   copyButton?: boolean;
   maxWidth?: number;
   fullWidth?: boolean;
+  minHeight?: number;
 };
 
 const StyledTextArea = styled(TextareaAutosize)<{
   maxWidth?: number;
   fullWidth?: boolean;
+  minHeight?: number;
 }>`
   ${TEXT_INPUT_STYLE}
   align-items: center;
@@ -45,7 +47,7 @@ const StyledTextArea = styled(TextareaAutosize)<{
         : `calc(100% - ${p.theme.spacing(7)})`};
   line-height: 18px;
   padding: ${({ theme }) => theme.spacing(2)};
-
+  min-height: ${(p) => p.minHeight ?? 0}px;
   border: 1px solid ${({ theme }) => theme.border.color.light};
   border-radius: ${({ theme }) => theme.border.radius.sm};
 
@@ -82,6 +84,7 @@ export const TextAreaFormInput = ({
   maxRows,
   maxWidth,
   fullWidth,
+  minHeight,
   copyButton = true,
 }: TextAreaFormInputProps) => {
   const [internalText, setInternalText] = useState(value);
@@ -130,6 +133,7 @@ export const TextAreaFormInput = ({
         maxRows={maxRows}
         maxWidth={maxWidth}
         fullWidth={fullWidth}
+        minHeight={minHeight}
       />
       {copyButton && (
         <StyledLightIconButtonContainer ref={copyRef}>

@@ -37,7 +37,7 @@ export const MultiSelectFormDisplay = () => {
   if (!selectedOptionsToShow || !valuesToShow) return null;
 
   return isFocused ? (
-    <ExpandableList isChipCountDisplayed={isFocused}>
+    <ExpandableList isChipCountDisplayed={isFocused} wrap={true}>
       {selectedOptionsToShow.map((selectedOption, index) => (
         <Tag
           key={index}
@@ -50,6 +50,7 @@ export const MultiSelectFormDisplay = () => {
     <MultiSelectDisplay
       values={valuesToShow as Array<string>}
       options={fieldDefinition.metadata.options}
+      wrap={true}
     />
   );
 };

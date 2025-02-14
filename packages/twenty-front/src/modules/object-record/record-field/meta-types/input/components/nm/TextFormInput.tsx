@@ -40,7 +40,7 @@ export const TextFormInput = ({
 
   const { fieldValue } = useTextFieldDisplay();
 
-  const { updateField } = useRecordEdit();
+  const { updateField, getUpdatedFields } = useRecordEdit();
 
   const initialized = useFieldValueAsDraft(
     turnIntoUndefinedIfWhitespacesOnly(fieldValue) ?? '',
@@ -92,11 +92,14 @@ export const TextFormInput = ({
 
   return (
     <FieldInputContainer minWidth={maxWidth}>
-      {initialized || fieldValue === draftValue ? (
+      {initialized ||
+      fieldValue === draftValue ||
+      (getUpdatedFields()[fieldDefinition.metadata.fieldName] === draftValue &&
+        draftValue) ? (
         formType === 'multiLine' ? (
           <TextAreaFormInput
             placeholder={fieldDefinition.metadata.placeHolder}
-            value={draftValue?.toString() ?? ''}
+            value={draftValue?.toString() || ''}
             onClickOutside={handleClickOutside}
             onEnter={handleEnter}
             onEscape={handleEscape}
@@ -107,6 +110,7 @@ export const TextFormInput = ({
             copyButton={false}
             maxWidth={maxWidth}
             fullWidth={!maxWidth}
+            minHeight={65}
           />
         ) : (
           <TextInputV2

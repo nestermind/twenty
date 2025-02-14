@@ -36,7 +36,10 @@ const StyledTabListContainer = styled.div<{ shouldDisplay: boolean }>`
   display: ${({ shouldDisplay }) => (shouldDisplay ? 'flex' : 'none')};
   gap: ${({ theme }) => theme.spacing(2)};
   height: 40px;
-  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: ${({ theme }) => theme.background.primary};
+  z-index: 10;
 `;
 
 const StyledButtonContainer = styled.div`
@@ -95,6 +98,8 @@ export const ShowPagePropertySubContainer = ({
   const [recordFromStore] = useRecoilState<ObjectRecord | null>(
     recordStoreFamilyState(targetableObject.id),
   );
+
+  console.log(recordFromStore);
 
   const { t } = useLingui();
 

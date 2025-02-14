@@ -57,10 +57,14 @@ export const NumberFormInput = ({ icon }: { icon?: IconComponent }) => {
 
   const editDraftValue = getUpdatedFields()[fieldDefinition.metadata.fieldName];
 
+  const isInitializedOrDraftEqualsValue =
+    initialized ||
+    draftValue === fieldValue?.toString() ||
+    editDraftValue === fieldValue?.toString();
+
   return (
     <FieldInputContainer minWidth={maxWidth}>
-      {initialized ||
-      (editDraftValue || draftValue) === fieldValue?.toString() ? (
+      {isInitializedOrDraftEqualsValue ? (
         <TextInputV2
           placeholder={fieldDefinition.metadata.placeHolder}
           value={(editDraftValue || draftValue)?.toString() ?? ''}

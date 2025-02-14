@@ -35,7 +35,7 @@ export const RecordInlineEntry = ({ loading }: RecordInlineEntryProps) => {
     labelWidth: fieldDefinition.labelWidth,
     showLabel: fieldDefinition.showLabel,
     isCentered,
-    displayModeContent: <FieldDisplay />,
+    displayModeContent: <FieldDisplay wrap={true} />,
     isDisplayModeFixHeight: isDisplayModeFixHeight,
     editModeContentOnly: false,
     loading: loading,

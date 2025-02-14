@@ -18,7 +18,7 @@ import { Trans, useLingui } from '@lingui/react/macro';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isDefined } from 'twenty-shared';
-import { Button } from 'twenty-ui';
+import { Button, LARGE_DESKTOP_VIEWPORT, MOBILE_VIEWPORT } from 'twenty-ui';
 
 export const EDIT_CONTAINER_WIDTH = 1440;
 
@@ -26,6 +26,7 @@ const StyledEditContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow-y: auto;
 `;
 
 const StyledTabListContainer = styled.div<{ shouldDisplay: boolean }>`
@@ -36,7 +37,7 @@ const StyledTabListContainer = styled.div<{ shouldDisplay: boolean }>`
   display: ${({ shouldDisplay }) => (shouldDisplay ? 'flex' : 'none')};
   gap: ${({ theme }) => theme.spacing(2)};
   height: 40px;
-  flex: 1;
+
   position: sticky;
   top: 0;
   background: ${({ theme }) => theme.background.primary};
@@ -78,9 +79,24 @@ const StyledSection = styled.div<{
           ? `calc(calc(100% - ${p.theme.spacing(8)})/3 - 2px)`
           : p.width === 'quarter'
             ? `calc(calc(100% - ${p.theme.spacing(12)})/4 - 2px)`
-            : `${p.width}px`};
+            : p.width === 'twoThirds'
+              ? `calc(calc(calc(100% - ${p.theme.spacing(2)})/3) * 2 - 2px)`
+              : `${p.width}px`};
   overflow: hidden;
   width: 100%;
+
+  /* Large desktop viewport */
+  @media only screen and (max-width: ${LARGE_DESKTOP_VIEWPORT}px) {
+    max-width: ${(p) =>
+      p.width === 'full' || p.width === 'half'
+        ? '100%'
+        : `calc(calc(100% - ${p.theme.spacing(4)})/2 - 2px)`};
+  }
+
+  /* Mobile viewport */
+  @media only screen and (max-width: ${MOBILE_VIEWPORT}px) {
+    max-width: 100%;
+  }
 `;
 
 const StyledSectionTitle = styled.div`
@@ -105,7 +121,7 @@ const StyledGroup = styled.div<{ isHorizontal?: boolean }>`
   display: flex;
   flex-direction: ${({ isHorizontal }) => (isHorizontal ? 'row' : 'column')};
   flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing(2)};
+  gap: ${({ theme }) => theme.spacing(4)};
 `;
 
 export const TAB_LIST_COMPONENT_ID = 'edit-record-right-tab-list';

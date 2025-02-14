@@ -22,7 +22,8 @@ export type EditSectionContentWidth =
   | 'full'
   | 'half'
   | 'third'
-  | 'quarter';
+  | 'quarter'
+  | 'twoThirds';
 
 export type SectionContent = {
   title: string;

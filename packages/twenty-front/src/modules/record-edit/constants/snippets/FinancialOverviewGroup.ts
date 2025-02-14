@@ -1,54 +1,44 @@
 import { FieldGroup } from '../../types/EditSectionTypes';
 
-export const FinancialOverviewGroup: FieldGroup[] = [
-  {
-    isHorizontal: true,
-    fields: [
-      { name: 'offerType', type: 'field' },
-      { name: 'type', type: 'input' },
-      {
-        name: 'price',
-        type: 'input',
-        conditionFields: ['offerType'],
-        // TODO: Use Enum Types once available
-        conditionValues: ['sale'],
-        fieldWidth: 100,
-      },
-      {
-        name: 'rent',
-        type: 'input',
-        conditionFields: ['offerType'],
-        // TODO: Use Enum Types once available
-        conditionValues: ['rent'],
-        fieldWidth: 100,
-      },
-    ],
-  },
-  {
-    isHorizontal: true,
-    fields: [
-      {
-        name: 'financing',
-        type: 'input',
-        fieldWidth: 100,
-      },
-      {
-        name: 'lastSaleDate',
-        type: 'field',
-        conditionFields: ['offerType'],
-        // TODO: Use Enum Types once available
-        conditionValues: ['sale'],
-        fieldWidth: 100,
-      },
-      {
-        name: 'lastSalePrice',
-        type: 'input',
-        conditionFields: ['offerType'],
-        // TODO: Use Enum Types once available
-        conditionValues: ['sale'],
-        fieldWidth: 100,
-      },
-      { name: 'valuation', type: 'input', fieldWidth: 100 },
-    ],
-  },
-];
+export const FinancialOverviewGroup: FieldGroup = {
+  isHorizontal: true,
+  fields: [
+    {
+      name: 'priceUnit',
+      type: 'field',
+    },
+    {
+      name: 'rentNet',
+      type: 'input',
+      fieldWidth: 150,
+      conditionFields: ['priceUnit'],
+      conditionValues: [
+        'monthly',
+        'yearly',
+        'yearly_square_meter',
+        'weekly',
+        'daily',
+      ],
+    },
+    {
+      name: 'rentExtra',
+      type: 'input',
+      fieldWidth: 150,
+      conditionFields: ['priceUnit'],
+      conditionValues: [
+        'monthly',
+        'yearly',
+        'yearly_square_meter',
+        'weekly',
+        'daily',
+      ],
+    },
+
+    {
+      name: 'sellingPrice',
+      type: 'input',
+      conditionFields: ['priceUnit'],
+      conditionValues: ['sell', 'sell_square_meter'],
+    },
+  ],
+};
