@@ -152,11 +152,10 @@ export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
             >
               <PlatformSelect
                 handlePlatformSelect={handlePlatformSelect}
-                aiFeatures={aiFeatures}
-                setAiFeatures={setAiFeatures}
                 selectedPlatforms={selectedPlatforms}
                 setSelectedPlatforms={setSelectedPlatforms}
-                agency={agency}
+                recordId={targetableObject.id}
+                closeModal={onClose}
               />
             </StyledModalContent>
           );

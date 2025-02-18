@@ -8,9 +8,15 @@ import { useLingui } from '@lingui/react/macro';
 // eslint-disable-next-line no-restricted-imports
 import { IconLayoutGrid } from '@tabler/icons-react';
 // eslint-disable-next-line no-restricted-imports
-import { Dispatch, SetStateAction } from 'react';
+import { tokenPairState } from '@/auth/states/tokenPairState';
+import { getLinkToShowPage } from '@/object-metadata/utils/getLinkToShowPage';
+import { SnackBarVariant } from '@/ui/feedback/snack-bar-manager/components/SnackBar';
+import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
+import axios from 'axios';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import { Button, IconCheck, IconWand, LARGE_DESKTOP_VIEWPORT } from 'twenty-ui';
-
 const StyledPlatformSelectionContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -205,26 +211,23 @@ type Agency = {
 
 type PlatformSelectProps = {
   handlePlatformSelect: (platform: PlatformId) => void;
-  aiFeatures: {
-    intelligentMatching: boolean;
-    autoResponder: boolean;
-    marketAnalysis: boolean;
-  };
-  setAiFeatures: (features: any) => void;
   selectedPlatforms: PlatformId[] | null;
   setSelectedPlatforms: Dispatch<SetStateAction<PlatformId[] | null>>;
-  agency: Agency;
+  recordId: string;
+  closeModal?: () => void;
 };
 
 export const PlatformSelect = ({
   handlePlatformSelect,
-  aiFeatures,
-  setAiFeatures,
   selectedPlatforms,
-  agency,
+  recordId,
+  closeModal,
 }: PlatformSelectProps) => {
+  const navigate = useNavigate();
   const theme = useTheme();
-
+  const tokenPair = useRecoilValue(tokenPairState);
+  const { enqueueSnackBar } = useSnackBar();
+  const [loading, setLoading] = useState(false);
   const { t } = useLingui();
   const realEstatePlatforms = Object.keys(PLATFORMS)
     .filter(
@@ -245,6 +248,39 @@ export const PlatformSelect = ({
   const socialMediaPlatform = {
     ...PLATFORMS[PlatformId.SocialMedia],
     id: PlatformId.SocialMedia,
+  };
+
+  const createDraft = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        `http://localhost:3002/properties/publish?id=${recordId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${tokenPair?.accessToken?.token}`,
+          },
+        },
+      );
+      if (response.status !== 201) {
+        throw new Error('Failed to create draft, id was not returned');
+      }
+
+      const route = getLinkToShowPage('publication', {
+        id: response.data,
+      });
+
+      closeModal?.();
+
+      navigate(route);
+    } catch (error: any) {
+      console.log(error);
+      enqueueSnackBar(error?.message, {
+        variant: SnackBarVariant.Error,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -326,7 +362,8 @@ export const PlatformSelect = ({
                 id: 'Create Draft',
                 message: 'Create Draft',
               })}
-              disabled={selectedPlatforms?.length === 0}
+              onClick={createDraft}
+              disabled={selectedPlatforms?.length === 0 || loading}
             />
           </StyledPlatformTypeActions>
         </StyledPlatformTypeActionsContainer>

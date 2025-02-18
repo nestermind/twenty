@@ -4,6 +4,11 @@ export const FinancialOverviewGroup: FieldGroup = {
   isHorizontal: true,
   fields: [
     {
+      name: 'offerType',
+      type: 'field',
+      fieldWidth: 150,
+    },
+    {
       name: 'priceUnit',
       type: 'field',
     },
@@ -11,34 +16,22 @@ export const FinancialOverviewGroup: FieldGroup = {
       name: 'rentNet',
       type: 'input',
       fieldWidth: 150,
-      conditionFields: ['priceUnit'],
-      conditionValues: [
-        'monthly',
-        'yearly',
-        'yearly_square_meter',
-        'weekly',
-        'daily',
-      ],
+      conditionFields: ['offerType'],
+      conditionValues: ['rent'],
     },
     {
       name: 'rentExtra',
       type: 'input',
       fieldWidth: 150,
-      conditionFields: ['priceUnit'],
-      conditionValues: [
-        'monthly',
-        'yearly',
-        'yearly_square_meter',
-        'weekly',
-        'daily',
-      ],
+      conditionFields: ['offerType'],
+      conditionValues: ['rent'],
     },
 
     {
       name: 'sellingPrice',
       type: 'input',
-      conditionFields: ['priceUnit'],
-      conditionValues: ['sell', 'sell_square_meter'],
+      conditionFields: ['offerType'],
+      conditionValues: ['sale'],
     },
   ],
 };
