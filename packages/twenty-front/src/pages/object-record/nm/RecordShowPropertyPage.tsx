@@ -32,7 +32,7 @@ const StyledHeader = styled.div`
   min-height: ${PAGE_BAR_MIN_HEIGHT}px;
   justify-content: space-between;
   padding: ${({ theme }) => theme.spacing(2)};
-  z-index: 1;
+
   flex-wrap: wrap;
 `;
 

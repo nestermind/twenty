@@ -21,13 +21,12 @@ import { ModalHotkeyScope } from '@/ui/layout/modal/components/types/ModalHotkey
 import groupBy from 'lodash.groupby';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { isDefined } from 'twenty-shared';
 import {
   Button,
   CircularProgressBar,
   IconCheck,
-  IconPencil,
   IconSparkles,
   IconUpload,
   IconX,
@@ -65,10 +64,6 @@ const StyledBottomBorder = styled.div`
 
 const StyledContent = styled.div`
   padding: ${({ theme }) => theme.spacing(2)};
-`;
-
-const StyledEditButtonLink = styled(Link)`
-  text-decoration: none;
 `;
 
 const StyledButtonContainer = styled.div`
@@ -321,8 +316,6 @@ export const ObjectOverview = ({
     ];
 
     return base;
-
-    return base;
   }, [recordFromStore]);
 
   const mainDetails: FieldMetadataItem[] = [];
@@ -419,15 +412,6 @@ export const ObjectOverview = ({
                 <Trans>Object Overview</Trans>
               </StyledTitle>
               <StyledButtonContainer>
-                <StyledEditButtonLink
-                  to={`${getLinkToShowPage(
-                    targetableObject.targetObjectNameSingular,
-                    recordFromStore,
-                  )}/edit`}
-                >
-                  <Button title={t`Edit`} Icon={IconPencil} />
-                </StyledEditButtonLink>
-
                 <Button
                   title={t`Prefill`}
                   Icon={IconSparkles}

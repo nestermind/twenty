@@ -1,19 +1,15 @@
-import { StyledSettingsOptionCardDescription } from '@/settings/components/SettingsOptions/SettingsOptionCardContentBase';
 import {
-  Platform,
+  PlatformId,
   PLATFORMS,
 } from '@/ui/layout/show-page/components/nm/types/Platform';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useLingui } from '@lingui/react/macro';
 // eslint-disable-next-line no-restricted-imports
-import { IconBrandInstagram } from '@tabler/icons-react';
+import { IconLayoutGrid } from '@tabler/icons-react';
+// eslint-disable-next-line no-restricted-imports
 import { Dispatch, SetStateAction } from 'react';
-import {
-  IconBrandGoogle,
-  IconBuildingSkyscraper,
-  IconSparkles,
-  Toggle,
-} from 'twenty-ui';
+import { Button, IconCheck, IconWand, LARGE_DESKTOP_VIEWPORT } from 'twenty-ui';
 
 const StyledPlatformSelectionContainer = styled.div`
   display: flex;
@@ -23,9 +19,12 @@ const StyledPlatformSelectionContainer = styled.div`
 `;
 
 const StyledPlatformSelectionTitle = styled.div`
+  align-items: center;
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(2)};
   color: ${({ theme }) => theme.font.color.primary};
-  font-size: ${({ theme }) => theme.font.size.xl};
-  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  font-size: ${({ theme }) => theme.font.size.lg};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
   margin-bottom: ${({ theme }) => theme.spacing(1)};
 `;
 
@@ -38,38 +37,105 @@ const StyledPlatformSelectionSubtitle = styled.div`
 const StyledPlatformGrid = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing(3)};
+  grid-template-columns: 1fr;
+
+  @media only screen and (min-width: ${LARGE_DESKTOP_VIEWPORT}px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+const StyledPlatformTypeHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(2)};
+`;
+
+const StyledPlatformTypeContainer = styled.div`
+  background: ${({ theme }) => theme.background.primary};
+  border: 1px solid ${({ theme }) => theme.border.color.light};
+  border-radius: ${({ theme }) => theme.border.radius.sm};
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(6)};
+  padding: ${({ theme }) => theme.spacing(4)};
+`;
+
+const StyledPlatformTypeActionsContainer = styled.div`
+  align-items: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+`;
+
+const StyledPlatformTypeActions = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(2)};
+`;
+
+const StyledPlatformTypeTitle = styled.div`
+  color: ${({ theme }) => theme.font.color.primary};
+  font-size: ${({ theme }) => theme.font.size.lg};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const StyledPlatformTypeDescription = styled.div`
+  color: ${({ theme }) => theme.font.color.tertiary};
+  font-size: ${({ theme }) => theme.font.size.md};
+`;
+
+const StyledSecondaryPlatformGrid = styled.div`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing(3)};
   grid-template-columns: repeat(2, 1fr);
 `;
 
-const StyledPlatformCard = styled.button`
-  align-items: flex-start;
-  background: ${({ theme }) => theme.background.primary};
-  border: 1px solid ${({ theme }) => theme.border.color.light};
-  border-radius: ${({ theme }) => theme.border.radius.md};
+const StyledPlatformCard = styled.button<{
+  isSelected?: boolean;
+  selectable?: boolean;
+}>`
+  background: ${({ theme, isSelected }) =>
+    isSelected ? theme.background.secondary : theme.background.primary};
+  border: 1px solid
+    ${({ theme, isSelected }) =>
+      isSelected ? theme.border.color.strong : theme.border.color.light};
+  border-radius: ${({ theme }) => theme.border.radius.sm};
+  align-items: center;
+  justify-content: space-between;
   cursor: pointer;
   display: flex;
   gap: ${({ theme }) => theme.spacing(3)};
-  padding: ${({ theme }) => theme.spacing(4)};
+  padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(3)};
   text-align: left;
   transition: all 0.1s ease-in-out;
   width: 100%;
 
   &:hover {
-    border-color: ${({ theme }) => theme.border.color.strong};
-    transform: translateY(-2px);
+    background: ${({ theme, selectable }) =>
+      selectable ? theme.background.secondary : theme.background.primary};
   }
 `;
 
-const StyledPlatformIconContainer = styled.div<{ isConnected?: boolean }>`
+const StyledPlatformCardContent = styled.div`
+  display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.background.tertiary};
+  gap: ${({ theme }) => theme.spacing(4)};
+`;
+
+const StyledPlatformIconContainer = styled.div<{
+  isConnected?: boolean;
+  width?: number;
+}>`
+  align-items: center;
   border-radius: ${({ theme }) => theme.border.radius.sm};
   display: flex;
   flex-shrink: 0;
-  height: 48px;
+  height: 100%;
   justify-content: center;
   position: relative;
-  width: 48px;
+  width: ${({ width }) => width || 60}px;
 `;
 
 const StyledPlatformInfo = styled.div`
@@ -84,7 +150,7 @@ const StyledPlatformName = styled.div<{ comingSoon?: boolean }>`
     comingSoon ? theme.font.color.tertiary : theme.font.color.primary};
   display: flex;
   font-size: ${({ theme }) => theme.font.size.lg};
-  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 const StyledNewTag = styled.span`
@@ -92,10 +158,11 @@ const StyledNewTag = styled.span`
   color: ${({ theme }) => theme.color.blue};
   font-size: ${({ theme }) => theme.font.size.xs};
   font-weight: ${({ theme }) => theme.font.weight.medium};
-  padding: ${({ theme }) => theme.spacing(0.5)}
-    ${({ theme }) => theme.spacing(1)};
+
   border-radius: ${({ theme }) => theme.border.radius.sm};
   margin-left: ${({ theme }) => theme.spacing(2)};
+  padding: ${({ theme }) => theme.spacing(0.5)}
+    ${({ theme }) => theme.spacing(1)};
 `;
 
 const StyledPlatformDescription = styled.div`
@@ -104,125 +171,30 @@ const StyledPlatformDescription = styled.div`
   line-height: 1.4;
 `;
 
-const StyledConnectedTag = styled.div`
-  align-items: center;
-  color: ${({ theme }) => theme.color.green50};
-  display: flex;
-  font-size: ${({ theme }) => theme.font.size.sm};
-  gap: ${({ theme }) => theme.spacing(1)};
-  margin-top: ${({ theme }) => theme.spacing(1)};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-`;
-
-const StyledBottomSettings = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.border.color.light};
-  margin-top: ${({ theme }) => theme.spacing(4)};
-  padding-top: ${({ theme }) => theme.spacing(4)};
-`;
-
-const StyledBottomSettingsTitle = styled.div`
-  color: ${({ theme }) => theme.font.color.tertiary};
-  font-size: ${({ theme }) => theme.font.size.sm};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-  margin-bottom: ${({ theme }) => theme.spacing(2)};
-`;
-
-const StyledSettingsGrid = styled.div`
-  display: grid;
-  gap: ${({ theme }) => theme.spacing(2)};
-  grid-template-columns: repeat(2, 1fr);
-`;
-
-const StyledSettingsCard = styled.div`
-  background: ${({ theme }) => theme.background.primary};
-  border: 1px solid ${({ theme }) => theme.border.color.light};
-  border-radius: ${({ theme }) => theme.border.radius.sm};
-  padding: ${({ theme }) => theme.spacing(2)};
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledSettingsHeader = styled.div`
-  align-items: center;
-  display: flex;
-  gap: ${({ theme }) => theme.spacing(2)};
-  margin-bottom: ${({ theme }) => theme.spacing(2)};
-`;
-
-const StyledSettingsTitle = styled.div<{ isAI?: boolean }>`
-  color: ${({ theme, isAI }) =>
-    isAI ? theme.color.purple : theme.font.color.secondary};
-  font-size: ${({ theme }) => theme.font.size.sm};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-  align-items: center;
-  display: flex;
-  gap: ${({ theme }) => theme.spacing(2)};
-`;
-
-const StyledToggleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(3)};
-`;
-
-const StyledToggleRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing(2)};
-`;
-
-const StyledToggleLabel = styled.div`
-  color: ${({ theme }) => theme.font.color.secondary};
-  font-size: ${({ theme }) => theme.font.size.sm};
-`;
-
 const StyledPlatformLogo = styled.div`
   align-items: center;
-  background: ${({ theme }) => theme.background.tertiary};
   border-radius: ${({ theme }) => theme.border.radius.sm};
   display: flex;
   flex-shrink: 0;
-  height: 48px;
-  justify-content: center;
-  position: relative;
-  width: 48px;
-`;
-
-const StyledRadioGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(2)};
-  justify-content: center;
-  flex: 1;
-`;
-
-const StyledRadioOption = styled.button<{ isSelected?: boolean }>`
-  background: ${({ theme, isSelected }) =>
-    isSelected ? theme.background.secondary : theme.background.primary};
-  border: 1px solid ${({ theme }) => theme.border.color.light};
-  border-radius: ${({ theme }) => theme.border.radius.sm};
-  cursor: pointer;
-  padding: ${({ theme }) => theme.spacing(2)};
-  text-align: left;
-  transition: all 0.1s ease-in-out;
+  height: 100%;
   width: 100%;
+  justify-content: flex-end;
+  position: relative;
 `;
 
-const StyledPlatformContent = styled.div`
+const StyledSmartListingIcon = styled.div`
+  align-items: center;
   display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(1)};
+  height: 100%;
+  justify-content: center;
+  aspect-ratio: 1;
+  background-color: ${({ theme }) => theme.color.purple10};
+  border-radius: ${({ theme }) => theme.border.radius.sm};
+  padding: ${({ theme }) => theme.spacing(0.5)};
 `;
 
-const StyledOptionLabel = styled.div`
-  color: ${({ theme }) => theme.font.color.primary};
-  font-size: ${({ theme }) => theme.font.size.sm};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-`;
-
-const StyledOptionDescription = styled.div`
-  color: ${({ theme }) => theme.font.color.tertiary};
-  font-size: ${({ theme }) => theme.font.size.sm};
+const StyledPlatformLogoImage = styled.img`
+  width: 100%;
 `;
 
 // TODO: Remove this once we have the actual type form standard graphql
@@ -232,15 +204,15 @@ type Agency = {
 };
 
 type PlatformSelectProps = {
-  handlePlatformSelect: (platform: Platform) => void;
+  handlePlatformSelect: (platform: PlatformId) => void;
   aiFeatures: {
     intelligentMatching: boolean;
     autoResponder: boolean;
     marketAnalysis: boolean;
   };
   setAiFeatures: (features: any) => void;
-  selectedPlatform: Platform;
-  setSelectedPlatform: Dispatch<SetStateAction<Platform>>;
+  selectedPlatforms: PlatformId[] | null;
+  setSelectedPlatforms: Dispatch<SetStateAction<PlatformId[] | null>>;
   agency: Agency;
 };
 
@@ -248,16 +220,38 @@ export const PlatformSelect = ({
   handlePlatformSelect,
   aiFeatures,
   setAiFeatures,
-  selectedPlatform,
-  setSelectedPlatform,
+  selectedPlatforms,
   agency,
 }: PlatformSelectProps) => {
   const theme = useTheme();
+
+  const { t } = useLingui();
+  const realEstatePlatforms = Object.keys(PLATFORMS)
+    .filter(
+      (platform) => PLATFORMS[platform as PlatformId].type === 'real_estate',
+    )
+    .map((platform) => {
+      return {
+        ...PLATFORMS[platform as PlatformId],
+        id: platform as PlatformId,
+      };
+    });
+
+  const smartListingPlatform = {
+    ...PLATFORMS[PlatformId.SmartListing],
+    id: PlatformId.SmartListing,
+  };
+
+  const socialMediaPlatform = {
+    ...PLATFORMS[PlatformId.SocialMedia],
+    id: PlatformId.SocialMedia,
+  };
 
   return (
     <StyledPlatformSelectionContainer>
       <div>
         <StyledPlatformSelectionTitle>
+          <IconLayoutGrid size={20} color={theme.font.color.primary} />
           Choose a platform
         </StyledPlatformSelectionTitle>
         <StyledPlatformSelectionSubtitle>
@@ -265,141 +259,142 @@ export const PlatformSelect = ({
         </StyledPlatformSelectionSubtitle>
       </div>
 
-      <StyledPlatformGrid>
-        <StyledPlatformCard
-          onClick={() => {
-            setSelectedPlatform(PLATFORMS[2]);
-            handlePlatformSelect(PLATFORMS[2]);
-          }}
-        >
-          <StyledPlatformIconContainer>
-            <StyledPlatformLogo>SMG</StyledPlatformLogo>
-          </StyledPlatformIconContainer>
-          <StyledPlatformInfo>
-            <StyledPlatformName>
-              Swiss Marketplace Group
-              <StyledNewTag>NEW</StyledNewTag>
-            </StyledPlatformName>
-            <StyledPlatformDescription>
-              This includes the following platforms: ImmoScout24, Homegate, and
-              more.
-            </StyledPlatformDescription>
-          </StyledPlatformInfo>
-        </StyledPlatformCard>
+      <StyledPlatformTypeContainer>
+        <StyledPlatformTypeHeader>
+          <StyledPlatformTypeTitle>
+            Real Estate Platforms
+          </StyledPlatformTypeTitle>
+          <StyledPlatformTypeDescription>
+            Increase your reach and target potential buyers and tenants through
+            the largest real estate platforms. Choose the platforms you want to
+            publish on.
+          </StyledPlatformTypeDescription>
+        </StyledPlatformTypeHeader>
+        <StyledPlatformGrid>
+          {realEstatePlatforms.map((platform) => (
+            <StyledPlatformCard
+              key={platform.id}
+              onClick={() => {
+                if (platform.isBeta === true) {
+                  return;
+                }
+                handlePlatformSelect(platform.id);
+              }}
+              isSelected={selectedPlatforms?.includes(platform.id)}
+              selectable={!platform.isBeta}
+            >
+              <StyledPlatformCardContent>
+                <StyledPlatformIconContainer>
+                  <StyledPlatformLogo>
+                    {platform.logo ? (
+                      <StyledPlatformLogoImage
+                        src={platform.logo}
+                        alt={platform.name}
+                      />
+                    ) : (
+                      platform.name.slice(0, 2)
+                    )}
+                  </StyledPlatformLogo>
+                </StyledPlatformIconContainer>
+                <StyledPlatformInfo>
+                  <StyledPlatformName comingSoon={platform.isBeta}>
+                    {platform.name} {platform.isBeta ? '(coming soon)' : ''}
+                    {platform.isNew && <StyledNewTag>NEW</StyledNewTag>}
+                  </StyledPlatformName>
+                  <StyledPlatformDescription>
+                    {platform.description}
+                  </StyledPlatformDescription>
+                </StyledPlatformInfo>
+              </StyledPlatformCardContent>
+              <IconCheck
+                size={20}
+                color={
+                  selectedPlatforms?.includes(platform.id)
+                    ? theme.font.color.primary
+                    : 'transparent'
+                }
+              />
+            </StyledPlatformCard>
+          ))}
+        </StyledPlatformGrid>
+        <StyledPlatformTypeActionsContainer>
+          <StyledPlatformTypeActions>
+            <Button
+              variant="primary"
+              accent="blue"
+              title={t({
+                id: 'Create Draft',
+                message: 'Create Draft',
+              })}
+              disabled={selectedPlatforms?.length === 0}
+            />
+          </StyledPlatformTypeActions>
+        </StyledPlatformTypeActionsContainer>
+      </StyledPlatformTypeContainer>
 
-        <StyledPlatformCard
-          onClick={() => {
-            setSelectedPlatform(PLATFORMS[3]);
-            handlePlatformSelect(PLATFORMS[3]);
-          }}
-        >
-          <StyledPlatformIconContainer>
-            <StyledPlatformLogo>NH</StyledPlatformLogo>
-          </StyledPlatformIconContainer>
-          <StyledPlatformInfo>
-            <StyledPlatformName>
-              Newhome
-              <StyledNewTag>NEW</StyledNewTag>
-            </StyledPlatformName>
-            <StyledPlatformDescription>
-              List your property conveniently to newhome.ch.
-            </StyledPlatformDescription>
-          </StyledPlatformInfo>
-        </StyledPlatformCard>
-        <StyledPlatformCard
-          onClick={() => {
-            setSelectedPlatform(PLATFORMS[0]);
-            handlePlatformSelect(PLATFORMS[0]);
-          }}
-        >
-          <StyledPlatformIconContainer>
-            <IconBrandInstagram size={24} />
-          </StyledPlatformIconContainer>
-          <StyledPlatformInfo>
-            <StyledPlatformName comingSoon>
-              Instagram (coming soon)
-            </StyledPlatformName>
-            <StyledPlatformDescription>
-              Share engaging property videos and photos to your Instagram feed
-              and stories
-            </StyledPlatformDescription>
-          </StyledPlatformInfo>
-        </StyledPlatformCard>
-
-        <StyledPlatformCard
-          onClick={() => {
-            setSelectedPlatform(PLATFORMS[1]);
-            handlePlatformSelect(PLATFORMS[1]);
-          }}
-        >
-          <StyledPlatformIconContainer>
-            <IconBrandGoogle size={24} />
-          </StyledPlatformIconContainer>
-          <StyledPlatformInfo>
-            <StyledPlatformName comingSoon>
-              Google Ads (coming soon)
-            </StyledPlatformName>
-            <StyledPlatformDescription>
-              Create targeted property campaigns to reach potential buyers
-            </StyledPlatformDescription>
-          </StyledPlatformInfo>
-        </StyledPlatformCard>
-      </StyledPlatformGrid>
-
-      <StyledBottomSettings>
-        <StyledBottomSettingsTitle>
-          Additional Settings
-        </StyledBottomSettingsTitle>
-        <StyledSettingsGrid>
-          <StyledSettingsCard>
-            <StyledSettingsHeader>
-              <IconBuildingSkyscraper size={16} />
-              <StyledSettingsTitle>Publishing Agent</StyledSettingsTitle>
-            </StyledSettingsHeader>
-            <StyledRadioGroup>
-              <StyledRadioOption isSelected>
-                <StyledPlatformContent>
-                  <StyledOptionLabel>{agency.name}</StyledOptionLabel>
-                  <StyledSettingsOptionCardDescription>
-                    Your listing will be published on behalf of {agency.name}
-                  </StyledSettingsOptionCardDescription>
-                </StyledPlatformContent>
-              </StyledRadioOption>
-            </StyledRadioGroup>
-          </StyledSettingsCard>
-
-          <StyledSettingsCard>
-            <StyledSettingsHeader>
-              <StyledSettingsTitle isAI>
-                <IconSparkles size={16} />
-                Nester Settings (coming soon)
-              </StyledSettingsTitle>
-            </StyledSettingsHeader>
-            <StyledToggleContainer>
-              <StyledToggleRow>
-                <Toggle
-                  color={theme.color.gray}
-                  value={aiFeatures.intelligentMatching}
-                  onChange={() => {
-                    return undefined;
-                  }}
-                />
-                <StyledToggleLabel>Intelligent Matching</StyledToggleLabel>
-              </StyledToggleRow>
-              <StyledToggleRow>
-                <Toggle
-                  color={theme.color.gray}
-                  value={aiFeatures.autoResponder}
-                  onChange={() => {
-                    return undefined;
-                  }}
-                />
-                <StyledToggleLabel>Auto Responder</StyledToggleLabel>
-              </StyledToggleRow>
-            </StyledToggleContainer>
-          </StyledSettingsCard>
-        </StyledSettingsGrid>
-      </StyledBottomSettings>
+      <StyledSecondaryPlatformGrid>
+        <StyledPlatformTypeContainer>
+          <StyledPlatformTypeHeader>
+            <StyledPlatformTypeTitle>
+              {socialMediaPlatform.name}
+              <StyledPlatformIconContainer width={50}>
+                <StyledPlatformLogo>
+                  <StyledPlatformLogoImage
+                    src={socialMediaPlatform.logo}
+                    alt={socialMediaPlatform.name}
+                  />
+                </StyledPlatformLogo>
+              </StyledPlatformIconContainer>
+            </StyledPlatformTypeTitle>
+            <StyledPlatformTypeDescription>
+              {socialMediaPlatform.description}
+            </StyledPlatformTypeDescription>
+          </StyledPlatformTypeHeader>
+          <StyledPlatformTypeActionsContainer>
+            <StyledPlatformTypeActions>
+              <Button
+                variant="primary"
+                accent="blue"
+                title={t({
+                  id: 'Create Draft',
+                  message: 'Create Draft',
+                })}
+                disabled
+              />
+            </StyledPlatformTypeActions>
+          </StyledPlatformTypeActionsContainer>
+        </StyledPlatformTypeContainer>
+        <StyledPlatformTypeContainer>
+          <StyledPlatformTypeHeader>
+            <StyledPlatformTypeTitle>
+              {smartListingPlatform.name}
+              <StyledPlatformIconContainer width={50}>
+                <StyledPlatformLogo>
+                  <StyledSmartListingIcon>
+                    <IconWand size={18} color={theme.color.purple} />
+                  </StyledSmartListingIcon>
+                </StyledPlatformLogo>
+              </StyledPlatformIconContainer>
+            </StyledPlatformTypeTitle>
+            <StyledPlatformTypeDescription>
+              {smartListingPlatform.description}
+            </StyledPlatformTypeDescription>
+          </StyledPlatformTypeHeader>
+          <StyledPlatformTypeActionsContainer>
+            <StyledPlatformTypeActions>
+              <Button
+                variant="primary"
+                accent="blue"
+                title={t({
+                  id: 'Coming Soon',
+                  message: 'Coming Soon',
+                })}
+                disabled
+              />
+            </StyledPlatformTypeActions>
+          </StyledPlatformTypeActionsContainer>
+        </StyledPlatformTypeContainer>
+      </StyledSecondaryPlatformGrid>
     </StyledPlatformSelectionContainer>
   );
 };

@@ -1,4 +1,7 @@
-import { Platform } from '@/ui/layout/show-page/components/nm/types/Platform';
+import {
+  PlatformId,
+  PLATFORMS,
+} from '@/ui/layout/show-page/components/nm/types/Platform';
 import styled from '@emotion/styled';
 import { CircularProgressBar, IconCheck, IconExternalLink } from 'twenty-ui';
 
@@ -72,11 +75,12 @@ const StyledViewPublicationButton = styled.button`
 `;
 
 type PublishingProps = {
-  selectedPlatform: Platform;
-  publishedPlatforms: Platform[];
-  renderPlatformIcon: (platform: Platform) => React.ReactNode;
+  selectedPlatform: PlatformId;
+  publishedPlatforms: PlatformId[];
+  renderPlatformIcon: (platformId: PlatformId) => React.ReactNode;
 };
 
+// TODO: use this once we publish to a platform
 export const Publishing = ({
   selectedPlatform,
   publishedPlatforms,
@@ -84,13 +88,13 @@ export const Publishing = ({
 }: PublishingProps) => {
   return (
     <StyledPublishingProcess>
-      <StyledPlatformPublishItem key={selectedPlatform.id}>
+      <StyledPlatformPublishItem key={selectedPlatform}>
         <StyledPlatformPublishIcon>
           {renderPlatformIcon(selectedPlatform)}
         </StyledPlatformPublishIcon>
         <StyledPlatformPublishInfo>
           <StyledPlatformPublishName>
-            {selectedPlatform.name}
+            {PLATFORMS[selectedPlatform].name}
           </StyledPlatformPublishName>
           <StyledPlatformPublishStatus
             isPublished={publishedPlatforms.includes(selectedPlatform)}

@@ -10,6 +10,7 @@ import { capitalize } from 'twenty-shared';
 import {
   IconChevronLeft,
   IconX,
+  LARGE_DESKTOP_VIEWPORT,
   LightIconButton,
   useIsMobile,
 } from 'twenty-ui';
@@ -19,7 +20,6 @@ const StyledBreadcrumbContainer = styled.div`
   display: flex;
   flex-direction: row;
   overflow-x: hidden;
-  flex: 1;
 `;
 
 const StyledBreadcrumbItem = styled.div`
@@ -27,6 +27,7 @@ const StyledBreadcrumbItem = styled.div`
   display: flex;
   flex: 1;
   flex-direction: row;
+
   gap: ${({ theme }) => theme.spacing(1)};
   padding: ${({ theme }) => theme.spacing(0.75)};
 `;
@@ -43,10 +44,14 @@ const StyledBreadcrumbText = styled.div<{ isLast?: boolean }>`
 `;
 
 const StyledPropertyTitleBase = styled.div`
-  max-width: 50%;
+  max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media only screen and (min-width: ${LARGE_DESKTOP_VIEWPORT}px) {
+    max-width: 400px;
+  }
 `;
 
 const StyledPropertyTitleLink = styled(

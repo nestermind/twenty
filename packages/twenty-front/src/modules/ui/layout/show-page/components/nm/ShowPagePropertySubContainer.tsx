@@ -1,5 +1,6 @@
 import { RecordShowRightDrawerActionMenu } from '@/action-menu/components/RecordShowRightDrawerActionMenu';
 import { ActivityTargetableObject } from '@/activities/types/ActivityTargetableEntity';
+import { getLinkToShowPage } from '@/object-metadata/utils/getLinkToShowPage';
 import { isNewViewableRecordLoadingState } from '@/object-record/record-right-drawer/states/isNewViewableRecordLoading';
 import { CardComponents } from '@/object-record/record-show/components/CardComponents';
 import { RecordLayout } from '@/object-record/record-show/types/RecordLayout';
@@ -14,8 +15,9 @@ import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import styled from '@emotion/styled';
 import { useLingui } from '@lingui/react/macro';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Button, IconUpload } from 'twenty-ui';
+import { Button, IconPencil, IconUpload } from 'twenty-ui';
 import { PublishModal } from './PublishModal';
 
 const StyledShowPageRightContainer = styled.div<{ isMobile: boolean }>`
@@ -26,6 +28,10 @@ const StyledShowPageRightContainer = styled.div<{ isMobile: boolean }>`
   width: 100%;
   height: 100%;
   overflow-y: auto;
+`;
+
+const StyledEditButtonLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const StyledTabListContainer = styled.div<{ shouldDisplay: boolean }>`
@@ -43,6 +49,8 @@ const StyledTabListContainer = styled.div<{ shouldDisplay: boolean }>`
 `;
 
 const StyledButtonContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(2)};
   padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(4)};
 `;
 
@@ -129,6 +137,16 @@ export const ShowPagePropertySubContainer = ({
             isInRightDrawer={isInRightDrawer}
           />
           <StyledButtonContainer>
+            {recordFromStore && (
+              <StyledEditButtonLink
+                to={`${getLinkToShowPage(
+                  targetableObject.targetObjectNameSingular,
+                  recordFromStore,
+                )}/edit`}
+              >
+                <Button title={t`Edit`} Icon={IconPencil} size="small" />
+              </StyledEditButtonLink>
+            )}
             <Button
               title={t`Publish`}
               variant="primary"
