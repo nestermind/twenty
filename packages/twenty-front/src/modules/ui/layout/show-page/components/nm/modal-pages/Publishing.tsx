@@ -1,9 +1,22 @@
+import { tokenPairState } from '@/auth/states/tokenPairState';
+import { useRecordShowContainerData } from '@/object-record/record-show/hooks/useRecordShowContainerData';
+import { SnackBarVariant } from '@/ui/feedback/snack-bar-manager/components/SnackBar';
+import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import {
   PlatformId,
   PLATFORMS,
 } from '@/ui/layout/show-page/components/nm/types/Platform';
 import styled from '@emotion/styled';
-import { CircularProgressBar, IconCheck, IconExternalLink } from 'twenty-ui';
+import { useLingui } from '@lingui/react/macro';
+import axios from 'axios';
+import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import {
+  Button,
+  CircularProgressBar,
+  IconCheck,
+  IconExternalLink,
+} from 'twenty-ui';
 
 const StyledPublishingProcess = styled.div`
   display: flex;
@@ -76,16 +89,53 @@ const StyledViewPublicationButton = styled.button`
 
 type PublishingProps = {
   selectedPlatform: PlatformId;
-  publishedPlatforms: PlatformId[];
   renderPlatformIcon: (platformId: PlatformId) => React.ReactNode;
+  recordId: string;
 };
 
 // TODO: use this once we publish to a platform
 export const Publishing = ({
   selectedPlatform,
-  publishedPlatforms,
   renderPlatformIcon,
+  recordId,
 }: PublishingProps) => {
+  const [isPublished, setIsPublished] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { enqueueSnackBar } = useSnackBar();
+  const tokenPair = useRecoilValue(tokenPairState);
+  const { t } = useLingui();
+  const { recordFromStore: record } = useRecordShowContainerData({
+    objectNameSingular: 'publication',
+    objectRecordId: recordId,
+  });
+
+  const publishDraft = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        `${process.env.REACT_APP_PUBLICATION_SERVER_BASE_URL ?? 'http://localhost:3002'}/publications/upload?id=${recordId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${tokenPair?.accessToken?.token}`,
+          },
+        },
+      );
+      if (response.status !== 201) {
+        throw new Error('Failed to publish');
+      }
+      setIsPublished(true);
+      enqueueSnackBar(t`Publication created successfully`, {
+        variant: SnackBarVariant.Success,
+      });
+    } catch (error: any) {
+      enqueueSnackBar(error?.message, {
+        variant: SnackBarVariant.Error,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <StyledPublishingProcess>
       <StyledPlatformPublishItem key={selectedPlatform}>
@@ -96,27 +146,34 @@ export const Publishing = ({
           <StyledPlatformPublishName>
             {PLATFORMS[selectedPlatform].name}
           </StyledPlatformPublishName>
-          <StyledPlatformPublishStatus
-            isPublished={publishedPlatforms.includes(selectedPlatform)}
-          >
-            {publishedPlatforms.includes(selectedPlatform) ? (
+          <StyledPlatformPublishStatus isPublished={isPublished}>
+            {isPublished ? (
               <>
                 Successfully published
                 <IconCheck size={14} />
               </>
-            ) : (
+            ) : isLoading ? (
               'Publishing...'
+            ) : (
+              'Unpublished'
             )}
           </StyledPlatformPublishStatus>
         </StyledPlatformPublishInfo>
         <StyledPlatformPublishStatusIcon>
-          {publishedPlatforms.includes(selectedPlatform) ? (
+          {isPublished ? (
             <StyledViewPublicationButton>
               View Publication
               <IconExternalLink size={14} />
             </StyledViewPublicationButton>
-          ) : (
+          ) : isLoading ? (
             <CircularProgressBar size={16} barWidth={2} barColor="black" />
+          ) : (
+            <Button
+              variant="primary"
+              accent="blue"
+              title={t`Publish`}
+              onClick={publishDraft}
+            />
           )}
         </StyledPlatformPublishStatusIcon>
       </StyledPlatformPublishItem>

@@ -1,5 +1,6 @@
 import { useAttachments } from '@/activities/files/hooks/useAttachments';
 import { ActivityTargetableObject } from '@/activities/types/ActivityTargetableEntity';
+import { useRecordShowContainerData } from '@/object-record/record-show/hooks/useRecordShowContainerData';
 import { Modal, ModalRefType } from '@/ui/layout/modal/components/Modal';
 import { ModalHotkeyScope } from '@/ui/layout/modal/components/types/ModalHotkeyScope';
 import styled from '@emotion/styled';
@@ -19,7 +20,7 @@ import {
   IconVideo,
   ProgressBar,
 } from 'twenty-ui';
-import { InstagramPreview } from './InstagramPreview';
+import { VideoGenerationModal } from './VideoGenerationModal';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -212,25 +213,35 @@ const StyledProgressText = styled.div`
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
+const StyledGeneratedVideosSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(2)};
+`;
+
+const StyledGeneratedVideosTitle = styled.div`
+  color: ${({ theme }) => theme.font.color.tertiary};
+  font-size: ${({ theme }) => theme.font.size.sm};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+`;
+
 const StyledVideoGrid = styled.div`
   display: grid;
-  gap: ${({ theme }) => theme.spacing(4)};
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: ${({ theme }) => theme.spacing(2)};
+  grid-template-columns: repeat(3, 1fr);
 `;
 
 const StyledVideoContainer = styled.div`
+  aspect-ratio: 1;
+  border: 1px solid ${({ theme }) => theme.border.color.light};
   border-radius: ${({ theme }) => theme.border.radius.sm};
   overflow: hidden;
-  width: 100%;
 `;
 
 const StyledVideo = styled.video`
-  border-radius: ${({ theme }) => theme.border.radius.sm};
-  width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
   object-fit: cover;
+  width: 100%;
 `;
 
 const StyledModalHeader = styled(Modal.Header)`
@@ -337,17 +348,19 @@ const StyledCarouselButton = styled.button`
 
 const StyledCarouselDots = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.spacing(1)};
+  gap: ${({ theme }) => theme.spacing(2)};
   justify-content: center;
   padding: ${({ theme }) => theme.spacing(2)} 0 0;
 `;
 
-const StyledCarouselDot = styled.div<{ isActive?: boolean }>`
-  background: ${({ theme, isActive }) =>
-    isActive ? theme.color.blue : theme.background.tertiary};
-  border-radius: 50%;
-  height: 6px;
-  width: 6px;
+const StyledVideoThumbnail = styled.video<{ isActive: boolean }>`
+  border: 2px solid
+    ${({ theme, isActive }) => (isActive ? theme.color.blue : 'transparent')};
+  border-radius: ${({ theme }) => theme.border.radius.sm};
+  cursor: pointer;
+  height: 60px;
+  object-fit: cover;
+  width: 60px;
 `;
 
 const StyledPostActions = styled.div`
@@ -395,6 +408,13 @@ const StyledVideoActions = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(4)};
 `;
 
+const StyledLoadingContainer = styled.div`
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+`;
+
 type AISuiteProps = {
   targetableObject: Pick<
     ActivityTargetableObject,
@@ -408,17 +428,19 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
   const { t } = useLingui();
   const [isGenerating, setIsGenerating] = useState(false);
   const [hasGeneratedVideos, setHasGeneratedVideos] = useState(false);
-  const [visibleVideos, setVisibleVideos] = useState<number[]>([]);
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const [generationProgress, setGenerationProgress] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
-  // eslint-disable-next-line @nx/workspace-no-state-useref
+  const videoModalRef = useRef<ModalRefType>(null);
   const modalRef = useRef<ModalRefType>(null);
+  const { recordFromStore: record } = useRecordShowContainerData({
+    objectNameSingular: targetableObject.targetObjectNameSingular,
+    objectRecordId: targetableObject.id,
+  });
   const { attachments = [] } = useAttachments(targetableObject);
 
-  const images = attachments.filter(
-    (attachment) => attachment.type === 'Image',
-  );
+  const images =
+    attachments?.filter((attachment) => attachment.type === 'Image') ?? [];
 
   const handleImageLoad = useCallback((imageId: string) => {
     setLoadedImages((prev) => ({
@@ -444,25 +466,11 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
   }, [isGenerating]);
 
   const handleGenerateVideo = () => {
-    setIsGenerating(true);
-    setVisibleVideos([]);
-    setGenerationProgress(0);
-
-    setTimeout(() => {
-      setIsGenerating(false);
-      setHasGeneratedVideos(true);
-      setGenerationProgress(0);
-
-      DEMO_VIDEOS.forEach((_, index) => {
-        setTimeout(() => {
-          setVisibleVideos((prev) => [...prev, index]);
-        }, index * 1500);
-      });
-    }, 6000);
+    videoModalRef.current?.open();
   };
 
-  const openModal = () => {
-    modalRef.current?.open();
+  const handleVideoGeneration = () => {
+    setHasGeneratedVideos(true);
   };
 
   const closeModal = () => {
@@ -496,6 +504,10 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
       </>
     );
   };
+
+  if (!record) {
+    return <StyledLoadingContainer>Loading...</StyledLoadingContainer>;
+  }
 
   return (
     <>
@@ -602,28 +614,19 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
                     disabled={isGenerating || images.length === 0}
                   />
                 </StyledGenerateSection>
-
                 {hasGeneratedVideos && (
-                  <>
-                    <StyledVideoActions>
-                      <Button
-                        title={t`Preview Instagram Post`}
-                        Icon={IconBrandInstagram}
-                        variant="secondary"
-                        size="small"
-                        onClick={openModal}
-                      />
-                    </StyledVideoActions>
+                  <StyledGeneratedVideosSection>
+                    <StyledGeneratedVideosTitle>
+                      Generated Videos
+                    </StyledGeneratedVideosTitle>
                     <StyledVideoGrid>
-                      <InstagramPreview
-                        videos={DEMO_VIDEOS}
-                        currentSlide={currentSlide}
-                        setCurrentSlide={setCurrentSlide}
-                        onPrevSlide={handlePrevSlide}
-                        onNextSlide={handleNextSlide}
-                      />
+                      {DEMO_VIDEOS.map((video, index) => (
+                        <StyledVideoContainer key={index}>
+                          <StyledVideo src={video} controls muted loop />
+                        </StyledVideoContainer>
+                      ))}
                     </StyledVideoGrid>
-                  </>
+                  </StyledGeneratedVideosSection>
                 )}
               </StyledVideoContent>
             </StyledVideoSection>
@@ -677,10 +680,13 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
               </StyledCarouselNav>
             </StyledCarouselContainer>
             <StyledCarouselDots>
-              {DEMO_VIDEOS.map((_, index) => (
-                <StyledCarouselDot
+              {DEMO_VIDEOS.map((video, index) => (
+                <StyledVideoThumbnail
                   key={index}
+                  src={video}
                   isActive={currentSlide === index}
+                  onClick={() => setCurrentSlide(index)}
+                  muted
                 />
               ))}
             </StyledCarouselDots>
@@ -695,6 +701,13 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
           </StyledInstagramPost>
         </StyledModalContent>
       </Modal>
+
+      <VideoGenerationModal
+        ref={videoModalRef}
+        onClose={() => videoModalRef.current?.close()}
+        onGenerate={handleVideoGeneration}
+        targetableObject={targetableObject}
+      />
     </>
   );
 };

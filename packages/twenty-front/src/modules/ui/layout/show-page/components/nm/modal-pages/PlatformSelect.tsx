@@ -253,8 +253,10 @@ export const PlatformSelect = ({
   const createDraft = async () => {
     try {
       setLoading(true);
+      // TODO: This will be changed to a loop that creates all drafts and consolidates them into one show page later. For now only newhome works anyway.
       const response = await axios.post(
-        `http://localhost:3002/publications/upload?id=${recordId}`,
+        // TODO: Replace the selectedPlatforms with an actual enum of platforms from the backend once we have standard entities.
+        `${process.env.REACT_APP_PUBLICATION_SERVER_BASE_URL ?? 'http://localhost:3002'}/properties/publish?id=${recordId}&platform=${selectedPlatforms?.[0].toUpperCase()}`,
         {},
         {
           headers: {
@@ -266,15 +268,20 @@ export const PlatformSelect = ({
         throw new Error('Failed to create draft, id was not returned');
       }
 
+      enqueueSnackBar(t`Publication Draft created successfully`, {
+        variant: SnackBarVariant.Success,
+      });
+
       const route = getLinkToShowPage('publication', {
         id: response.data,
       });
 
-      closeModal?.();
+      setTimeout(() => {
+        closeModal?.();
+      }, 1000);
 
-      // navigate(route);
+      navigate(route);
     } catch (error: any) {
-      console.log(error);
       enqueueSnackBar(error?.message, {
         variant: SnackBarVariant.Error,
       });
@@ -363,7 +370,9 @@ export const PlatformSelect = ({
                 message: 'Create Draft',
               })}
               onClick={createDraft}
-              disabled={selectedPlatforms?.length === 0 || loading}
+              disabled={
+                selectedPlatforms?.length === 0 || !selectedPlatforms || loading
+              }
             />
           </StyledPlatformTypeActions>
         </StyledPlatformTypeActionsContainer>

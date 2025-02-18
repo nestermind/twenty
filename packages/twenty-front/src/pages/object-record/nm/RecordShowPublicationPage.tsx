@@ -148,6 +148,7 @@ export const RecordShowPublicationPage = () => {
                     objectNameSingular={objectNameSingular}
                     objectRecordId={objectRecordId}
                     loading={loading}
+                    isPublication={true}
                   />
                 </TimelineActivityContext.Provider>
               </PageBody>

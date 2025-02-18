@@ -1,3 +1,4 @@
+import { useAttachments } from '@/activities/files/hooks/useAttachments';
 import { Modal, ModalRefType } from '@/ui/layout/modal/components/Modal';
 import { ModalHotkeyScope } from '@/ui/layout/modal/components/types/ModalHotkeyScope';
 import styled from '@emotion/styled';
@@ -5,10 +6,10 @@ import { useLingui } from '@lingui/react/macro';
 // eslint-disable-next-line no-restricted-imports
 
 import { motion } from 'framer-motion';
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { Button, IconUpload, LARGE_DESKTOP_VIEWPORT } from 'twenty-ui';
 
-import { Publishing } from '@/ui/layout/show-page/components/nm/modal-pages/Publishing';
+import { PlatformSelect } from './modal-pages/PlatformSelect';
 import { PlatformId } from './types/Platform';
 
 const StyledModalContent = styled(motion.div)`
@@ -63,13 +64,42 @@ type PublishModalProps = {
   };
 };
 
-export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
+export const PublishDraftModal = forwardRef<ModalRefType, PublishModalProps>(
   ({ onClose, targetableObject }, ref) => {
     const { t } = useLingui();
 
+    const [currentStep, setCurrentStep] = useState<Step>('platform-select');
+
+    const [selectedPlatforms, setSelectedPlatforms] = useState<
+      PlatformId[] | null
+    >(null);
+
+    const { attachments = [] } = useAttachments(targetableObject);
+
+    const images = useMemo(
+      () => attachments.filter((attachment) => attachment.type === 'Image'),
+      [attachments],
+    );
+
+    const handlePlatformSelect = (platformId: PlatformId) => {
+      setSelectedPlatforms((prev) =>
+        prev?.includes(platformId)
+          ? prev?.filter((id) => id !== platformId)
+          : [...(prev || []), platformId],
+      );
+    };
+
+    useEffect(() => {
+      if (images.length > 0 && currentStep === 'upload-assets') {
+        setTimeout(() => {
+          setCurrentStep('content-customize');
+        }, 500);
+      }
+    }, [images, currentStep]);
+
     return (
       <Modal
-        size="medium"
+        size="large"
         onClose={onClose}
         isClosable
         ref={ref}
@@ -86,7 +116,6 @@ export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
             <Button variant="tertiary" title={t`Cancel`} onClick={onClose} />
           </StyledModalHeaderButtons>
         </StyledModalHeader>
-
         <StyledModalContent
           key="select"
           initial={{ opacity: 0, x: -20 }}
@@ -94,10 +123,12 @@ export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
           exit={{ opacity: 0, x: 20 }}
           transition={{ duration: ANIMATION_DURATION, ease: 'easeInOut' }}
         >
-          <Publishing
+          <PlatformSelect
+            handlePlatformSelect={handlePlatformSelect}
+            selectedPlatforms={selectedPlatforms}
+            setSelectedPlatforms={setSelectedPlatforms}
             recordId={targetableObject.id}
-            renderPlatformIcon={() => <IconUpload size={16} />}
-            selectedPlatform={PlatformId.Newhome}
+            closeModal={onClose}
           />
         </StyledModalContent>
       </Modal>
@@ -105,4 +136,4 @@ export const PublishModal = forwardRef<ModalRefType, PublishModalProps>(
   },
 );
 
-PublishModal.displayName = 'PublishModal';
+PublishDraftModal.displayName = 'PublishDraftModal';

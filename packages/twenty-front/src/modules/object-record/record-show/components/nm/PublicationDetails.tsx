@@ -8,14 +8,28 @@ import {
     IconChartBar,
     IconMessageCircle2,
 } from '@tabler/icons-react';
-import { IconBuildingSkyscraper, IconUsers } from 'twenty-ui';
+import { useMemo } from 'react';
+import {
+    IconBuildingSkyscraper,
+    IconUsers,
+    LARGE_DESKTOP_VIEWPORT,
+    MOBILE_VIEWPORT,
+} from 'twenty-ui';
 import { ObjectOverview } from './ObjectOverview';
+import { CompletionProgress } from './publication/CompletionProgress';
 import { KPICard } from './publication/KPICard';
 
 const StyledContentContainer = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.spacing(4)};
-  padding: ${({ theme }) => theme.spacing(4)};
+  gap: ${({ theme }) => theme.spacing(2)};
+  flex-wrap: wrap;
+  width: 100%;
+
+  @media (min-width: ${LARGE_DESKTOP_VIEWPORT}px) {
+    flex-wrap: nowrap;
+    width: unset;
+    padding: 0 ${({ theme }) => theme.spacing(4)} 0 0;
+  }
 `;
 
 const StyledRightContentContainer = styled.div`
@@ -23,7 +37,14 @@ const StyledRightContentContainer = styled.div`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(4)};
   margin: ${({ theme }) => theme.spacing(4)} 0;
+
+  padding: ${({ theme }) => theme.spacing(4)};
+
   width: 100%;
+  @media (min-width: ${LARGE_DESKTOP_VIEWPORT}px) {
+    max-width: 900px;
+    padding: 0;
+  }
 `;
 
 const StyledSection = styled.div`
@@ -83,8 +104,12 @@ const StyledChartPlaceholder = styled.div`
 const StyledTwoColumns = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing(4)};
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   width: 100%;
+
+  @media (min-width: ${MOBILE_VIEWPORT}px) {
+    grid-template-columns: 2fr 1fr;
+  }
 `;
 
 const StyledLoadingContainer = styled.div`
@@ -94,6 +119,12 @@ const StyledLoadingContainer = styled.div`
   justify-content: center;
   padding: ${({ theme }) => theme.spacing(8)};
   width: 100%;
+`;
+
+const StyledProgressContainer = styled.div`
+  border: 1px solid ${({ theme }) => theme.border.color.light};
+  border-radius: ${({ theme }) => theme.border.radius.sm};
+  padding: 0 ${({ theme }) => theme.spacing(4)};
 `;
 
 type PublicationDetailsProps = {
@@ -112,6 +143,13 @@ export const PublicationDetails = ({
       objectRecordId: targetableObject.id,
     });
 
+  const definedValuePercentage = useMemo(() => {
+    const definedValues = Object.values(publication ?? {}).filter(
+      (value) => value !== null,
+    );
+    return (definedValues.length / Object.keys(publication ?? {}).length) * 100;
+  }, [publication]);
+
   if (recordLoading || !publication) {
     return <StyledLoadingContainer>Loading...</StyledLoadingContainer>;
   }
@@ -125,6 +163,9 @@ export const PublicationDetails = ({
         isPublication
       />
       <StyledRightContentContainer>
+        <StyledProgressContainer>
+          <CompletionProgress percentage={definedValuePercentage} />
+        </StyledProgressContainer>
         <StyledKPIGrid>
           <KPICard
             label="Inquiries"
@@ -138,7 +179,7 @@ export const PublicationDetails = ({
           />
           <KPICard
             label="Status"
-            value={<StatusBadge status={publication.status} />}
+            value={<StatusBadge status={publication.stage} />}
             icon={<IconBuildingSkyscraper size={16} />}
           />
         </StyledKPIGrid>

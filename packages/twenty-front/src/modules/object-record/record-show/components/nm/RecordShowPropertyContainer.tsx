@@ -18,6 +18,7 @@ type RecordShowPropertyContainerProps = {
   loading: boolean;
   isInRightDrawer?: boolean;
   isNewRightDrawerItemLoading?: boolean;
+  isPublication?: boolean;
 };
 
 export const RecordShowPropertyContainer = ({
@@ -26,6 +27,7 @@ export const RecordShowPropertyContainer = ({
   loading,
   isInRightDrawer = false,
   isNewRightDrawerItemLoading = false,
+  isPublication = false,
 }: RecordShowPropertyContainerProps) => {
   const {
     recordFromStore,
@@ -74,6 +76,7 @@ export const RecordShowPropertyContainer = ({
           isInRightDrawer={isInRightDrawer}
           loading={isPrefetchLoading || loading || recordLoading}
           isNewRightDrawerItemLoading={isNewRightDrawerItemLoading}
+          isPublication={isPublication}
         />
       </ShowPageContainer>
     </>

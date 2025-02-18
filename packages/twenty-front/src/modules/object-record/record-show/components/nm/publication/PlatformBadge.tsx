@@ -35,11 +35,15 @@ export const PlatformBadge = ({
   isActive,
   onClick,
 }: PlatformBadgeProps) => {
-  const platform = PLATFORMS[platformId];
+  const platform =
+    // TODO remove this and replace it with enum
+    platformId === ('NEWHOME' as unknown as PlatformId)
+      ? PLATFORMS[PlatformId.Newhome]
+      : PLATFORMS[platformId];
 
   return (
     <StyledPlatformBadge isActive={isActive} onClick={onClick}>
-      {platform.logo && (
+      {platform?.logo && (
         <StyledPlatformLogo src={platform.logo} alt={platform.name} />
       )}
     </StyledPlatformBadge>

@@ -218,7 +218,7 @@ type ContentCustomizeProps = {
 };
 
 // TODO: Add Video Generation Here
-const VIDEOS: string[] = [];
+const VIDEOS: string[] = ['/videos/1.mp4', '/videos/2.mp4', '/videos/3.mp4'];
 
 export const ContentCustomize = ({
   images,

@@ -32,6 +32,7 @@ import {
   IconSparkles,
   IconUpload,
   IconX,
+  LARGE_DESKTOP_VIEWPORT,
 } from 'twenty-ui';
 import { FieldMetadataType } from '~/generated/graphql';
 
@@ -39,7 +40,11 @@ const StyledFormBorder = styled.div`
   border: 1px solid ${({ theme }) => theme.border.color.light};
   border-radius: ${({ theme }) => theme.border.radius.sm};
   margin: ${({ theme }) => theme.spacing(4)};
-  max-width: 800px;
+  width: 100%;
+
+  @media (min-width: ${LARGE_DESKTOP_VIEWPORT}px) {
+    max-width: 800px;
+  }
 `;
 
 const StyledHeader = styled.div`

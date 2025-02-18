@@ -89,20 +89,6 @@ export const useRecordShowContainerTabs = (
           cards: [{ type: CardType.PublicationDetailsCard }],
         },
 
-        details: {
-          title: 'Details',
-          hide: {
-            ifMobile: false,
-            ifDesktop: false,
-            ifInRightDrawer: false,
-            ifFeaturesDisabled: [],
-            ifRequiredObjectsInactive: [],
-            ifRelationsMissing: [],
-          },
-          Icon: IconList,
-          position: 0,
-          cards: [{ type: CardType.OverviewCard }],
-        },
         timeline: {
           title: 'Timeline',
           Icon: IconTimelineEvent,

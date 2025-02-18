@@ -59,7 +59,7 @@ export const FieldDisplay = ({ wrap }: { wrap?: boolean }) => {
   ) : isFieldRelationToOneObject(fieldDefinition) ? (
     <RelationToOneFieldDisplay />
   ) : isFieldRelationFromManyObjects(fieldDefinition) ? (
-    <RelationFromManyFieldDisplay />
+    <RelationFromManyFieldDisplay wrap={wrap} />
   ) : isFieldText(fieldDefinition) ? (
     <TextFieldDisplay />
   ) : isFieldUuid(fieldDefinition) ? (

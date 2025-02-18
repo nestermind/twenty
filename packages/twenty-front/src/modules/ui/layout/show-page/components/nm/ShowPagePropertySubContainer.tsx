@@ -8,6 +8,7 @@ import { recordStoreFamilyState } from '@/object-record/record-store/states/reco
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { ModalRefType } from '@/ui/layout/modal/components/Modal';
 import { RightDrawerFooter } from '@/ui/layout/right-drawer/components/RightDrawerFooter';
+import { PublishModal } from '@/ui/layout/show-page/components/nm/PublishModal';
 import { ShowPageImageBanner } from '@/ui/layout/show-page/components/nm/ShowPageImageBanner';
 import { SingleTabProps, TabList } from '@/ui/layout/tab/components/TabList';
 import { useTabList } from '@/ui/layout/tab/hooks/useTabList';
@@ -18,7 +19,7 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Button, IconPencil, IconUpload } from 'twenty-ui';
-import { PublishModal } from './PublishModal';
+import { PublishDraftModal } from './PublishDraftModal';
 
 const StyledShowPageRightContainer = styled.div<{ isMobile: boolean }>`
   display: flex;
@@ -72,6 +73,7 @@ type ShowPagePropertySubContainerProps = {
   isInRightDrawer?: boolean;
   loading: boolean;
   isNewRightDrawerItemLoading?: boolean;
+  isPublication?: boolean;
 };
 
 export const ShowPagePropertySubContainer = ({
@@ -79,6 +81,7 @@ export const ShowPagePropertySubContainer = ({
   targetableObject,
   loading,
   isInRightDrawer = false,
+  isPublication = false,
 }: ShowPagePropertySubContainerProps) => {
   const tabListComponentId = `${TAB_LIST_COMPONENT_ID}-${isInRightDrawer}-${targetableObject.id}`;
   const { activeTabId } = useTabList(tabListComponentId);
@@ -165,11 +168,19 @@ export const ShowPagePropertySubContainer = ({
         )}
       </StyledShowPageRightContainer>
 
-      <PublishModal
-        ref={modalRef}
-        onClose={handleModalClose}
-        targetableObject={targetableObject}
-      />
+      {isPublication ? (
+        <PublishModal
+          ref={modalRef}
+          onClose={handleModalClose}
+          targetableObject={targetableObject}
+        />
+      ) : (
+        <PublishDraftModal
+          ref={modalRef}
+          onClose={handleModalClose}
+          targetableObject={targetableObject}
+        />
+      )}
     </>
   );
 };
