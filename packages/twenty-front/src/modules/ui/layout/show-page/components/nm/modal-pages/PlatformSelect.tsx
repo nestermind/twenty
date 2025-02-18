@@ -254,7 +254,7 @@ export const PlatformSelect = ({
     try {
       setLoading(true);
       const response = await axios.post(
-        `http://localhost:3002/properties/publish?id=${recordId}`,
+        `http://localhost:3002/publications/upload?id=${recordId}`,
         {},
         {
           headers: {
@@ -272,7 +272,7 @@ export const PlatformSelect = ({
 
       closeModal?.();
 
-      navigate(route);
+      // navigate(route);
     } catch (error: any) {
       console.log(error);
       enqueueSnackBar(error?.message, {

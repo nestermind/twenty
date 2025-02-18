@@ -17,7 +17,9 @@ import { Trans, useLingui } from '@lingui/react/macro';
 import { Modal, ModalRefType } from '@/ui/layout/modal/components/Modal';
 // eslint-disable-next-line no-restricted-imports
 import { FieldMetadataItem } from '@/object-metadata/types/FieldMetadataItem';
+import { PlatformBadge } from '@/object-record/record-show/components/nm/publication/PlatformBadge';
 import { ModalHotkeyScope } from '@/ui/layout/modal/components/types/ModalHotkeyScope';
+import { PlatformId } from '@/ui/layout/show-page/components/nm/types/Platform';
 import groupBy from 'lodash.groupby';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
@@ -207,6 +209,7 @@ export const ObjectOverview = ({
   targetableObject,
   isInRightDrawer,
   isNewRightDrawerItemLoading,
+  isPublication,
 }: {
   targetableObject: Pick<
     ActivityTargetableObject,
@@ -214,6 +217,7 @@ export const ObjectOverview = ({
   >;
   isNewRightDrawerItemLoading?: boolean;
   isInRightDrawer?: boolean;
+  isPublication?: boolean;
 }) => {
   const {
     recordFromStore,
@@ -298,9 +302,10 @@ export const ObjectOverview = ({
       finances.push('rentNet', 'rentExtra');
     }
 
+    const stage = isPublication ? [] : ['stage'];
     // construct correct overview fields to show
     const base = [
-      'stage',
+      ...stage,
       'category',
       subType,
       'priceUnit',
@@ -396,6 +401,10 @@ export const ObjectOverview = ({
     maxFiles: 1,
   });
 
+  const overviewLabel =
+    objectMetadataItem.nameSingular.charAt(0).toUpperCase() +
+    objectMetadataItem.nameSingular.slice(1);
+
   if (isNewRightDrawerItemLoading || !isDefined(recordFromStore)) {
     return <ShowPageSummaryCardSkeletonLoader />;
   }
@@ -409,15 +418,22 @@ export const ObjectOverview = ({
           <>
             <StyledHeader>
               <StyledTitle>
-                <Trans>Object Overview</Trans>
+                <Trans>{overviewLabel} Overview</Trans>
               </StyledTitle>
               <StyledButtonContainer>
-                <Button
-                  title={t`Prefill`}
-                  Icon={IconSparkles}
-                  accent="purple"
-                  onClick={openModal}
-                />
+                {!isPublication ? (
+                  <Button
+                    title={t`Prefill`}
+                    Icon={IconSparkles}
+                    accent="purple"
+                    onClick={openModal}
+                  />
+                ) : (
+                  <PlatformBadge
+                    platformId={recordFromStore.platform ?? PlatformId.Newhome}
+                    isActive
+                  />
+                )}
               </StyledButtonContainer>
             </StyledHeader>
             <StyledContent>

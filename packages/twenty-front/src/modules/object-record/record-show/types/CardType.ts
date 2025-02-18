@@ -13,4 +13,5 @@ export enum CardType {
   RichTextCard = 'RichTextCard',
   OverviewCard = 'OverviewCard',
   AISuiteCard = 'AISuiteCard',
+  PublicationDetailsCard = 'PublicationDetailsCard',
 }

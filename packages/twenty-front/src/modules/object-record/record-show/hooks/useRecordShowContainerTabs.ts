@@ -8,15 +8,19 @@ import { RecordLayout } from '@/object-record/record-show/types/RecordLayout';
 import { SingleTabProps } from '@/ui/layout/tab/components/TabList';
 import { RecordLayoutTab } from '@/ui/layout/tab/types/RecordLayoutTab';
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
+// eslint-disable-next-line no-restricted-imports
+import { IconLayoutDashboard } from '@tabler/icons-react';
 import { useRecoilValue } from 'recoil';
 import {
   IconCalendarEvent,
+  IconCheckbox,
   IconList,
   IconMail,
   IconNotes,
   IconPrinter,
   IconSettings,
   IconSparkles,
+  IconTimelineEvent,
 } from 'twenty-ui';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 import { FeatureFlagKey } from '~/generated/graphql';
@@ -78,11 +82,68 @@ export const useRecordShowContainerTabs = (
             ifInRightDrawer: false,
             ifFeaturesDisabled: [],
             ifRequiredObjectsInactive: [],
-            ifRelationsMissing: ['noteTargets', 'taskTargets'],
+            ifRelationsMissing: [],
+          },
+          Icon: IconLayoutDashboard,
+          position: 0,
+          cards: [{ type: CardType.PublicationDetailsCard }],
+        },
+
+        details: {
+          title: 'Details',
+          hide: {
+            ifMobile: false,
+            ifDesktop: false,
+            ifInRightDrawer: false,
+            ifFeaturesDisabled: [],
+            ifRequiredObjectsInactive: [],
+            ifRelationsMissing: [],
           },
           Icon: IconList,
           position: 0,
           cards: [{ type: CardType.OverviewCard }],
+        },
+        timeline: {
+          title: 'Timeline',
+          Icon: IconTimelineEvent,
+          position: 200,
+          cards: [{ type: CardType.TimelineCard }],
+          hide: {
+            ifMobile: false,
+            ifDesktop: false,
+            ifInRightDrawer: true,
+            ifFeaturesDisabled: [],
+            ifRequiredObjectsInactive: [],
+            ifRelationsMissing: [],
+          },
+        },
+        tasks: {
+          title: 'Tasks',
+          Icon: IconCheckbox,
+          position: 300,
+          cards: [{ type: CardType.TaskCard }],
+          hide: {
+            ifMobile: false,
+            ifDesktop: false,
+            ifInRightDrawer: false,
+            ifFeaturesDisabled: [],
+            ifRequiredObjectsInactive: [CoreObjectNameSingular.Task],
+            ifRelationsMissing: ['taskTargets'],
+          },
+        },
+        notes: {
+          title: 'Notes',
+          Icon: IconNotes,
+          position: 400,
+          cards: [{ type: CardType.NoteCard }],
+          hide: {
+            ifMobile: false,
+            ifDesktop: false,
+            ifInRightDrawer: false,
+            ifFeaturesDisabled: [],
+            ifRequiredObjectsInactive: [CoreObjectNameSingular.Note],
+            ifRelationsMissing: ['noteTargets'],
+          },
         },
       },
     },
@@ -267,10 +328,20 @@ export const useRecordShowContainerTabs = (
 
   // Merge base layout with object-specific layout
   const recordLayout: RecordLayout = {
-    ...BASE_RECORD_LAYOUT,
+    ...(targetObjectNameSingular === CoreObjectNameSingular.Publication
+      ? {}
+      : {
+          ...BASE_RECORD_LAYOUT,
+          tabs: {
+            ...BASE_RECORD_LAYOUT.tabs,
+            ...(OBJECT_SPECIFIC_LAYOUTS[targetObjectNameSingular]?.tabs || {}),
+          },
+        }),
     ...(OBJECT_SPECIFIC_LAYOUTS[targetObjectNameSingular] || {}),
     tabs: {
-      ...BASE_RECORD_LAYOUT.tabs,
+      ...(targetObjectNameSingular === CoreObjectNameSingular.Publication
+        ? {}
+        : BASE_RECORD_LAYOUT.tabs),
       ...(OBJECT_SPECIFIC_LAYOUTS[targetObjectNameSingular]?.tabs || {}),
     },
   };

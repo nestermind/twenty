@@ -1,3 +1,4 @@
+import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { isPropertyOrPublication } from '@/object-metadata/utils/isPropertyOrPublication';
 import { AppPath } from '@/types/AppPath';
@@ -20,9 +21,10 @@ export const useHandleIndexIdentifierClick = ({
   const indexIdentifierUrl = (recordId: string) => {
     if (isPropertyOrPublication(objectMetadataItem.nameSingular)) {
       return getAppPath(
-        AppPath.RecordShowPropertyPage,
+        objectMetadataItem.nameSingular === CoreObjectNameSingular.Property
+          ? AppPath.RecordShowPropertyPage
+          : AppPath.RecordShowPublicationPage,
         {
-          objectNameSingular: objectMetadataItem.nameSingular,
           objectRecordId: recordId,
         },
         {

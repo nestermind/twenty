@@ -51,7 +51,7 @@ const StyledRightContainer = styled.div`
   gap: ${({ theme }) => theme.spacing(2)};
 `;
 
-export const RecordShowPropertyPage = () => {
+export const RecordShowPublicationPage = () => {
   const parameters = useParams<{
     objectRecordId: string;
   }>();
@@ -67,7 +67,7 @@ export const RecordShowPropertyPage = () => {
     objectMetadataItem,
     handleFavoriteButtonClick,
   } = useRecordShowPage(
-    CoreObjectNameSingular.Property,
+    CoreObjectNameSingular.Publication,
     parameters.objectRecordId ?? '',
   );
 

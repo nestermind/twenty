@@ -1,5 +1,8 @@
+import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
+
 export const isPropertyOrPublication = (objectNameSingular: string) => {
   return (
-    objectNameSingular === 'property' || objectNameSingular === 'publication'
+    objectNameSingular === CoreObjectNameSingular.Property ||
+    objectNameSingular === CoreObjectNameSingular.Publication
   );
 };

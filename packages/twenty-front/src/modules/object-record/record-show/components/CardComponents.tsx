@@ -8,6 +8,7 @@ import { ActivityTargetableObject } from '@/activities/types/ActivityTargetableE
 import { FieldsCard } from '@/object-record/record-show/components/FieldsCard';
 import { AISuite } from '@/object-record/record-show/components/nm/AISuite';
 import { ObjectOverview } from '@/object-record/record-show/components/nm/ObjectOverview';
+import { PublicationDetails } from '@/object-record/record-show/components/nm/PublicationDetails';
 
 import { CardType } from '@/object-record/record-show/types/CardType';
 import { ShowPageActivityContainer } from '@/ui/layout/show-page/components/ShowPageActivityContainer';
@@ -110,5 +111,9 @@ export const CardComponents: Record<CardType, CardComponentType> = {
 
   [CardType.AISuiteCard]: ({ targetableObject }) => (
     <AISuite targetableObject={targetableObject} />
+  ),
+
+  [CardType.PublicationDetailsCard]: ({ targetableObject }) => (
+    <PublicationDetails targetableObject={targetableObject} />
   ),
 };
