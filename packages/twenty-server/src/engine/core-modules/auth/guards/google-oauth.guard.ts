@@ -11,15 +11,15 @@ import {
 } from 'src/engine/core-modules/auth/auth.exception';
 import { GuardRedirectService } from 'src/engine/core-modules/guard-redirect/services/guard-redirect.service';
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
-import { EnvironmentService } from 'src/engine/core-modules/environment/environment.service';
+import { DomainManagerService } from 'src/engine/core-modules/domain-manager/services/domain-manager.service';
 
 @Injectable()
 export class GoogleOauthGuard extends AuthGuard('google') {
   constructor(
     private readonly guardRedirectService: GuardRedirectService,
-    private readonly environmentService: EnvironmentService,
     @InjectRepository(Workspace, 'core')
     private readonly workspaceRepository: Repository<Workspace>,
+    private readonly domainManagerService: DomainManagerService,
   ) {
     super({
       prompt: 'select_account',
@@ -53,9 +53,9 @@ export class GoogleOauthGuard extends AuthGuard('google') {
       this.guardRedirectService.dispatchErrorFromGuard(
         context,
         err,
-        workspace ?? {
-          subdomain: this.environmentService.get('DEFAULT_SUBDOMAIN'),
-        },
+        this.domainManagerService.getSubdomainAndCustomDomainFromWorkspaceFallbackOnDefaultSubdomain(
+          workspace,
+        ),
       );
 
       return false;

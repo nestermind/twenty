@@ -22,11 +22,11 @@ services:
       - server-local-data:/app/packages/twenty-server/${STORAGE_LOCAL_PATH:-.local-storage}
       - docker-data:/app/docker-data
     ports:
-      - "3000:3000"
-      - "443:3000"
-      - "80:3000"
+      - '3000:3000'
+      - '443:3000'
+      - '80:3000'
     environment:
-      PORT: 3000
+      NODE_PORT: 3000
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
       SERVER_URL: ${SERVER_URL}
       FRONT_PROTOCOL: ${FRONT_PROTOCOL}
@@ -107,7 +107,7 @@ services:
       FRONT_DOMAIN: ${FRONT_DOMAIN}
       FRONT_PORT: ${FRONT_PORT}
       REDIS_URL: ${REDIS_URL:-redis://:${REDIS_PASSWORD:-nestermind-redis-password}@redis:6379}
-      DISABLE_DB_MIGRATIONS: "true" # it already runs on the server
+      DISABLE_DB_MIGRATIONS: 'true' # it already runs on the server
 
       LOG_LEVELS: ${LOG_LEVELS}
 
@@ -159,8 +159,8 @@ services:
     environment:
       PGUSER_SUPERUSER: ${PG_DATABASE_USER:-postgres}
       PGPASSWORD_SUPERUSER: ${PG_DATABASE_PASSWORD:-postgres}
-      ALLOW_NOSSL: "true"
-      SPILO_PROVIDER: "local"
+      ALLOW_NOSSL: 'true'
+      SPILO_PROVIDER: 'local'
     healthcheck:
       test: pg_isready -U ${PG_DATABASE_USER:-postgres} -h localhost -d postgres
       interval: 5s

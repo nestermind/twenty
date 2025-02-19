@@ -32,12 +32,12 @@ import {
 } from 'src/engine/core-modules/sso/workspace-sso-identity-provider.entity';
 import { User } from 'src/engine/core-modules/user/user.entity';
 import { AuthOAuthExceptionFilter } from 'src/engine/core-modules/auth/filters/auth-oauth-exception.filter';
-import { EnvironmentService } from 'src/engine/core-modules/environment/environment.service';
 import { GuardRedirectService } from 'src/engine/core-modules/guard-redirect/services/guard-redirect.service';
 import { SAMLRequest } from 'src/engine/core-modules/auth/strategies/saml.auth.strategy';
 import { OIDCRequest } from 'src/engine/core-modules/auth/strategies/oidc.auth.strategy';
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
 import { workspaceValidator } from 'src/engine/core-modules/workspace/workspace.validate';
+import { DomainManagerService } from 'src/engine/core-modules/domain-manager/services/domain-manager.service';
 
 @Controller('auth')
 export class SSOAuthController {
@@ -45,7 +45,8 @@ export class SSOAuthController {
     private readonly loginTokenService: LoginTokenService,
     private readonly authService: AuthService,
     private readonly guardRedirectService: GuardRedirectService,
-    private readonly environmentService: EnvironmentService,
+    private readonly domainManagerService: DomainManagerService,
+
     private readonly sSOService: SSOService,
     @InjectRepository(User, 'core')
     private readonly userRepository: Repository<User>,
@@ -152,16 +153,16 @@ export class SSOAuthController {
       return res.redirect(
         this.authService.computeRedirectURI({
           loginToken: loginToken.token,
-          subdomain: currentWorkspace.subdomain,
+          workspace: currentWorkspace,
         }),
       );
     } catch (err) {
       return res.redirect(
         this.guardRedirectService.getRedirectErrorUrlAndCaptureExceptions(
           err,
-          workspaceIdentityProvider?.workspace ?? {
-            subdomain: this.environmentService.get('DEFAULT_SUBDOMAIN'),
-          },
+          this.domainManagerService.getSubdomainAndCustomDomainFromWorkspaceFallbackOnDefaultSubdomain(
+            workspaceIdentityProvider?.workspace,
+          ),
         ),
       );
     }

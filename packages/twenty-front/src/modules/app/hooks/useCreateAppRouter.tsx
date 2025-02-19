@@ -32,6 +32,7 @@ export const useCreateAppRouter = (
   isBillingEnabled?: boolean,
   isFunctionSettingsEnabled?: boolean,
   isAdminPageEnabled?: boolean,
+  isPermissionsEnabled?: boolean,
 ) =>
   createBrowserRouter(
     createRoutesFromElements(
@@ -75,6 +76,7 @@ export const useCreateAppRouter = (
                 isBillingEnabled={isBillingEnabled}
                 isFunctionSettingsEnabled={isFunctionSettingsEnabled}
                 isAdminPageEnabled={isAdminPageEnabled}
+                isPermissionsEnabled={isPermissionsEnabled}
               />
             }
           />

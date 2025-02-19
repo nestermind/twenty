@@ -14,7 +14,10 @@ import { UserService } from 'src/engine/core-modules/user/services/user.service'
 import { User } from 'src/engine/core-modules/user/user.entity';
 import { WorkspaceInvitationService } from 'src/engine/core-modules/workspace-invitation/services/workspace-invitation.service';
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
+import { PermissionsService } from 'src/engine/metadata-modules/permissions/permissions.service';
 import { WorkspaceManagerService } from 'src/engine/workspace-manager/workspace-manager.service';
+import { ExceptionHandlerService } from 'src/engine/core-modules/exception-handler/exception-handler.service';
+import { CustomDomainService } from 'src/engine/core-modules/domain-manager/services/custom-domain.service';
 
 import { WorkspaceService } from './workspace.service';
 
@@ -54,6 +57,10 @@ describe('WorkspaceService', () => {
           useValue: {},
         },
         {
+          provide: CustomDomainService,
+          useValue: {},
+        },
+        {
           provide: BillingSubscriptionService,
           useValue: {},
         },
@@ -79,6 +86,14 @@ describe('WorkspaceService', () => {
         },
         {
           provide: FeatureFlagService,
+          useValue: {},
+        },
+        {
+          provide: ExceptionHandlerService,
+          useValue: {},
+        },
+        {
+          provide: PermissionsService,
           useValue: {},
         },
       ],

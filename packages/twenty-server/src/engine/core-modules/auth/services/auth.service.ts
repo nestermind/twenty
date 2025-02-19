@@ -56,6 +56,7 @@ import { WorkspaceInvitationService } from 'src/engine/core-modules/workspace-in
 import { WorkspaceAuthProvider } from 'src/engine/core-modules/workspace/types/workspace.type';
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
 import { workspaceValidator } from 'src/engine/core-modules/workspace/workspace.validate';
+import { WorkspaceSubdomainCustomDomainAndIsCustomDomainEnabledType } from 'src/engine/core-modules/domain-manager/domain-manager.type';
 
 @Injectable()
 // eslint-disable-next-line @nx/workspace-inject-workspace-repository
@@ -455,15 +456,15 @@ export class AuthService {
 
   computeRedirectURI({
     loginToken,
-    subdomain,
+    workspace,
     billingCheckoutSessionState,
   }: {
     loginToken: string;
-    subdomain: string;
+    workspace: WorkspaceSubdomainCustomDomainAndIsCustomDomainEnabledType;
     billingCheckoutSessionState?: string;
   }) {
     const url = this.domainManagerService.buildWorkspaceURL({
-      subdomain,
+      workspace,
       pathname: '/verify',
       searchParams: {
         loginToken,

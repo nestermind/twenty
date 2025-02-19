@@ -1,24 +1,30 @@
 import { act, renderHook } from '@testing-library/react';
 
-import { formatFieldMetadataItemAsFilterDefinition } from '@/object-metadata/utils/formatFieldMetadataItemsAsFilterDefinitions';
+import {
+  formatFieldMetadataItemAsFilterDefinition,
+  getFilterTypeFromFieldType,
+} from '@/object-metadata/utils/formatFieldMetadataItemsAsFilterDefinitions';
 import { currentRecordFiltersComponentState } from '@/object-record/record-filter/states/currentRecordFiltersComponentState';
+import { RecordFilter } from '@/object-record/record-filter/types/RecordFilter';
 import { RecordFilterDefinition } from '@/object-record/record-filter/types/RecordFilterDefinition';
 import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValueV2';
 import { ViewFilter } from '@/views/types/ViewFilter';
 import { ViewFilterOperand } from '@/views/types/ViewFilterOperand';
 import { isDefined } from 'twenty-shared';
-import { getJestMetadataAndApolloMocksWrapper } from '~/testing/jest/getJestMetadataAndApolloMocksWrapper';
+import { getJestMetadataAndApolloMocksAndActionMenuWrapper } from '~/testing/jest/getJestMetadataAndApolloMocksAndContextStoreWrapper';
 import { generatedMockObjectMetadataItems } from '~/testing/mock-data/generatedMockObjectMetadataItems';
 import { useApplyViewFiltersToCurrentRecordFilters } from '../useApplyViewFiltersToCurrentRecordFilters';
 
+const mockObjectMetadataItemNameSingular = 'company';
+
 describe('useApplyViewFiltersToCurrentRecordFilters', () => {
   const mockObjectMetadataItem = generatedMockObjectMetadataItems.find(
-    (item) => item.nameSingular === 'company',
+    (item) => item.nameSingular === mockObjectMetadataItemNameSingular,
   );
 
   if (!isDefined(mockObjectMetadataItem)) {
     throw new Error(
-      'Missing mock object metadata item with name singular "company"',
+      `Missing mock object metadata item with name singular ${mockObjectMetadataItemNameSingular}`,
     );
   }
 
@@ -35,7 +41,7 @@ describe('useApplyViewFiltersToCurrentRecordFilters', () => {
     fieldMetadataId: mockFieldMetadataItem.id,
     operand: ViewFilterOperand.Contains,
     value: 'test',
-    displayValue: 'test',
+    displayValue: mockFieldMetadataItem.label,
     viewFilterGroupId: 'group-1',
     positionInViewFilterGroup: 0,
     definition: mockAvailableFilterDefinition,
@@ -54,7 +60,12 @@ describe('useApplyViewFiltersToCurrentRecordFilters', () => {
         return { applyViewFiltersToCurrentRecordFilters, currentFilters };
       },
       {
-        wrapper: getJestMetadataAndApolloMocksWrapper({}),
+        wrapper: getJestMetadataAndApolloMocksAndActionMenuWrapper({
+          apolloMocks: [],
+          componentInstanceId: 'instanceId',
+          contextStoreCurrentObjectMetadataNameSingular:
+            mockObjectMetadataItemNameSingular,
+        }),
       },
     );
 
@@ -72,7 +83,9 @@ describe('useApplyViewFiltersToCurrentRecordFilters', () => {
         viewFilterGroupId: mockViewFilter.viewFilterGroupId,
         positionInViewFilterGroup: mockViewFilter.positionInViewFilterGroup,
         definition: mockAvailableFilterDefinition,
-      },
+        label: mockViewFilter.displayValue,
+        type: getFilterTypeFromFieldType(mockFieldMetadataItem.type),
+      } satisfies RecordFilter,
     ]);
   });
 
@@ -89,7 +102,12 @@ describe('useApplyViewFiltersToCurrentRecordFilters', () => {
         return { applyViewFiltersToCurrentRecordFilters, currentFilters };
       },
       {
-        wrapper: getJestMetadataAndApolloMocksWrapper({}),
+        wrapper: getJestMetadataAndApolloMocksAndActionMenuWrapper({
+          apolloMocks: [],
+          componentInstanceId: 'instanceId',
+          contextStoreCurrentObjectMetadataNameSingular:
+            mockObjectMetadataItemNameSingular,
+        }),
       },
     );
 

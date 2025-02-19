@@ -23,8 +23,9 @@ import { ContextStoreViewType } from '@/context-store/types/ContextStoreViewType
 import { viewableRecordIdState } from '@/object-record/record-right-drawer/states/viewableRecordIdState';
 import { viewableRecordNameSingularState } from '@/object-record/record-right-drawer/states/viewableRecordNameSingularState';
 import { emitRightDrawerCloseEvent } from '@/ui/layout/right-drawer/utils/emitRightDrawerCloseEvent';
+import { useCallback } from 'react';
 import { isDefined } from 'twenty-shared';
-import { IconSearch } from 'twenty-ui';
+import { IconDotsVertical, IconList, IconSearch } from 'twenty-ui';
 import { isCommandMenuOpenedState } from '../states/isCommandMenuOpenedState';
 
 export const useCommandMenu = () => {
@@ -42,8 +43,16 @@ export const useCommandMenu = () => {
   const { resetContextStoreStates } = useResetContextStoreStates();
 
   const openCommandMenu = useRecoilCallback(
-    ({ set }) =>
+    ({ snapshot, set }) =>
       () => {
+        const isCommandMenuOpened = snapshot
+          .getLoadable(isCommandMenuOpenedState)
+          .getValue();
+
+        if (isCommandMenuOpened) {
+          return;
+        }
+
         copyContextStoreStates({
           instanceIdToCopyFrom: mainContextStoreComponentInstanceId,
           instanceIdToCopyTo: 'command-menu',
@@ -88,24 +97,6 @@ export const useCommandMenu = () => {
     [goBackToPreviousHotkeyScope, resetContextStoreStates, resetSelectedItem],
   );
 
-  const toggleCommandMenu = useRecoilCallback(
-    ({ snapshot, set }) =>
-      async () => {
-        const isCommandMenuOpened = snapshot
-          .getLoadable(isCommandMenuOpenedState)
-          .getValue();
-
-        set(commandMenuSearchState, '');
-
-        if (isCommandMenuOpened) {
-          closeCommandMenu();
-        } else {
-          openCommandMenu();
-        }
-      },
-    [closeCommandMenu, openCommandMenu],
-  );
-
   const navigateCommandMenu = useRecoilCallback(
     ({ snapshot, set }) => {
       return ({
@@ -131,6 +122,32 @@ export const useCommandMenu = () => {
       };
     },
     [openCommandMenu],
+  );
+
+  const openRootCommandMenu = useCallback(() => {
+    navigateCommandMenu({
+      page: CommandMenuPages.Root,
+      pageTitle: 'Command Menu',
+      pageIcon: IconDotsVertical,
+    });
+  }, [navigateCommandMenu]);
+
+  const toggleCommandMenu = useRecoilCallback(
+    ({ snapshot, set }) =>
+      async () => {
+        const isCommandMenuOpened = snapshot
+          .getLoadable(isCommandMenuOpenedState)
+          .getValue();
+
+        set(commandMenuSearchState, '');
+
+        if (isCommandMenuOpened) {
+          closeCommandMenu();
+        } else {
+          openRootCommandMenu();
+        }
+      },
+    [closeCommandMenu, openRootCommandMenu],
   );
 
   const goBackFromCommandMenu = useRecoilCallback(
@@ -194,6 +211,8 @@ export const useCommandMenu = () => {
         set(viewableRecordIdState, recordId);
         navigateCommandMenu({
           page: CommandMenuPages.ViewRecord,
+          pageTitle: objectNameSingular,
+          pageIcon: IconList,
         });
       };
     },
@@ -257,7 +276,7 @@ export const useCommandMenu = () => {
   );
 
   return {
-    openCommandMenu,
+    openRootCommandMenu,
     closeCommandMenu,
     navigateCommandMenu,
     navigateCommandMenuHistory,

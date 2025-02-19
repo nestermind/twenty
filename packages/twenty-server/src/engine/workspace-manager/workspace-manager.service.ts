@@ -17,7 +17,7 @@ import {
 import { PermissionsService } from 'src/engine/metadata-modules/permissions/permissions.service';
 import { RelationMetadataEntity } from 'src/engine/metadata-modules/relation-metadata/relation-metadata.entity';
 import { RoleService } from 'src/engine/metadata-modules/role/role.service';
-import { UserRoleService } from 'src/engine/metadata-modules/userRole/userRole.service';
+import { UserRoleService } from 'src/engine/metadata-modules/user-role/user-role.service';
 import { WorkspaceMigrationService } from 'src/engine/metadata-modules/workspace-migration/workspace-migration.service';
 import { PETS_DATA_SEEDS } from 'src/engine/seeder/data-seeds/pets-data-seeds';
 import { SURVEY_RESULTS_DATA_SEEDS } from 'src/engine/seeder/data-seeds/survey-results-data-seeds';
@@ -124,6 +124,31 @@ export class WorkspaceManagerService {
     await this.prefillWorkspaceWithDemoObjects(dataSourceMetadata, workspaceId);
   }
 
+  public async initDev(workspaceId: string): Promise<void> {
+    const schemaName =
+      await this.workspaceDataSourceService.createWorkspaceDBSchema(
+        workspaceId,
+      );
+
+    const dataSourceMetadata =
+      await this.dataSourceService.createDataSourceMetadata(
+        workspaceId,
+        schemaName,
+      );
+
+    await this.workspaceSyncMetadataService.synchronize({
+      workspaceId: workspaceId,
+      dataSourceId: dataSourceMetadata.id,
+    });
+
+    const permissionsEnabled =
+      await this.permissionsService.isPermissionsEnabled();
+
+    if (permissionsEnabled === true) {
+      await this.initPermissions(workspaceId);
+    }
+  }
+
   /**
    *
    * We are prefilling a few standard objects with data to make it easier for the user to get started.
@@ -225,30 +250,25 @@ export class WorkspaceManagerService {
       workspaceId,
     });
 
-    const userWorkspace = await this.userWorkspaceRepository.find({
+    const userWorkspaces = await this.userWorkspaceRepository.find({
       where: {
         workspaceId,
       },
     });
 
-    if (isEmpty(userWorkspace)) {
+    if (isEmpty(userWorkspaces)) {
       throw new PermissionsException(
         'User workspace not found',
         PermissionsExceptionCode.USER_WORKSPACE_NOT_FOUND,
       );
     }
 
-    if (userWorkspace.length > 1) {
-      throw new PermissionsException(
-        'Multiple user workspaces found, cannot tell which one should be admin',
-        PermissionsExceptionCode.TOO_MANY_ADMIN_CANDIDATES,
-      );
+    for (const userWorkspace of userWorkspaces) {
+      await this.userRoleService.assignRoleToUserWorkspace({
+        workspaceId,
+        userWorkspaceId: userWorkspace.id,
+        roleId: adminRole.id,
+      });
     }
-
-    await this.userRoleService.assignRoleToUserWorkspace({
-      workspaceId,
-      userWorkspaceId: userWorkspace[0].id,
-      roleId: adminRole.id,
-    });
   }
 }
