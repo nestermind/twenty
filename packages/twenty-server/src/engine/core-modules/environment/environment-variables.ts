@@ -861,7 +861,7 @@ export class EnvironmentVariables {
   IS_MULTIWORKSPACE_ENABLED = false;
 
   @EnvironmentVariablesMetadata({
-    group: EnvironmentVariablesGroup.Workspace,
+    group: EnvironmentVariablesGroup.ServerConfig,
     description:
       'If set, new Workspace creation copies metadata from defined workspace',
   })
