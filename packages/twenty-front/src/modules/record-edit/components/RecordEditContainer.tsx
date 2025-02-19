@@ -14,7 +14,6 @@ import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { ShowPageImageBanner } from '@/ui/layout/show-page/components/nm/ShowPageImageBanner';
 import { SingleTabProps, TabList } from '@/ui/layout/tab/components/TabList';
 import { useTabList } from '@/ui/layout/tab/hooks/useTabList';
-import { Trans, useLingui } from '@lingui/react/macro';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isDefined } from 'twenty-shared';
@@ -150,8 +149,6 @@ export const RecordEditContainer = ({
 
   const tabListComponentId = `${TAB_LIST_COMPONENT_ID}-${isInRightDrawer}-${recordId}`;
 
-  const { t } = useLingui();
-
   const { activeTabId } = useTabList(tabListComponentId);
 
   const { record } = useRecordShowPage(objectNameSingular, recordId);
@@ -239,9 +236,7 @@ export const RecordEditContainer = ({
           width={section.width ?? 385}
           height={500}
         >
-          <StyledSectionTitle>
-            <Trans>{section.title}</Trans>
-          </StyledSectionTitle>
+          <StyledSectionTitle>{section.title}</StyledSectionTitle>
           <StyledSectionContent>
             {section.groups.map((group, groupIndex) => {
               const groupFields = group.fields
@@ -334,7 +329,7 @@ export const RecordEditContainer = ({
         />
         <StyledButtonContainer>
           <Button
-            title={t`Save`}
+            title={`Save`}
             variant="primary"
             accent="blue"
             size="small"

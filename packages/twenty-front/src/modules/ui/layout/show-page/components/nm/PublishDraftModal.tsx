@@ -2,7 +2,6 @@ import { useAttachments } from '@/activities/files/hooks/useAttachments';
 import { Modal, ModalRefType } from '@/ui/layout/modal/components/Modal';
 import { ModalHotkeyScope } from '@/ui/layout/modal/components/types/ModalHotkeyScope';
 import styled from '@emotion/styled';
-import { useLingui } from '@lingui/react/macro';
 // eslint-disable-next-line no-restricted-imports
 
 import { motion } from 'framer-motion';
@@ -66,8 +65,6 @@ type PublishModalProps = {
 
 export const PublishDraftModal = forwardRef<ModalRefType, PublishModalProps>(
   ({ onClose, targetableObject }, ref) => {
-    const { t } = useLingui();
-
     const [currentStep, setCurrentStep] = useState<Step>('platform-select');
 
     const [selectedPlatforms, setSelectedPlatforms] = useState<
@@ -113,7 +110,7 @@ export const PublishDraftModal = forwardRef<ModalRefType, PublishModalProps>(
             <StyledModalTitle>Publication Draft</StyledModalTitle>
           </StyledModalTitleContainer>
           <StyledModalHeaderButtons>
-            <Button variant="tertiary" title={t`Cancel`} onClick={onClose} />
+            <Button variant="tertiary" title={`Cancel`} onClick={onClose} />
           </StyledModalHeaderButtons>
         </StyledModalHeader>
         <StyledModalContent

@@ -12,7 +12,6 @@ import { ShowPageSummaryCardSkeletonLoader } from '@/ui/layout/show-page/compone
 
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import styled from '@emotion/styled';
-import { Trans, useLingui } from '@lingui/react/macro';
 // eslint-disable-next-line no-restricted-imports
 import { Modal, ModalRefType } from '@/ui/layout/modal/components/Modal';
 // eslint-disable-next-line no-restricted-imports
@@ -240,8 +239,6 @@ export const ObjectOverview = ({
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isProcessed, setIsProcessed] = useState(false);
 
-  const { t } = useLingui();
-
   // eslint-disable-next-line @nx/workspace-no-state-useref
   const modalRef = useRef<ModalRefType>(null);
 
@@ -422,13 +419,11 @@ export const ObjectOverview = ({
         ) : (
           <>
             <StyledHeader>
-              <StyledTitle>
-                <Trans>{overviewLabel} Overview</Trans>
-              </StyledTitle>
+              <StyledTitle>{overviewLabel} Overview</StyledTitle>
               <StyledButtonContainer>
                 {!isPublication ? (
                   <Button
-                    title={t`Prefill`}
+                    title={`Prefill`}
                     Icon={IconSparkles}
                     accent="purple"
                     onClick={openModal}
@@ -546,13 +541,13 @@ export const ObjectOverview = ({
             </StyledModalTitleContainer>
             <StyledModalHeaderButtons>
               <Button
-                title={t`Cancel`}
+                title={`Cancel`}
                 Icon={IconX}
                 onClick={handleModalClose}
               />
               {isProcessed && (
                 <Button
-                  title={t`Prefill`}
+                  title={`Prefill`}
                   Icon={IconSparkles}
                   accent="purple"
                   onClick={handlePrefill}

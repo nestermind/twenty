@@ -4,7 +4,6 @@ import { useRecordShowContainerData } from '@/object-record/record-show/hooks/us
 import { Modal, ModalRefType } from '@/ui/layout/modal/components/Modal';
 import { ModalHotkeyScope } from '@/ui/layout/modal/components/types/ModalHotkeyScope';
 import styled from '@emotion/styled';
-import { useLingui } from '@lingui/react/macro';
 // eslint-disable-next-line no-restricted-imports
 import {
   IconBrandInstagram,
@@ -425,7 +424,6 @@ type AISuiteProps = {
 const DEMO_VIDEOS = ['/videos/1.mp4', '/videos/2.mp4', '/videos/3.mp4'];
 
 export const AISuite = ({ targetableObject }: AISuiteProps) => {
-  const { t } = useLingui();
   const [isGenerating, setIsGenerating] = useState(false);
   const [hasGeneratedVideos, setHasGeneratedVideos] = useState(false);
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
@@ -547,7 +545,7 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
                     personalized engagement strategies
                   </StyledToolDescription>
                   <Button
-                    title={t`Generate Insights`}
+                    title={`Generate Insights`}
                     Icon={IconSparkles}
                     variant="secondary"
                     size="medium"
@@ -568,7 +566,7 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
                     positioning
                   </StyledToolDescription>
                   <Button
-                    title={t`Generate Analysis`}
+                    title={`Generate Analysis`}
                     Icon={IconSparkles}
                     variant="secondary"
                     size="medium"
@@ -606,7 +604,7 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
                     </>
                   )}
                   <Button
-                    title={isGenerating ? t`Generating...` : t`Generate Video`}
+                    title={isGenerating ? `Generating...` : `Generate Video`}
                     Icon={IconSparkles}
                     accent="blue"
                     size="medium"
@@ -649,7 +647,7 @@ export const AISuite = ({ targetableObject }: AISuiteProps) => {
             <StyledModalTitle>Instagram Preview</StyledModalTitle>
           </StyledModalTitleContainer>
           <StyledModalHeaderButtons>
-            <Button title={t`Close`} Icon={IconX} onClick={closeModal} />
+            <Button title={`Close`} Icon={IconX} onClick={closeModal} />
           </StyledModalHeaderButtons>
         </StyledModalHeader>
         <StyledModalContent>

@@ -7,7 +7,6 @@ import {
   PLATFORMS,
 } from '@/ui/layout/show-page/components/nm/types/Platform';
 import styled from '@emotion/styled';
-import { useLingui } from '@lingui/react/macro';
 import axios from 'axios';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -103,7 +102,7 @@ export const Publishing = ({
   const [isLoading, setIsLoading] = useState(false);
   const { enqueueSnackBar } = useSnackBar();
   const tokenPair = useRecoilValue(tokenPairState);
-  const { t } = useLingui();
+
   const { recordFromStore: record } = useRecordShowContainerData({
     objectNameSingular: 'publication',
     objectRecordId: recordId,
@@ -125,7 +124,7 @@ export const Publishing = ({
         throw new Error('Failed to publish');
       }
       setIsPublished(true);
-      enqueueSnackBar(t`Publication created successfully`, {
+      enqueueSnackBar(`Publication created successfully`, {
         variant: SnackBarVariant.Success,
       });
     } catch (error: any) {
@@ -171,7 +170,7 @@ export const Publishing = ({
             <Button
               variant="primary"
               accent="blue"
-              title={t`Publish`}
+              title={`Publish`}
               onClick={publishDraft}
             />
           )}
